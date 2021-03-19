@@ -1,13 +1,27 @@
-module.exports = () => {
-    const controller = {};
+const express = require('express');
 
-    controller.cadUsuario = async (req, res) => {
-        res.send('cadastro');
-    };
+const User = require('../models/User');
 
-    controller.logUsuario = async (req, res) => {
-        res.send('login');
-    };
+const router = express.Router();
 
-    return controller;
-};
+router.post('/register', async (req, res) => {
+    const {email} = req.body;
+
+
+    try{
+        if (await User.findOne({email}))
+            return res.status(400).send({ error: 'Usuário já existente'});
+
+
+        const user = await User.create(req.body);
+        
+        user.password = undefined;
+
+        return res.send({user});
+    } catch (err) {
+        return res.status(400).send({ error: 'falha no registro'});
+    }
+});
+
+
+module.exports = app => app.use('/auth', router);

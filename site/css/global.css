@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Metrophobic&family=Allerta&display=swap');
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root{
+    --primary-font: 'Allerta', sans-serif;
+    --secondary-font: 'Metrophobic', sans-serif;
+    --text-font: 'Roboto', sans-serif;
+}
+
+body{
+    background-color: whitesmoke;
+}
+
+footer{
+    background-color: #17406A;
+    padding: 0 6rem;
+    height: 14rem;
+}
+
+#footer-content{
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    padding: 1rem 0 0 0;
+}
+
+#logo-footer-wrapper{
+    flex: 1;
+    max-width: 25%;
+    justify-content: center;
+    height: 7rem;
+    padding: 2rem 0;
+}
+
+#logo-footer-wrapper img{
+    height: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+#footer-information{
+    flex: 1;
+    max-width: 50%;
+    padding: 0.5rem 0.5rem;
+}
+
+#footer-information h3{
+    font-family: var(--secondary-font);
+}
+
+#footer-information a{
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+#footer-information a:hover{
+    text-decoration: underline #FFFFFF;
+}
+
+#footer-information p{
+    font-family: var(--text-font);
+    color: #FFFFFF;
+    cursor: default;
+}
+
+.footer-navigation-link-wrapper{
+    width: 50%;
+    float: left;
+    margin: 1rem 0;
+}
+
+#footer-section-navigation{
+    flex: 1;
+    max-width: 25%;
+}
+
+#footer-section-navigation a{
+    text-decoration: none;
+    color: #FFFFFF;
+    font-family: 'Metrophobic', sans-serif;
+    font-weight: normal;
+    width: 100%;
+}
+
+#footer-section-navigation a:hover{
+    text-decoration: underline#FFFFFF;
+}
+
+#footer-copyright{
+    width: 100%;
+    text-align: center;
+}
+
+#footer-copyright p{
+    font-family: var(--text-font);
+    color: #FFFFFF;
+    cursor: default;
+}
+
+

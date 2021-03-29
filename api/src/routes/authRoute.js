@@ -1,5 +1,5 @@
 module.exports = app => {
-    const auth = require('../controllers/authentication')();
+    const auth = require('../../app/controllers/authentication')();
 
     app.route('/auth/cadastro')
         .post(auth.cadUsuario);

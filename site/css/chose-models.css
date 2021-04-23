@@ -1,0 +1,142 @@
+body{
+    display: block;
+}
+
+#header{
+    padding: 0 3.5rem;
+}
+
+#header h1{
+    font-family: var(--primary-font);
+    font-weight: 500;
+    font-size: 3rem;
+    margin: 2rem 0;
+    color: #778899;
+}
+
+#search-container{
+    display: flex;
+    margin: 0.5rem 0;
+}
+
+#search-input-container{
+    display: flex;
+    background-color: #FFFFFF;
+    width: 25.5rem;
+    align-items: center;
+    border: 2px solid #5692CD;
+    border-radius: 5px;
+}
+
+#input-icon-wrapper{
+    width: 2.5rem;
+    text-align: center;
+}
+
+#input-icon-wrapper i{
+    padding: 0 0.5rem;
+    font-size: 1.4em;
+    color: #778899;
+}
+
+#search-input{
+    padding: 0.5rem 0.5rem 0.5rem 0;
+    font-size: 1em;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    width: 100%;
+    color: #778899;
+}
+
+#search-button-wrapper{
+    height: calc(100% + 4px);
+    width: 3rem;
+}
+
+#search-button-wrapper button{
+    height: 100%;
+    width: 100%;
+    color: #FFFFFF;
+    border: none;
+    font-size: 1em;
+    background-color: #5692CD;
+    border-radius: 0 5px 5px 0;
+    outline: 0;
+    text-transform: uppercase;
+}
+
+#input-container{
+    width: 15rem;
+    height: 2.5rem;
+    margin-left: 1.5rem;
+}
+
+select{
+    height: 100%;
+    width: 100%;
+    background-color: #FFFFFF;
+    align-items: center;
+    border: 2px solid #5692CD;
+    border-radius: 5px;
+    padding: 0.5rem 0.2rem;
+    font-size: 1em;
+    color: #778899;
+    outline: none;
+}
+
+#models-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 3.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.model-frame{
+    max-width: calc(33.333% - 0.8rem);
+    min-width: calc(33.333% - 0.8rem);
+    flex: 1;
+    background-color: #868686;
+    height: 16rem;
+    display: flex;
+    margin-top: 1.2rem;
+    border-radius: 5px;
+    border: #5692CD 1px solid;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.model-frame:nth-child(3n-1){
+    margin-left: 1.2rem;
+    margin-right: 1.2rem;
+}
+
+.model-frame h3{
+    position: absolute;
+    left: 0.5rem;
+    bottom: 0.5rem;
+    font-family: var(--secondary-font);
+    color: #FFFFFF;
+    text-shadow: 2px 2px rgba( 0, 0, 0, 0.5);
+   
+}
+
+.frame-tool-bar{
+    background-color: #5692CD;
+    width: 100%;
+    height: 0.8rem;
+    border-radius: 5px 5px 0 0;
+}
+
+.tool-bar-icons-wrapper{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    float: right;
+}
+
+.tool-bar-icons-wrapper i{
+    font-size: 0.7em;
+    color: #FFFFFF;
+    margin-right: 0.2rem;
+}

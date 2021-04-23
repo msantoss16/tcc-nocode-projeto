@@ -104,3 +104,143 @@ footer{
 }
 
 
+
+nav{
+    height: 5rem;
+    width: 100%;
+    background-color: #5692CD;
+}
+
+#menu{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#logo-wrapper{
+    height: 2.5rem;
+    margin: 0 3.5rem;
+}
+
+#logo-wrapper img{
+    height: 100%;
+}
+
+#right-div{
+    display: flex;
+    align-items: center;
+    right: 3.5rem;
+    position: absolute;
+}
+
+#menu-links-wrapper{
+    height: 100%;
+}
+
+#menu-links-wrapper ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+#menu-links-wrapper a{
+    font-size: 1.1rem;
+    font-family: var(--secondary-font);
+    color: #FFFFFF;
+    margin: auto 1.5rem;
+    line-height: 100%;
+    text-decoration: none;
+}
+
+#menu-links-wrapper a:hover{
+    text-decoration: underline 1px solid #FFFFFF;
+}
+
+#user-wrapper{
+    display: flex;
+    align-items: center;
+    margin-left: 1.5rem;
+}
+
+#user-profile-picture-wrapper{
+    border: solid 1px #778899;
+    border-radius: 100%;
+    height: 4rem;
+    width: 4rem;
+    background-color: #cccccc;
+    object-fit: cover;
+}
+
+#user-profile-picture-wrapper img{
+    height: 100%;
+    width: 100%;
+    border-radius: 100%;
+}
+
+#user-information-container{
+    margin: 0 0.4rem;
+}
+
+#user-information-container h3{
+    font-size: 1.1rem;
+}
+
+#user-information-container a{
+    text-decoration: none;
+    color: #FFFFFF;
+    font-weight: normal;
+    line-height: 1;
+    font-family: var(--secondary-font);
+}
+
+#user-information-container a:hover{
+    text-decoration: underline solid 1px #FFFFFF;
+}
+
+#user-arrow-container i{
+    color: #FFFFFF;
+    font-size: 1.5em;
+}
+
+#user-arrow-container{
+    position: relative;
+}
+
+#dropdown-content{
+    display: none;
+    position: absolute;
+    background-color: #FFFFFF;
+    width: 10rem;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 0px;
+    border-radius: 2px;
+}
+
+#dropdown-content.active{
+    display: block;
+}
+
+.dropdown-action-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3rem;
+    cursor: pointer;
+}
+
+.dropdown-action-wrapper:hover{
+    background-color: #e9e9e9;
+}
+
+.dropdown-action-wrapper span{
+    font-size: 1.2em;
+    font-family: var(--text-font);
+    color: #778899;
+}
+
+.exit span{
+    color: red;
+}

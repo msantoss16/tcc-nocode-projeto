@@ -1,0 +1,103 @@
+body{
+    display: flex;
+}
+
+#left-side-wrapper{
+    width: 50%;
+    height: 100vh;
+    background-color: #5692CD;
+}
+
+#left-side{
+    width: 36rem;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#title{
+    position: absolute;
+    top: 2.5rem;
+    left: 3rem;
+    color: #FFFFFF;
+    font-weight: 400;
+}
+
+.information-content h1{
+    font-weight: 500;
+    text-align: center;
+    margin: 2rem 0;
+    font-size: 2.5em;
+}
+
+.information-content.left h1{
+    color: #FFFFFF;
+}
+
+.information-content p{
+    padding: 0 5rem;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.information-content.left p{
+    color: #FFFFFF;
+}
+
+.start-button{
+    margin-top: 3rem;
+    font-family: var(--text-font);
+    width: 9rem;
+    height: 2.5rem;
+    border: none;
+    border-radius: 2.5rem;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.start-button.left{
+    background-color: #FFFFFF;
+    color: #5692CD;
+}
+
+#right-side-wrapper{
+    width: 50%;
+    height: 100vh;
+}
+
+#right-side{
+    width: 36rem;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#logo-wrapper{
+    position: absolute;
+    right: 3rem;
+    top: 2.5rem;
+    margin: 0;
+    height: 3.5rem;
+}
+
+#logo-wrapper img{
+    height: 100%;
+}
+
+.information-content.right h1{
+    color: #5692CD;
+}
+
+.information-content.right p{
+    color: #778899;
+}
+
+.start-button.right{
+    background-color: #5692CD;
+    color: #FFFFFF;
+}

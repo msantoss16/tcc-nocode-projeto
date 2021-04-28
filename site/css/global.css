@@ -17,6 +17,14 @@ body{
     background-color: whitesmoke;
 }
 
+h1{
+    font-family: var(--primary-font);
+}
+
+p{
+    font-family: var(--text-font);
+}
+
 footer{
     background-color: #17406A;
     padding: 0 6rem;

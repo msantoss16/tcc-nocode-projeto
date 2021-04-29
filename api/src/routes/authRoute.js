@@ -7,3 +7,4 @@ module.exports = app => {
     app.route('/auth')
         .post(auth.logUsuario);
 }
+

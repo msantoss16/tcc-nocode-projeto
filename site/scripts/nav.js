@@ -4,5 +4,5 @@ function showDropdown() {
 }
 
 function myProfile(){
-    window.location.replace("/my-profile.html")
+    window.location.replace("/site/my-profile.html")
 }

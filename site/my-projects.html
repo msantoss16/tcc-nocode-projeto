@@ -2,10 +2,11 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Escolha um modelo</title>
-    <link rel="stylesheet" type="text/css" href="css/chose-models.css">
+	<title>Meus Projetos</title>
     <link rel="stylesheet" type="text/css" href="css/global.css">
+    <link rel="stylesheet" type="text/css" href="css/my-projects.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <script type="text/javascript" src="scripts/my-projects.js"></script>
     <script type="text/javascript" src="scripts/nav.js"></script>
 </head>
 <body>
@@ -36,10 +37,10 @@
                         <i class="fas fa-chevron-down"></i>
                         <div id="dropdown-content">
                             <div class="dropdown-action-wrapper" onclick="myProfile()">
-                                <span><a>Meu Perfil</a></span>
+                                <span>Meu Perfil</span>
                             </div>
                             <div class="dropdown-action-wrapper exit" onclick="sair()">
-                                <span><a>Sair da conta</a></span>
+                                <span>Sair da conta</span>
                             </div>
                         </div>
                     </div>
@@ -47,60 +48,61 @@
             </div>
         </div>
     </nav>
-    <div id="page-container">
-        <div id="header">
-            <h1>Escolha um dos modelos</h1>
-            <div id="search-container">
-                <div id="search-input-container">
-                    <div id="input-icon-wrapper">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <input id="search-input" type="text" placeholder="Pesquise modelos...">
-                    <div id="search-button-wrapper">
-                        <button type="submit">Ok</button>
-                    </div>
+    <!-- USAR O DISPLAY NONE DE ACORDO COM A SITUAÇÃO DO USUÁRIO-->
+    <div id="container-none">
+        <div id="title-wrapper">
+            <h1>Meus Projetos</h1>
+        </div>
+        <div id="content-container">
+            <h2>Crie seu primeiro projeto</h2>
+            <p>a um clique de distância da forma mais fácil de criar seu gerenciador de negócios.</p>
+            <button class="new-project-button-big" onclick=""><i class="fas fa-plus"></i>Novo Projeto</button>
+        </div>
+    </div>
+    <!--
+    <div id="container-free">
+        <header class="header one">
+            <div>
+                <h1>Meus Projetos</h1>
+            </div>
+        </header>
+        <div class="content">
+            <div id="project-preview-wrapper">
+                <img src="">
+                <i class="fas fa-pencil-alt" onclick=""></i>
+            </div>
+            <div id="project-information-container">
+                <h3>Nome do Projeto</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque lacinia vitae orci ut luctus. Curabitur eget dui in ante tincidunt vehicula. Vivamus tristique tellus nisl. Pellentesque bibendum imperdiet lacus sed vestibulum. Cras interdum ligula sit amet viverra placerat.uisque lacinia vitae orci ut luctus. Curabitur eget dui in ante tincidunt vehicula. Vivamus tristique tellus nisl. Pellentesque bibendum imperdiet lacus sed.</p>
+                <div class="sub-information">
+                    <p>Data de Criação:</p>
+                    <p>00/00/0000</p>
                 </div>
-                <div id="input-container">
-                    <select>
-                        <option value="" disabled selected hidden>Categorias...</option>
-                        <option value=""></option>
-                        <option value="">Opção 1</option>
-                        <option value="">Opção 2</option>
-                        <option value="">Opção 3</option>
-                        <option value="">Opção 4</option>
-                    </select>
+                <div class="sub-information">
+                    <p>Última vez editado:</p>
+                    <p>00/00/0000</p>
+                </div>
+                <div id="buttons-container">
+                    <button onclick="">Editar Projeto</button>
+                    <button onclick="">Excluir Projeto</button>
                 </div>
             </div>
         </div>
-        <div id="models-wrapper">
-            <div class="model-frame">
-                <div class="frame-tool-bar">
-                    <div class="tool-bar-icons-wrapper">
-                        <i class="far fa-window-minimize"></i>
-                        <i class="fas fa-times"></i>
-                    </div>
-                </div>
-                <h3>Nome do Projeto</h3>
+        <div id="publicity-container">
+            <h3>Atualize para premium e receba privilégios</h3>
+            <button>Saiba Mais</button>
+        </div>
+    </div>
+    <div id="container-premium">
+        <header class="header three">
+            <div>
+                <h1>Meus Projetos</h1>
+                <h2>Selecione um projeto para<br>visualiza-lo</h2>
             </div>
-            <div class="model-frame">
-                <div class="frame-tool-bar">
-                    <div class="tool-bar-icons-wrapper">
-                        <i class="far fa-window-minimize"></i>
-                        <i class="fas fa-times"></i>
-                    </div>
-                </div>
-                <h3>Nome do Projeto</h3>
-            </div>
-            <div class="model-frame">
-                <div class="frame-tool-bar">
-                    <div class="tool-bar-icons-wrapper">
-                        <i class="far fa-window-minimize"></i>
-                        <i class="fas fa-times"></i>
-                    </div>
-                </div>
-                <h3>Nome do Projeto</h3>
-            </div>
-            <div class="model-frame">
+            <button class="new-project-button" onclick="newProject()"><i class="fas fa-plus"></i>Novo Projeto</button>
+        </header>
+        <div id="projects-wrapper" onclick="">
+            <div class="project-frame">
                 <div class="frame-tool-bar">
                     <div class="tool-bar-icons-wrapper">
                         <i class="far fa-window-minimize"></i>
@@ -111,6 +113,7 @@
             </div>
         </div>
     </div>
+-->
     <footer>
 		<div id="footer-content">
 			<div id="logo-footer-wrapper">

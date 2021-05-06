@@ -1,3 +1,3 @@
 function myProfile(){
-    window.location.replace("/")
+    window.location.replace("/site/")
 }

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Meus Projetos</title>
+    <link rel="stylesheet" type="text/css" href="css/global.css">
+    <link rel="stylesheet" type="text/css" href="css/about-us-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous"/>
+    <script type="text/javascript" src="scripts/nav.js"></script>
+</head>
+<body>
+    <nav>
+        <div id="menu">
+            <div id="logo-wrapper">
+                <a href="my-projects.html"><img src="images/logo.png"></a>
+            </div>
+            <div id="right-div">
+                <div id="menu-links-wrapper">
+                    <ul>
+                        <li><a href="new-project.html">Novo Projeto</a></li>
+                        <li><a href="my-projects.html">Meus Projetos</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="premium.html">Premium</a></li>
+                        <li><a href="about-us.html">Sobre nós</a></li>
+                    </ul>
+                </div>     
+                <div id="user-wrapper">
+                    <div id="user-profile-picture-wrapper">
+                        <a href="my-profile.html"><img src="images/user-default-picture.jpg"></a>
+                    </div>
+                    <div id="user-information-container">
+                        <h3><a href="my-profile.html">Fábio Junior</a></h3>
+                        <p><a href="my-profile.html">fabiojr@gmail.com</a></p>
+                    </div>
+                    <div id="user-arrow-container" onclick="showDropdown()">
+                        <i class="fas fa-chevron-down"></i>
+                        <div id="dropdown-content">
+                            <div class="dropdown-action-wrapper" onclick="myProfile()">
+                                <span>Meu Perfil</span>
+                            </div>
+                            <div class="dropdown-action-wrapper exit" onclick="sair()">
+                                <span>Sair da conta</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <header>
+		<div id="background-wrapper">
+			<img src="images/about-us-background.jpg">
+		</div>
+		<div id="banner">
+			<h1>Saiba mais sobre os <span>desenvolvedores</span></h1>
+			<button><a href="#about-us">Sobre Nós</a></button>
+		</div>
+	</header>
+    <section id="about-us">
+        <div id="information">
+            <h1>Sobre Nós</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque lacinia vitae orci ut luctus. Curabitur eget dui in ante tincidunt vehicula. Vivamus tristique tellus nisl. Pellentesque bibendum imperdiet lacus sed vestibulum.<br>Cras interdum ligula sit amet viverra placerat. Quisque porttitor nunc maximus vehicula ullamcorper. Proin non accumsan ex. Proin ac luctus dui, lobortis dictum massa. <br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque lacinia vitae orci ut luctus. Curabitur eget dui in ante tincidunt vehicula. Vivamus tristique tellus nisl. Pellentesque bibendum imperdiet lacus sed vestibulum.<br>Cras interdum ligula sit amet viverra placerat. Quisque porttitor nunc maximus vehicula ullamcorper. Proin non accumsan ex. Proin ac luctus dui, lobortis dictum massa.
+            </p>
+        </div>
+        <div id="social-media">
+            <h1>Redes Sociais</h1>
+        </div>
+    </section>
+</body>
+</html>

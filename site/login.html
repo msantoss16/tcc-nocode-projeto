@@ -2,8 +2,8 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Criar Conta</title>
-	<link rel="stylesheet" type="text/css" href="css/create-account-style.css">
+	<title>Entrar</title>
+	<link rel="stylesheet" type="text/css" href="css/login-style.css">
     <link rel="stylesheet" type="text/css" href="css/global.css">
     <link rel="stylesheet" type="text/css" href="css/material-dashboard.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -14,56 +14,39 @@
 <body>
     <div id="left-side-wrapper">
         <div id="left-side">
-            <h1>Criar Conta</h1>
+            <h1>Entrar</h1>
             <div id="signin-icon-wrapper">
                 <a href=""><i class="fab fa-facebook"></i></a>
                 <a href=""><i class="fab fa-google"></i></a>
             </div>
             <p>ou use seu email:</p>
-
-            
             <form>
-                <div class="input-container">
-                    <div class="input-icon-wrapper">
-                        <i class="far fa-user"></i>
-                    </div>
-                    <input type="text" placeholder="Usuário" required="true" id="uregis">
-                </div>
                 <div class="input-container">
                     <div class="input-icon-wrapper">
                         <i class="far fa-envelope"></i>
                     </div>
-                    <input type="email" placeholder="E-mail" required="true" id="nregis">
+                    <input type="email" placeholder="E-mail" id="nlogin" required="true">
                 </div>
                 <div class="input-container">
                     <div class="input-icon-wrapper">
                         <i class="fas fa-lock"></i>
                     </div>
-                    <input type="password" placeholder="Senha" required="true" id="pregis">
+                    <input type="password" placeholder="Senha" id="plogin" required="true">
                 </div>
-                <div class="input-container">
-                    <div class="input-icon-wrapper">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <input type="password" placeholder="Confirmação de senha" required="true" id="pcregis">
-                </div>
-                <div id="checkbox-wrapper">
-                    <input id="check" type="checkbox">
-                    <label for="checkbox">Aceito os <a href="">termos de uso</a></label>
-                </div>
-                <button type="submit" id="btncad">Criar conta</button>
+                <p id="forgot-password-link"><a href="forgot-password.html">Esqueceu a senha?</a></p>
+                <button type="submit" id="btnlogin">Entrar</button>
             </form>
         </div>
     </div>
     <div id="right-side-wrapper">
         <div id="right-side">
             <h1>Bem Vindo!</h1>
-            <p>Para começar a criar seus programas crie uma conta</p>
-            <p>Já tem uma conta? <a href="login.html">Entre</a></p>
+            <p>Entre para continuar de onde parou</p>
+            <p>Ainda não tem uma conta? <a href="create-account.html">Crie</a></p>
         </div>
     </div>
-    <script src="./scripts/createAccount.js"></script>
-    <script src="./scripts/functions.js"></script>
     <script src="./scripts/plugins/bootstrap-notify.js"></script>
+    <script src="./scripts/functions.js"></script>
+    <script src="./scripts/login.js"></script> 
 </body>
 </html>

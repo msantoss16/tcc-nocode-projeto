@@ -19,7 +19,6 @@ function generateToken(params = {}){
 router.post('/register', async (req, res) => {
     const {email} = req.body;
 
-
     try{
         if (await User.findOne({email}))
             return res.status(400).send({ error: 'Usuário já existente'});
@@ -80,21 +79,21 @@ router.post('/forgot_password', async (req, res) =>{
     });
 
     mailer.sendMail({
-        to: email,
         from: 'josiasAnemonas@gmail.com',
+        to: email,
         template: 'auth/forgot_password',
         context: { token },
     }, (err) => {
         if (err)
         
         return res.status(400).send({error: 'Não foi possivel enviar o email de esqueci a senha'});
+        console.log(err)
 
         return res.send();
     
     })
 
     }catch (err) {
-        console.log(err);
         res.status(400).send({ error: 'Erro no esqueci a senha, tente novamente'});
     }
 });

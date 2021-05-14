@@ -5,6 +5,11 @@
 	<title>Criar Conta</title>
 	<link rel="stylesheet" type="text/css" href="css/create-account-style.css">
     <link rel="stylesheet" type="text/css" href="css/global.css">
+    <link rel="stylesheet" type="text/css" href="css/material-dashboard.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 </head>
 <body>
     <div id="left-side-wrapper">
@@ -15,36 +20,38 @@
                 <a href=""><i class="fab fa-google"></i></a>
             </div>
             <p>ou use seu email:</p>
+
+            
             <form>
                 <div class="input-container">
                     <div class="input-icon-wrapper">
                         <i class="far fa-user"></i>
                     </div>
-                    <input type="text" placeholder="Usuário" required>
+                    <input type="text" placeholder="Usuário" required="true" id="uregis">
                 </div>
                 <div class="input-container">
                     <div class="input-icon-wrapper">
                         <i class="far fa-envelope"></i>
                     </div>
-                    <input type="email" placeholder="E-mail" required>
+                    <input type="email" placeholder="E-mail" required="true" id="nregis">
                 </div>
                 <div class="input-container">
                     <div class="input-icon-wrapper">
                         <i class="fas fa-lock"></i>
                     </div>
-                    <input type="password" placeholder="Senha" minlength="8" required>
+                    <input type="password" placeholder="Senha" required="true" id="pregis">
                 </div>
                 <div class="input-container">
                     <div class="input-icon-wrapper">
                         <i class="fas fa-lock"></i>
                     </div>
-                    <input type="password" placeholder="Confirmação de senha" minlength="8" required>
+                    <input type="password" placeholder="Confirmação de senha" required="true" id="pcregis">
                 </div>
                 <div id="checkbox-wrapper">
-                    <input id="checkbox" type="checkbox">
+                    <input id="check" type="checkbox">
                     <label for="checkbox">Aceito os <a href="">termos de uso</a></label>
                 </div>
-                <button type="submit">Criar conta</button>
+                <button type="submit" id="btncad">Criar conta</button>
             </form>
         </div>
     </div>
@@ -55,5 +62,8 @@
             <p>Já tem uma conta? <a href="login.html">Entre</a></p>
         </div>
     </div>
+    <script src="./scripts/createAccount.js"></script>
+    <script src="./scripts/functions.js"></script>
+    <script src="./scripts/plugins/bootstrap-notify.js"></script>
 </body>
 </html>

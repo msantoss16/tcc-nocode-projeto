@@ -1,4 +1,4 @@
-body{
+#container{
     display: flex;
 }
 
@@ -100,4 +100,115 @@ body{
 .start-button.right{
     background-color: #5692CD;
     color: #FFFFFF;
+}
+
+#modal{ 
+    background-color: rgba( 0, 0, 0, 0.7);
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    z-index: 2;
+    position: fixed;
+    top: -100%;
+    opacity: 0;
+    -webkit-transition: opacity 400ms ease-in-out;
+    -moz-transition: opacity 400ms ease-in-out;
+    transition: opacity 400ms ease-in-out;
+}
+
+#modal-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 38rem;
+    width: 38rem;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    position: relative;
+    top: -100%;
+    -webkit-transition: top 400ms ease-in-out;
+    -moz-transition: top 400ms ease-in-out;
+    transition: top 400ms ease-in-out;
+}
+
+#modal-close-icon{
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-size: 1.5em;
+    color: #5692CD;
+    font-weight: bold;
+}
+
+#modal-close-icon:hover{
+    cursor: pointer;
+    color: #778899;
+}
+
+#modal-form{
+    display: flex;
+    flex-direction: column;
+    width: 30rem;
+}
+
+.modal-label{
+    font-size: 1.8em;
+    margin: 0.5rem 0;
+    font-family: var(--secondary-font);
+    color: #5692CD;
+}
+
+#modal-project-name{
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    height: 2.4rem;
+    padding: 0.2rem;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    border: 2px solid #5692CD;
+    min-width: calc(100% - 0.4rem);
+    max-width: calc(100% - 0.4rem);
+    color: #778899;
+}
+
+#modal-project-description{
+    font-size: 1.5em;
+    min-height: 10rem;
+    max-height: 18rem;
+    padding: 0.2rem;
+    min-width: calc(100% - 0.4rem);
+    max-width: calc(100% - 0.4rem);
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: 2px solid #5692CD;
+    outline: none;
+    background-color: transparent;
+    color: #778899;
+}
+
+#modal-button{
+    width: 12rem;
+    height: 2.5rem;
+    margin-top: 2rem;
+    font-size: 1.2em;
+    background-color: #5692CD;
+    border: none;
+    border-radius: 2.5rem;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    font-family: var(--text-font);
+    font-weight: 500;
+    margin-left: calc(100% - 12rem);
+}
+
+#modal-button:hover{
+    background-color: #76a9db;
+    cursor: pointer;
 }

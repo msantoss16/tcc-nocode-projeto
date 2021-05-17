@@ -16,14 +16,14 @@ $('#btncad').click(function(event){
     if(_username === "" || _username.length <4){
         md.showNotification('top', 'center', 'danger', 'O usuario deve ter no minino 4 caracteres');
     }
-    else if(!_check.is(":checked")){
-        md.showNotification('top', 'center', 'danger', 'necessaario marcar a caxinha');
-    }
     else if(!filter.test(_email)){
     md.showNotification('top', 'center', 'danger', 'Email invalido');
     }    
     else if(_password === "" || _password.length < 8){
         md.showNotification('top', 'center', 'danger', 'A senha deve ter no minino 8 caracteres');
+    }
+    else if(!_check.is(":checked")){
+        md.showNotification('top', 'center', 'danger', 'necessaario marcar a caxinha');
     }
     else if (_password === _passwordC){
         axios.post(`${serverURL}auth/register`, {name: _username, email: _email, password: _password})

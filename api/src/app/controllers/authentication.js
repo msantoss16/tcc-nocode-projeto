@@ -14,8 +14,6 @@ function generateToken(params = {}){
     } )
 }
 
-
-
 router.post('/register', async (req, res) => {
     const {email} = req.body;
 
@@ -78,22 +76,20 @@ router.post('/forgot_password', async (req, res) =>{
         }
     });
 
+    let site= 'http://127.0.0.1:5501/site/password-recover.html'
     mailer.sendMail({
-        from: 'josiasAnemonas@gmail.com',
         to: email,
-        template: 'auth/forgot_password',
-        context: { token },
+        from: 'josiasAnemonas@gmail.com',
+        subject: 'Recuperação de Senha',
+        html:`Olá, ${user.name} acesse o link para redefinir sua senha: <a href=${site}?email=${email}&token=${token}>clique aqui!</a>`
     }, (err) => {
         if (err)
-        
         return res.status(400).send({error: 'Não foi possivel enviar o email de esqueci a senha'});
-        console.log(err)
-
         return res.send();
-    
     })
-
+          
     }catch (err) {
+        console.log(error)        
         res.status(400).send({ error: 'Erro no esqueci a senha, tente novamente'});
     }
 });
@@ -104,6 +100,7 @@ router.post('/reset_password', async(req, res) => {
     try{
         const user = await User.findOne({ email })
         .select('+passwordResetToken passwordResetExpires');
+        console.log(user)
 
         if(!user)
         return res.status(400).send({ error: 'usuário não encontrado' });
@@ -114,7 +111,7 @@ router.post('/reset_password', async(req, res) => {
         const now = new Date();
 
         if(now > user.passwordResetExpires)
-        return res.status(400).send({error:'Token expirou, gere um novo' })
+        return res.status(400).send({error:'Token expirou, gere um novo' });
 
         user.password = password;
 
@@ -122,9 +119,9 @@ router.post('/reset_password', async(req, res) => {
 
         res.send();
         
-    }catch (err){
+    } catch (err){
         res.status(400).send({ error: 'Não foi possivel resetar a senha, tente novamente'});
-
+        console.log(err);
     }
 });
 

@@ -21,7 +21,6 @@ router.post('/register', async (req, res) => {
         if (await User.findOne({email}))
             return res.status(400).send({ error: 'Usuário já existente'});
 
-
         const user = await User.create(req.body);
         
         user.password = undefined;
@@ -31,7 +30,7 @@ router.post('/register', async (req, res) => {
             token: generateToken({id: user.id}),
         });
     } catch (err) {
-        return res.status(400).send({ error: 'falha no registro'});
+        return res.status(400).send({ error: 'Falha no registro'});
     }
 });
 
@@ -41,11 +40,11 @@ router.post('/authenticate', async (req, res) => {
     const user = await User.findOne({ email }).select('+password');
 
     if(!user)
-        return res.status(400).send({ error: 'usuário não encontrado' });
+        return res.status(400).send({ error: 'Usuário ou Senha inválidos' });
     
 
     if(!await bcrypt.compare(password, user.password))
-        return res.status(400).send({error: 'senha invalida' });
+        return res.status(400).send({error: 'Usuário ou Senha inválidos' });
 
         user.password = undefined;
 
@@ -62,7 +61,7 @@ router.post('/forgot_password', async (req, res) =>{
         const user = await User.findOne({ email });
 
         if(!user)
-        return res.status(400).send({ error: 'usuário não encontrado' });
+        return res.status(400).send({ error: 'Usuário não encontrado' });
 
         const token = crypto.randomBytes(20).toString('hex');
 
@@ -100,14 +99,13 @@ router.post('/reset_password', async(req, res) => {
     try{
         const user = await User.findOne({ email })
         .select('+passwordResetToken passwordResetExpires');
-        console.log(user)
 
         if(!user)
-        return res.status(400).send({ error: 'usuário não encontrado' });
+        return res.status(400).send({ error: 'Usuário não encontrado' });
 
         if(token !== user.passwordResetToken)
         return res.status(400).send({ error: 'Token inválido'});
-
+        
         const now = new Date();
 
         if(now > user.passwordResetExpires)

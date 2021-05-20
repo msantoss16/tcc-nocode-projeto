@@ -96,7 +96,7 @@ select{
     max-width: calc(33.333% - 0.8rem);
     min-width: calc(33.333% - 0.8rem);
     flex: 1;
-    background-color: #868686;
+    background-color: #c5c5c5;
     height: 16rem;
     display: flex;
     margin-top: 1.2rem;

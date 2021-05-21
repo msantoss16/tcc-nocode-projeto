@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Criar Conta</title>
+	<link rel="stylesheet" type="text/css" href="css/create-account-style.css">
+    <link rel="stylesheet" type="text/css" href="css/global.css">
+    <link rel="stylesheet" type="text/css" href="css/material-dashboard.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="left-side-wrapper">
+        <div id="left-side">
+            <h1>Criar Conta</h1>
+            <div id="signin-icon-wrapper">
+                <a href=""><i class="fab fa-facebook"></i></a>
+                <a href=""><i class="fab fa-google"></i></a>
+            </div>
+            <p>ou use seu email:</p>
+
+            
+            <form>
+                <div class="input-container">
+                    <div class="input-icon-wrapper">
+                        <i class="far fa-user"></i>
+                    </div>
+                    <input type="text" placeholder="Usuário" required="true" id="uregis">
+                </div>
+                <div class="input-container">
+                    <div class="input-icon-wrapper">
+                        <i class="far fa-envelope"></i>
+                    </div>
+                    <input type="email" placeholder="E-mail" required="true" id="nregis">
+                </div>
+                <div class="input-container">
+                    <div class="input-icon-wrapper">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <input type="password" placeholder="Senha" required="true" id="pregis">
+                </div>
+                <div class="input-container">
+                    <div class="input-icon-wrapper">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <input type="password" placeholder="Confirmação de senha" required="true" id="pcregis">
+                </div>
+                <div id="checkbox-wrapper">
+                    <input id="check" type="checkbox">
+                    <label for="checkbox">Aceito os <a href="">termos de uso</a></label>
+                </div>
+                <button type="submit" id="btncad">Criar conta</button>
+            </form>
+        </div>
+    </div>
+    <div id="right-side-wrapper">
+        <div id="right-side">
+            <h1>Bem Vindo!</h1>
+            <p>Para começar a criar seus programas crie uma conta</p>
+            <p>Já tem uma conta? <a href="login.html">Entre</a></p>
+        </div>
+    </div>
+    <script src="./scripts/createAccount.js"></script>
+    <script src="./scripts/functions.js"></script>
+    <script src="./scripts/plugins/bootstrap-notify.js"></script>
+</body>
+</html>

@@ -44,18 +44,22 @@ fc = {
         }
     },
 
-    recursivityComponents: function(recursivityJson) {
-        if (typeof recursivityJson.content == "object") {
-            if (recursivityJson.content.length > 1) {
-                let dl = '<dl></dl>';
-                for (recursivityC in recursivityJson.content) {
-
-                };
-            } else {
-                return `<dt>${Object.keys(recursivityJson.content[0])}</dt>`;
-            };
-        };
-        return
+    verifyJsonToList: function(jsonContent) {
+        let returnList = "<dl>";
+        let tempList = "";
+        console.log(jsonContent);
+        for (recursivityC of jsonContent) {
+            console.log(recursivityC)
+            tempList = "";
+            tempList = `<dt class="component">${Object.keys(recursivityC)}</dt>`;
+            if (typeof recursivityC[Object.keys(recursivityC)].content == "object") {
+                tempList = tempList + `<dd>${fc.verifyJsonToList(recursivityC[Object.keys(recursivityC)].content)}</dd>`;
+            }
+            console.log(tempList);
+            returnList = returnList + tempList;
+        }
+        returnList = returnList + "</dl>";
+        return returnList;      
     },
 
     attComponents: function(tempJson, page) {
@@ -69,12 +73,12 @@ fc = {
                 for (firstsItensComponents of pageAccess.pageComponents) {
                     let dt = document.createElement('dt');
                     dt.classList.add("component");
-                    dt.innerText  = Object.keys(firstsItensComponents)[0];
+                    dt.innerText = Object.keys(firstsItensComponents)[0];
                     dl.appendChild(dt);
+                    dd = document.createElement('dd');
+                    dd.innerHTML = fc.verifyJsonToList(firstsItensComponents[Object.keys(firstsItensComponents)[0]].content);
+                    dl.appendChild(dd);
                 }
-                dd = document.createElement('dd');
-                dd.innerHTML = `<dl></dl>`;
-                dl.appendChild(dd);
                 divComponents.appendChild(dl);
                 // for (itemComponent of Object.keys(pageAccess.pageComponents)) {
                 //     console.log(itemComponent);
@@ -136,8 +140,8 @@ fc = {
 
 fc.attPalette();
 fc.attPaletteComponents("Comum")
-fc.attPages(tempJson2);
-fc.attComponents(tempJson2, 'index.html');
+fc.attPages(tempJson3);
+fc.attComponents(tempJson3, 'index.html');
 
 document.getElementById('viewer').srcdoc = fc.jsonToHtml(tempJson3, 'index.html');
 

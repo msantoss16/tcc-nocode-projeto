@@ -1,6 +1,71 @@
 fc = {
     pages: [],
 
+    idInJson: function(content, id, edit=false) {
+        let returnJson = "";
+        for (component of content) {
+            if (component[Object.keys(component)].id == id) {
+                return component;
+            } else {
+                if (typeof component[Object.keys(component)].content == "object") {
+                    returnJson = fc.idInJson(component[Object.keys(component)].content, id);
+                    if (returnJson != "") {
+                        return returnJson;
+                    }; 
+                };
+            };
+        };
+        return "";
+    },
+
+    selectComponent: function(id) {
+        let component = fc.idInJson([tempJson3.appCode.pages[0].pageComponents[0]], id, false);
+        const divProperty = document.getElementById('componentProperty');
+        const divStyle = document.getElementById('componentStyle');
+        divStyle.innerHTML = "<ul class=\"styleEdit\" id=\"styleEdit\"></ul>";
+        divProperty.innerHTML = "<ul class=\"propertyEdit\" id=\"propertyEdit\"></ul>";
+        console.log(`Componente selecionado: ${id}`);
+        console.log(component);
+        console.log(Object.keys(component)[0]);
+        if (component != "") {
+            let title = document.createElement("h3");
+            title.classList.add("component-title");
+            console.log(title);
+            title.innerText = Object.keys(component)[0];
+            divProperty.appendChild(title);
+            let id = document.createElement("p");
+            id.classList.add("component-ID");
+            id.innerText = component[Object.keys(component)[0]].id;
+            divProperty.querySelector('#propertyEdit').appendChild(id);
+            if (Object.keys(component[Object.keys(component)[0]]).indexOf("property") > -1) {
+                for (property of Object.keys(component[Object.keys(component)[0]].property)) {
+                    let li = document.createElement('li');
+                    li.innerHTML = `<p class=\"property-name\">${property}</p><input type=\"text\" class=\"property-content\" value=\"${component[Object.keys(component)[0]].property[property]}\">`;
+                    console.log(li);
+                    divProperty.querySelector('#propertyEdit').appendChild(li);
+                };
+            };
+            if (Object.keys(component[Object.keys(component)[0]]).indexOf("style") > -1) {
+                for (style of Object.keys(component[Object.keys(component)[0]].style)) {
+                    let li = document.createElement('li');
+                    li.innerHTML = `<p class=\"style-name\">${style}</p><input type=\"text\" class=\"style-content\" value=\"${component[Object.keys(component)[0]].style[style]}\">`;
+                    divStyle.querySelector('#styleEdit').appendChild(li);
+                    console.log(li);
+                };
+            };
+        }
+    },
+
+    dec2hex: function(dec) {
+        return dec.toString(16).padStart(2, "0")
+    },
+
+    generateId: function(len) {
+        var arr = new Uint8Array((len || 40) / 2)
+        window.crypto.getRandomValues(arr)
+        return Array.from(arr, fc.dec2hex).join('')
+    },
+
     attPalette: function() {
         divCategorias = document.getElementById('category');
         for (let model of Object.keys(modelos)) {
@@ -16,7 +81,7 @@ fc = {
     },
 
     attPaletteComponents: function(modelActived) {
-        divCComponents = document.getElementById('c-components');
+        const divCComponents = document.getElementById('c-components');
         divCComponents.querySelector("ul").innerHTML = "";
         for (let cCont = 0; cCont < modelos[modelActived].length; cCont++) {
             let li = document.createElement('li');
@@ -47,15 +112,12 @@ fc = {
     verifyJsonToList: function(jsonContent) {
         let returnList = "<dl>";
         let tempList = "";
-        console.log(jsonContent);
         for (recursivityC of jsonContent) {
-            console.log(recursivityC)
             tempList = "";
-            tempList = `<dt class="component">${Object.keys(recursivityC)}</dt>`;
+            tempList = `<dt class="component" onclick=\'fc.selectComponent(\"${recursivityC[Object.keys(recursivityC)].id}\")\'>${Object.keys(recursivityC)}</dt>`;
             if (typeof recursivityC[Object.keys(recursivityC)].content == "object") {
                 tempList = tempList + `<dd>${fc.verifyJsonToList(recursivityC[Object.keys(recursivityC)].content)}</dd>`;
             }
-            console.log(tempList);
             returnList = returnList + tempList;
         }
         returnList = returnList + "</dl>";
@@ -73,6 +135,7 @@ fc = {
                 for (firstsItensComponents of pageAccess.pageComponents) {
                     let dt = document.createElement('dt');
                     dt.classList.add("component");
+                    dt.setAttribute("onclick",`fc.selectComponent(\'${firstsItensComponents[Object.keys(firstsItensComponents)[0]].id}\')`);
                     dt.innerText = Object.keys(firstsItensComponents)[0];
                     dl.appendChild(dt);
                     dd = document.createElement('dd');
@@ -110,15 +173,15 @@ fc = {
                 };
             };
             if (typeof dados.content == "object") {
-                return `<${dados.html}${propsHTML}>${fc.verifyJson(dados.content)}</${dados.html}>\n`;
+                return `<${dados.html}${propsHTML} componentId=${dados.id}>${fc.verifyJson(dados.content)}</${dados.html}>\n`;
             } else {
-                return `<${dados.html}${propsHTML}>${dados.content}</${dados.html}>\n`;
+                return `<${dados.html}${propsHTML} componentId=${dados.id}>${dados.content}</${dados.html}>\n`;
             };
         } else {
             if (typeof dados.content == "object") {
-                return `<${dados.html}>${fc.verifyJson(dados.content)}</${dados.html}>\n`;
+                return `<${dados.html} componentId=${dados.id}>${fc.verifyJson(dados.content)}</${dados.html}>\n`;
             } else {
-                return `<${dados.html}>${dados.content}</${dados.html}>\n`
+                return `<${dados.html} componentId=${dados.id}>${dados.content}</${dados.html}>\n`
             };
         };
     },

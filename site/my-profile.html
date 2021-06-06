@@ -1,0 +1,174 @@
+<html>
+    <head>
+        <title>Meu Perfil</title>
+        <link rel="stylesheet" type="text/css" href="css/global.css">
+        <link rel="stylesheet" type="text/css" href="css/my-profile-style.css">
+        <script type="text/javascript" src="scripts/nav.js"></script>
+        <script type="text/javascript" src="scripts/my-profile.js"></script>
+        <script type="text/javascript" src="scripts/base.js"></script>
+    </head>
+    <body>
+        <nav>
+            <div id="menu">
+                <div id="logo-wrapper">
+                    <a href="my-projects.html"><img src="images/logo.png"></a>
+                </div>
+                <div id="right-div">
+                    <div id="menu-links-wrapper">
+                        <ul>
+                            <li><a href="chose-creation-way.html">Novo Projeto</a></li>
+                            <li><a href="my-projects.html">Meus Projetos</a></li>
+                            <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="premium.html">Premium</a></li>
+                            <li><a href="about-us.html">Sobre nós</a></li>
+                        </ul>
+                    </div>     
+                    <div id="user-wrapper">
+                        <div id="user-profile-picture-wrapper">
+                            <a href="my-profile.html"><img src="images/user-default-picture.jpg"></a>
+                        </div>
+                        <div id="user-information-container">
+                            <h3><a href="my-profile.html">Fábio Junior</a></h3>
+                            <p><a href="my-profile.html">fabiojr@gmail.com</a></p>
+                        </div>
+                        <div id="user-arrow-container" onclick="showDropdown()">
+                            <i class="fas fa-chevron-down"></i>
+                            <div id="dropdown-content">
+                                <div class="dropdown-action-wrapper" onclick="myProfile()">
+                                    <span>Meu Perfil</span>
+                                </div>
+                                <div class="dropdown-action-wrapper exit" onclick="sair()">
+                                    <span>Sair da conta</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div id="page-wrapper">
+            <div id="window-left">
+                <div id="profile">
+                    <div id="profile-image-container">
+                        <div id="profile-image-wrapper">
+                            <img id="profile-image" src="images/user-default-picture.jpg">
+                        </div>
+                        <div id="profile-hover" onclick="">
+                            <i class="fas fa-pencil-alt"></i>
+                            <span>Editar</span>
+                        </div>
+                    </div>
+
+                    <h3>Fábio Junior</h3>
+                </div>
+                <div id="menu-options-container">
+                    <div id="geral-option-container" class="menu-option-wrapper" onclick="activeGeral()">
+                        <div class="menu-icon-wrapper">
+                            <i id="geral-option-icon" class="fas fa-info-circle"></i>
+                        </div>
+                        <h3 id="geral-option-title">Geral</h3>
+                    </div>
+                    <div id="assinaturas-option-container" class="menu-option-wrapper" onclick="activeAssinaturas()">
+                        <div class="menu-icon-wrapper">
+                            <i id="assinaturas-option-icon" class="fas fa-dollar-sign"></i>
+                        </div>
+                        <h3 id="assinaturas-option-title">Assinaturas</h3>
+                    </div>
+                    <div id="gerenciar-option-container" class="menu-option-wrapper" onclick="activeGerenciar()">
+                        <div class="menu-icon-wrapper">
+                            <i id="gerenciar-option-icon" class="fas fa-sliders-h"></i>
+                        </div>
+                        <h3 id="gerenciar-option-title">Gerenciar Conta</h3>
+                    </div>
+                    <div class="menu-option-wrapper" onclick="sair()">
+                        <div class="menu-icon-wrapper">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </div>
+                        <h3>Sair</h3>
+                    </div>
+                </div>
+            </div>
+            <div id="window-right">
+                <div id="geral-container">
+                    <h2 class="option-title">Geral</h2>
+                    <div id="edit-button-wrapper">
+                        <div id="edit-button-icon-wrapper">
+                            <i class="fas fa-pencil-alt"></i>
+                        </div>
+                        <input type="button" value="Editar Informações" id="edit-button" onclick="activeGerenciar()">
+                    </div>
+                    <form class="information-form">
+                        <div class="input-container">
+                            <label>Nome de Usuário</label>
+                            <div class="input-wrapper geral">
+                                <input type="text" disabled value="Fábio Junior">
+                                <div class="input-icon-wrapper" onclick="activeGerenciar(); editUser();">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <label>Email</label>
+                            <div class="input-wrapper geral">
+                                <input type="email" disabled value="fabiojr@gmail.com">
+                                <div class="input-icon-wrapper" onclick="activeGerenciar(); editEmail();">                                    <i class="fas fa-pencil-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <label>Senha</label>
+                            <div class="input-wrapper geral">
+                                <input type="password" value="********" disabled>
+                                <div class="input-icon-wrapper" onclick="activeGerenciar(); editPassword();">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div id="assinaturas-container">
+                    <h2 class="option-title">Assinaturas</h2>
+                    <div id="assinaturas-content">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>Em breve!</h3>
+                    </div>
+                </div>
+                <div id="gerenciar-container">
+                    <h2 class="option-title">Gerenciar Conta</h2>
+                    <form class="information-form">
+                        <div class="input-container">
+                            <label>Nome de Usuário</label>
+                            <div class="input-wrapper gerenciar">
+                                <input id="username" type="text" value="Fábio Junior">
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <label>Email</label>
+                            <div class="input-wrapper gerenciar">
+                                <input id="email" type="email" value="fabiojr@gmail.com">
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <label>Senha Atual</label>
+                            <div class="input-wrapper gerenciar">
+                                <input id="currentPassword" type="password">
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <label>Nova Senha</label>
+                            <div class="input-wrapper gerenciar">
+                                <input type="password">
+                            </div>
+                        </div>
+                        <div id="save-button-wrapper">
+                            <div id="save-button-icon-wrapper">
+                                <i class="fas fa-pencil-alt"></i>
+                            </div>
+                            <input type="button" value="Salvar" id="save-button">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

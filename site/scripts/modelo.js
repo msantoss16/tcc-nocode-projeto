@@ -57,7 +57,6 @@ fc = {
         if (component != "") {
             let title = document.createElement("h3");
             title.classList.add("component-title");
-            console.log(title);
             title.innerText = Object.keys(component)[0];
             divProperty.appendChild(title);
             let id = document.createElement("p");

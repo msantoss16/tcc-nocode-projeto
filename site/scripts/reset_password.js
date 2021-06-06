@@ -16,8 +16,10 @@ $('#btnEnv').click(function(event){
     else if(_password === _passwordC){
     axios.post(`${serverURL}auth/reset_password`, {email: _email, token: _token, password: _password})
     .then( () =>{
-        window.location.replace('index.html')
         md.showNotification('top', 'center', 'success', 'Senha redefinida com sucesso');    
+        setTimeout(function(){
+            window.location.replace('index.html')
+        }, 2000)
     })
     .catch(error => {
         md.showNotification('top', 'center', 'danger', error.response.data.error);  

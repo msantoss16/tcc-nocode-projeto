@@ -15,6 +15,10 @@ const ProjectSchema = new mongoose.Schema({
         ref: 'User',
         require: true,
     },
+    elements: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Element',
+    }],
     version: {
         type: String,
         require: true,
@@ -22,8 +26,7 @@ const ProjectSchema = new mongoose.Schema({
     createdAt:{
       type: Date,
       default: Date.now,  
-    },
-        
+    },    
 
 });
 

@@ -294,3 +294,15 @@
 #content-container i{
     margin: 0.8rem;
 }
+
+#container-free{
+    display: none;
+}
+
+#container-none{
+    display: block;
+}
+
+#container-premium{
+    display: none;
+}

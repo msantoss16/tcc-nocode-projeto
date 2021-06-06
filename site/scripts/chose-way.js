@@ -1,5 +1,5 @@
 function myProfile(){
-    window.location.replace("/site/")
+    window.location.href("/site/")
 }
 
 function showModal(){

@@ -4,6 +4,8 @@
         <link rel="stylesheet" href="css/global.css">
         <link rel="stylesheet" href="css/modelo-style.css">
         <script type="text/javascript" src="scripts/nav.js"></script>
+        <script type="text/javascript" src="scripts/new-page-modal.js"></script>
+        <title>Novo Projeto</title>
     </head>
     <body>
         <div id="page-wrapper">
@@ -15,7 +17,7 @@
                     <div id="right-div">
                         <div id="menu-links-wrapper">
                             <ul>
-                                <li><a href="new-project.html">Novo Projeto</a></li>
+                                <li><a href="chose-creation-way.html">Novo Projeto</a></li>
                                 <li><a href="my-projects.html">Meus Projetos</a></li>
                                 <li><a href="faq.html">FAQ</a></li>
                                 <li><a href="premium.html">Premium</a></li>
@@ -60,6 +62,7 @@
                     </div>
                     <div id="pages-wrapper">
                         <h3>Páginas</h3>
+                        <i class="fas fa-plus-circle" onclick="showModal()"></i>
                         <div class="pages" id="pages">
                             <ul class="list-button"></ul>
                         </div>
@@ -77,16 +80,55 @@
                     <iframe id="viewer"></iframe>
                 </div>
                 <div class="window-right">
+                    <h4 class="property-title">Propriedades</h4>
                     <div class="property" id="componentProperty">
                         <ul class="propertyEdit" id="propertyEdit">
-
+                            
                         </ul>
                     </div>
+                    <h4 class="style-title">Estilos</h4>
                     <div class="componentStyle" id="componentStyle">
                         <ul class="styleEdit" id="styleEdit">
                             
                         </ul>
                     </div>
+                    <i class="fas fa-plus-circle" onclick=""></i>
+                </div>
+            </div>
+            <div id="new-page-modal">
+                <div id="modal-content">
+                    <i class="fas fa-times" id="modal-close-icon" onclick="closeModal()"></i>
+                    <h3>Nova Página</h3>
+                    <form id="modal-form">
+                        <div id="page-name-container">
+                            <h3>Nome da Página</h3>
+                            <input class="text-input" type="text" placeholder="Insira o nome da nova página"/>
+                        </div>
+                        <div id="page-size-container">
+                            <h3>Tamanho da Página</h3>
+                            <div class="radio-input-container">
+                                <input id="radio-input-auto" class="radio-input" type="radio" name="page-size-radio" onchange="disableSetSize()"/>
+                                <label for="radio-input-auto">Auto (tamanho definido automaticamente)</label>
+                            </div>
+                            <div class="radio-input-container">
+                                <input id="radio-input-px" class="radio-input" type="radio" name="page-size-radio" onchange="enableSetSize()"/>
+                                <label for="radio-input-px">Tamanho em pixel (definir tamanho manualmente)</label>
+                            </div>
+                            <div id="page-size-in-pixels">
+                                <div class="set-size">
+                                    <i class="fas fa-arrows-alt-h"></i>
+                                    <label>Comprimento (px):</label>
+                                    <input id="width" class="text-input size" type="text" disabled/>
+                                </div>
+                                <div class="set-size">
+                                    <i class="fas fa-arrows-alt-v"></i>
+                                    <label>Altura (px):</label>
+                                    <input id="height" class="text-input size" type="text" disabled/>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="modal-button">Enviar</button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -1,7 +1,8 @@
 fc = {
     pages: [],
     elements: [],
-    pageSelected: '',   
+    pageSelected: '',
+    listModelos: {},   
 
     convertNested: function(ol) {
         let tempJson = [];
@@ -110,12 +111,13 @@ fc = {
 
     attPaletteComponents: function(modelActived) {
         const divCComponents = document.getElementById('c-components');
-        divCComponents.querySelector("ul").innerHTML = "";
+        divCComponents.querySelector("ol").innerHTML = "";
         for (let cCont = 0; cCont < modelos[modelActived].length; cCont++) {
+            fc.listModelos[Object.keys(modelos[modelActived][cCont])[0]] = modelos[modelActived][cCont][Object.keys(modelos[modelActived][cCont])[0]];
             let li = document.createElement('li');
             li.classList.add("list-button-line");
-            li.innerHTML = `<button draggable='true' class='component-button'>${Object.keys(modelos[modelActived][cCont])}</button>`
-            divCComponents.querySelector("ul").appendChild(li);
+            li.innerHTML = `<button class='component-button'>${Object.keys(modelos[modelActived][cCont])}</button>`
+            divCComponents.querySelector("ol").appendChild(li);
         }
     },
 
@@ -253,12 +255,35 @@ $('#pages > ul > li > button').click(function(){
 $(function  () {
     $('ol.defaultC').sortable({    
         group: 'nested',
+        onDragStart: function($item, container, _super) {
+            if(!container.options.drop)
+                $item.clone().insertAfter($item);
+            _super($item, container); 
+        },
         onDrop: function($item, container, _super) {
-            container.el.removeClass("active");
+            if ($item.is('.list-button-line')) {
+                let modelo = fc.listModelos[$item.text()];
+                let id = fc.generateId(15);
+                fc.elements.push({
+                    [$item.text()]: {
+                        html: modelo.html,
+                        id,
+                        content: 'titulo',
+                    },
+                });
+                $item.html(`<p class=\"component\" componentid=\"${id}\" onclick=\"fc.selectComponent(\'${id}\')\">${$item.text()}</p>`);
+                $item.removeClass("list-button-line");  
+            };  
             _super($item, container);
             tempJson3.appCode.pages[0].pageComponents = fc.convertNested(document.querySelectorAll('#component-list'));
             document.getElementById('viewer').srcdoc = fc.jsonToHtml(tempJson3, 'index.html');
-        }
+        } 
+    });
+
+    $('ol.defaultCc').sortable({
+        group: 'nested',
+        drop: false,
     });
 });
+
   

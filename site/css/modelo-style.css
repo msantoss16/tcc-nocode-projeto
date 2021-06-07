@@ -511,18 +511,6 @@ body.dragging, body.dragging * {
     opacity: 0.5;
     z-index: 2000;
 }
-  
-ol.example li.placeholder {
-    position: relative;
-    /** More li styles **/
-}
-
-ol.example li.placeholder:before {
-    position: absolute;
-    /** Define arrowhead **/
-}
-
-
 
 ol.vertical {
     margin: 0 0 9px 0;
@@ -556,4 +544,8 @@ ol.vertical li.placeholder:before {
     border: 5px solid transparent;
     border-left-color: red;
     border-right: none; 
+}
+
+ol.cElementos li {
+    list-style-type: none;
 }

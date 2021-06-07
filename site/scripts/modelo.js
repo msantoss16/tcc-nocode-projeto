@@ -26,7 +26,7 @@ fc = {
                 }
             }
         }
-        return tempJson
+        return tempJson;
     },
 
     idInJson: function(content, id, edit) {
@@ -46,20 +46,35 @@ fc = {
         return "";
     },
 
+    editProperty: function(id, element) {
+        for (elementObj in fc.elements) {
+            if (fc.elements[elementObj][Object.keys(fc.elements[elementObj])].id == id) {
+                if (element.getAttribute('ttype') == 'property') {
+                    if (element.getAttribute('ppname') == 'content') {
+                        fc.elements[elementObj][Object.keys(fc.elements[elementObj])].content = element.value;
+                    } else {
+                        fc.elements[elementObj][Object.keys(fc.elements[elementObj])].property[element.getAttribute('ppname')] = element.value;
+                    }
+                } else {
+                    fc.elements[elementObj][Object.keys(fc.elements[elementObj])].style[element.getAttribute('ppname')] = element.value;
+                }
+                break;
+            }
+        };
+        tempJson3.appCode.pages[0].pageComponents = fc.convertNested(document.querySelectorAll('#component-list'));
+        fc.elements = [];
+        document.getElementById('viewer').srcdoc = fc.jsonToHtml(tempJson3, 'index.html');
+    },
+
     selectComponent: function(id) {
         let component = fc.idInJson([tempJson3.appCode.pages[0].pageComponents[0]], id, false);
         const divProperty = document.getElementById('componentProperty');
         const divStyle = document.getElementById('componentStyle');
         divStyle.innerHTML = "<ul class=\"styleEdit\" id=\"styleEdit\"></ul>";
         divProperty.innerHTML = "<ul class=\"propertyEdit\" id=\"propertyEdit\"></ul>";
-        console.log(`Componente selecionado: ${id}`);
-        console.log(component);
-        console.log(Object.keys(component)[0]);
         if (component != "") {
-            let title = document.createElement("h3");
-            title.classList.add("component-title");
+            let title = document.getElementById('component-title');
             title.innerText = Object.keys(component)[0];
-            divProperty.appendChild(title);
             let id = document.createElement("p");
             id.classList.add("component-ID");
             id.innerText = component[Object.keys(component)[0]].id;
@@ -67,18 +82,22 @@ fc = {
             if (Object.keys(component[Object.keys(component)[0]]).indexOf("property") > -1) {
                 for (property of Object.keys(component[Object.keys(component)[0]].property)) {
                     let li = document.createElement('li');
-                    li.innerHTML = `<p class=\"property-name\">${property}</p><input type=\"text\" class=\"property-content\" value=\"${component[Object.keys(component)[0]].property[property]}\">`;
-                    console.log(li);
+                    li.innerHTML = `<p class=\"property-name\">${property}</p><input type=\"text\" ttype="property" ppName=\"${property}\" class=\"property-content\" value=\"${component[Object.keys(component)[0]].property[property]}\" onchange=\"fc.editProperty(\'${component[Object.keys(component)[0]].id}\', this)\">`;
                     divProperty.querySelector('#propertyEdit').appendChild(li);
                 };
             };
+            if (typeof component[Object.keys(component)[0]].content == "string") {
+                let li = document.createElement('li');
+                li.innerHTML = `<p class=\"property-name\">Content</p><input type=\"text\" ttype="property" ppName=\"content\" class=\"property-content\" value=\"${component[Object.keys(component)[0]].content}\" onchange=\"fc.editProperty(\'${component[Object.keys(component)[0]].id}\', this)\">`;
+                divProperty.querySelector('#propertyEdit').appendChild(li);
+            }
             if (Object.keys(component[Object.keys(component)[0]]).indexOf("style") > -1) {
                 for (style of Object.keys(component[Object.keys(component)[0]].style)) {
                     let li = document.createElement('li');
                     if (style == Object.keys(component[Object.keys(component)[0]].style)[0]) {
                         li.classList.add("first-component");
                     }
-                    li.innerHTML = `<p class=\"style-name\">${style}</p><input type=\"text\" class=\"style-content\" value=\"${component[Object.keys(component)[0]].style[style]}\">`;
+                    li.innerHTML = `<p class=\"style-name\">${style}</p><input type=\"text\" ttype="style" ppName=\"${style}\" class=\"style-content\" value=\"${component[Object.keys(component)[0]].style[style]}\" onchange=\"fc.editProperty(\'${component[Object.keys(component)[0]].id}\', this)\">`;
                     divStyle.querySelector('#styleEdit').appendChild(li);
                 };
             };
@@ -176,9 +195,6 @@ fc = {
                     ol.appendChild(li);
                 }
                 divComponents.appendChild(ol);
-                // for (itemComponent of Object.keys(pageAccess.pageComponents)) {
-                //     console.log(itemComponent);
-                // };
             };
         }; 
     },
@@ -199,19 +215,44 @@ fc = {
     recursivityJson: function(chave, dados) {               
         if (Object.keys(dados).indexOf("property") > -1) {
             let propsHTML = '';
+            let styleProps = 'style=\"';
             for (propName of Object.keys(dados.property)) {
-                if (propName == 'style') {
-
+                propsHTML = propsHTML + ` ${propName}='${dados.property[propName]}'`;
+            };
+            if (Object.keys(dados).indexOf("style") > -1) {
+                try {
+                    for (styleName of Object.keys(dados.style)) {
+                        styleProps = styleProps + `${styleName}: ${dados.style[styleName]};`
+                    }
+                    styleProps = styleProps + '\"';
+                } catch {}
+                if (typeof dados.content == "object") {
+                    return `<${dados.html}${propsHTML} ${styleProps} componentId=${dados.id}>${fc.verifyJson(dados.content)}</${dados.html}>\n`;
                 } else {
-                    propsHTML = propsHTML + ` ${propName}='${dados.property[propName]}'`;
+                    return `<${dados.html}${propsHTML} ${styleProps} componentId=${dados.id}>${dados.content}</${dados.html}>\n`;
                 };
-            };
-            if (typeof dados.content == "object") {
-                return `<${dados.html}${propsHTML} componentId=${dados.id}>${fc.verifyJson(dados.content)}</${dados.html}>\n`;
             } else {
-                return `<${dados.html}${propsHTML} componentId=${dados.id}>${dados.content}</${dados.html}>\n`;
-            };
+                if (typeof dados.content == "object") {
+                    return `<${dados.html}${propsHTML} componentId=${dados.id}>${fc.verifyJson(dados.content)}</${dados.html}>\n`;
+                } else {
+                    return `<${dados.html}${propsHTML} componentId=${dados.id}>${dados.content}</${dados.html}>\n`;
+                };
+            }
         } else {
+            if (Object.keys(dados).indexOf("style") > -1) {
+                let styleProps = 'style=\"';
+                try {
+                    for (styleName of Object.keys(dados.style)) {
+                        styleProps = styleProps + `${styleName}: ${dados.style[styleName]};`
+                    }
+                    styleProps = styleProps + '\"';
+                } catch {}
+                if (typeof dados.content == "object") {
+                    return `<${dados.html} ${styleProps} componentId=${dados.id}>${fc.verifyJson(dados.content)}</${dados.html}>\n`;
+                } else {
+                    return `<${dados.html} ${styleProps} componentId=${dados.id}>${dados.content}</${dados.html}>\n`
+                };
+            }
             if (typeof dados.content == "object") {
                 return `<${dados.html} componentId=${dados.id}>${fc.verifyJson(dados.content)}</${dados.html}>\n`;
             } else {
@@ -276,6 +317,7 @@ $(function  () {
             };  
             _super($item, container);
             tempJson3.appCode.pages[0].pageComponents = fc.convertNested(document.querySelectorAll('#component-list'));
+            fc.elements = [];   
             document.getElementById('viewer').srcdoc = fc.jsonToHtml(tempJson3, 'index.html');
         } 
     });

@@ -27,8 +27,8 @@ tempJson3 = {
                                         "class": "opacity-lista",
                                     },
                                     "style": {
-                                        "margin": "0px 2px 1px 0px",
-                                        "color": "#00f0f0",
+                                        "margin": "0px 2px 1px 5px",
+                                        "color": "red",
                                     },
                                     "content": [{
                                         "cell": {

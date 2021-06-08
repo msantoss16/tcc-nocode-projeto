@@ -1,4 +1,4 @@
-tempJson3 = {
+tempJson = {
     "title": "Tabela de classificação",
     "icon": "build/icon.png",
     "autor": "Matheus Santos",

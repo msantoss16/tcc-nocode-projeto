@@ -1,8 +1,9 @@
 const express = require('express');
 const authMiddleare = require('../middlewares/auth');
+const path = require('path');
+const fs = require('fs');
 
 const Project = require('../models/project');
-const Element = require('../models/element');
 
 const router = express.Router();
 
@@ -10,7 +11,7 @@ router.use(authMiddleare);
 
 router.get('/', async(req, res) =>{  
     try {
-        const projects = await Project.find().populate(['user', 'elements']);
+        const projects = await Project.find().populate('user');
 
         return res.send({ projects });
 
@@ -23,7 +24,7 @@ router.get('/', async(req, res) =>{
 
 router.get('/:projectId', async(req, res) => {
     try {
-        const project = await Project.findById(req.params.projectId).populate(['user', 'elements']);
+        const project = await Project.findById(req.params.projectId).populate('user');
 
         return res.send({ project });
 
@@ -35,32 +36,39 @@ router.get('/:projectId', async(req, res) => {
 router.post('/', async(req, res) => {
 
     try {
-        const {title, subtitle, version, elements} = req.body;
-        console.log(elements)
+        const {title, subtitle, version, projetos} = req.body;
 
-        const project = await Project.create({ title, subtitle, version, user: req.userId });
+        const project = await Project.create({ title, subtitle, version, projetos, user: req.userId,});
+        
+        fs.mkdir(path.join
+            (__dirname, '..', '..', 'userProject', req.userId), (err) => {
+            if (err) {
+                return console.error(err);
+            }
+        });
 
-        await Promise.all(elements.map(async element =>{
-            const projectElement = new Element({ ...element, project: project._id});
-
-            await projectElement.save();
-
-            project.elements.push(projectElement);
-        }));
-
-        await project.save()
-
+        fs.appendFile(path.join(
+            __dirname, '..', '..', 
+            'userProject', req.userId, project._id+'.js'),
+             'teste', function(err){
+            if(err){
+                console.log('erro')
+            }
+        }) 
+        
         return res.send({project});
      
     } catch (error) {
+        console.log(error)
         return res.status(400).send({ error: 'Error Creating new project' });
     }
+
 });
 
 router.put('/:projectId', async(req, res) => {
     try {
 
-        const { title, subtitle, version, elements} = req.body;
+        const { title, subtitle, version} = req.body;
 
         const project = await Project.findByIdAndUpdate(req.params.projectId, { 
             title,
@@ -70,14 +78,6 @@ router.put('/:projectId', async(req, res) => {
 
         project.elements = [];
         await Element.deleteOne({project: project._id})
-
-        await Promise.all(elements.map(async element =>{
-            const projectElement = new Element({ ...element, project: project._id});
-
-            await projectElement.save();
-
-            project.elements.push(projectElement);
-        }));
 
         await project.save();
 

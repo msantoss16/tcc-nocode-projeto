@@ -1,11 +1,11 @@
 fc = {
     pages: [],
     elements: [],
-    pageSelected: '',
+    pageSelected: tempJson.appCode.pages[0].href,
     listModelos: {},   
 
     convertNested: function(ol) {
-        let tempJson = [];
+        let tempJsonN = [];
         let nodeListLI = ol[0].querySelectorAll(':scope > li');
         if (nodeListLI.length > 0) {
             for (li in nodeListLI) {
@@ -17,16 +17,16 @@ fc = {
                             return element;
                 });
                 if (elementJson > -1) {
-                    tempJson.push(fc.elements[elementJson]);
-                    if (typeof tempJson[tempJson.length-1][Object.keys(tempJson[tempJson.length-1])[0]].content == "object")
-                        tempJson[tempJson.length-1][Object.keys(tempJson[tempJson.length-1])[0]].content = "";
+                    tempJsonN.push(fc.elements[elementJson]);
+                    if (typeof tempJsonN[tempJsonN.length-1][Object.keys(tempJsonN[tempJsonN.length-1])[0]].content == "object")
+                        tempJsonN[tempJsonN.length-1][Object.keys(tempJsonN[tempJsonN.length-1])[0]].content = "";
                         if (nodeListLI[li].querySelectorAll(':scope > ol').length > 0) {
-                            tempJson[tempJson.length-1][Object.keys(tempJson[tempJson.length-1])[0]].content = fc.convertNested(nodeListLI[li].querySelectorAll(':scope>ol'));
+                            tempJsonN[tempJsonN.length-1][Object.keys(tempJsonN[tempJsonN.length-1])[0]].content = fc.convertNested(nodeListLI[li].querySelectorAll(':scope>ol'));
                         }
                 }
             }
         }
-        return tempJson;
+        return tempJsonN;
     },
 
     idInJson: function(content, id, edit) {
@@ -61,13 +61,17 @@ fc = {
                 break;
             }
         };
-        tempJson3.appCode.pages[0].pageComponents = fc.convertNested(document.querySelectorAll('#component-list'));
+        tempJson.appCode.pages[0].pageComponents = fc.convertNested(document.querySelectorAll('#component-list'));
         fc.elements = [];
-        document.getElementById('viewer').srcdoc = fc.jsonToHtml(tempJson3, 'index.html');
+        document.getElementById('viewer').srcdoc = fc.jsonToHtml(tempJson, fc.pageSelected);
     },
 
     selectComponent: function(id) {
-        let component = fc.idInJson([tempJson3.appCode.pages[0].pageComponents[0]], id, false);
+        for (cElements in tempJson.appCode.pages[tempJson.appCode.pages.findIndex(element => {if (element.href == fc.pageSelected) return element})].pageComponents) {
+            let component = fc.idInJson([tempJson.appCode.pages[0].pageComponents[cElements]], id, false);
+            if (component)
+                break;
+        }
         const divProperty = document.getElementById('componentProperty');
         const divStyle = document.getElementById('componentStyle');
         divStyle.innerHTML = "<ul class=\"styleEdit\" id=\"styleEdit\"></ul>";
@@ -150,17 +154,19 @@ fc = {
         for (page of this.pages) {
             let li = document.createElement('li');
             if (page == pages[0]) {
-                li.innerHTML = `<button class='page-select active' onclick="fc.selectPage(\'${page}\', tempJson3)">${page.slice(0, page.length-5)}</button>`;
+                li.innerHTML = `<button class='page-select active' onclick="fc.selectPage(\'${page}\', tempJson)">${page.slice(0, page.length-5)}</button>`;
             } else {
-                li.innerHTML = `<button class='page-select' onclick="fc.selectPage(\'${page}\', tempJson3)">${page.slice(0, page.length-5)}</button>`;
+                li.innerHTML = `<button class='page-select' onclick="fc.selectPage(\'${page}\', tempJson)">${page.slice(0, page.length-5)}</button>`;
             }
             divPages.querySelector("ul").appendChild(li);
         }
     },
 
     selectPage: function(page, tempJson) {
+        fc.pageSelected = page;
         fc.attComponents(tempJson, page);
         tempJson.appCode.pages[tempJson.appCode.pages.findIndex(element => {if (element.href == page) return element})].pageComponents = fc.convertNested(document.querySelectorAll('#component-list'));
+        //fc.elements = [];
         document.getElementById('viewer').srcdoc = fc.jsonToHtml(tempJson, page);
     },
 
@@ -184,14 +190,16 @@ fc = {
         let appCodePages = tempJson.appCode.pages;
         for (pageAccess of appCodePages) {
             if (pageAccess.href == page) {
-                divComponents.innerHTML = '';
-                let ol = document.createElement('ol');
-                ol.classList.add("defaultC");
-                ol.classList.add("vertical");
-                ol.setAttribute('id', 'component-list')
-                for (firstsItensComponents of pageAccess.pageComponents) {
+                let ol = divComponents.querySelector('ol');
+                ol.innerHTML = '';
+                for (firstsItensComponents of pageAccess.pageComponents) {  
+                    console.log(firstsItensComponents)
                     let li = document.createElement('li');
-                    li.innerHTML = `<p class=\"component\" componentId=\'${firstsItensComponents[Object.keys(firstsItensComponents)[0]].id}\' onclick=\"fc.selectComponent(\'${firstsItensComponents[Object.keys(firstsItensComponents)[0]].id}\')\">${Object.keys(firstsItensComponents)[0]}</p>${fc.verifyJsonToList(firstsItensComponents[Object.keys(firstsItensComponents)[0]].content)}`;
+                    if (typeof firstsItensComponents[Object.keys(firstsItensComponents)[0]].content == 'object') {
+                        li.innerHTML = `<p class=\"component\" componentId=\'${firstsItensComponents[Object.keys(firstsItensComponents)[0]].id}\' onclick=\"fc.selectComponent(\'${firstsItensComponents[Object.keys(firstsItensComponents)[0]].id}\')\">${Object.keys(firstsItensComponents)[0]}</p>${fc.verifyJsonToList(firstsItensComponents[Object.keys(firstsItensComponents)[0]].content)}`;
+                    } else {
+                        li.innerHTML = `<p class=\"component\" componentId=\'${firstsItensComponents[Object.keys(firstsItensComponents)[0]].id}\' onclick=\"fc.selectComponent(\'${firstsItensComponents[Object.keys(firstsItensComponents)[0]].id}\')\">${Object.keys(firstsItensComponents)[0]}</p>`;
+                    }
                     ol.appendChild(li);
                 }
                 divComponents.appendChild(ol);
@@ -278,10 +286,10 @@ fc = {
 
 fc.attPalette();
 fc.attPaletteComponents("Common")
-fc.attPages(tempJson3);
-fc.attComponents(tempJson3, 'index.html');
+fc.attPages(tempJson);
+fc.attComponents(tempJson, fc.pageSelected);
 
-document.getElementById('viewer').srcdoc = fc.jsonToHtml(tempJson3, 'index.html');
+document.getElementById('viewer').srcdoc = fc.jsonToHtml(tempJson, fc.pageSelected);
 
 $('#category > ul > li > button').click(function(){
     $("#category > ul > li > .active").removeClass("active");
@@ -316,9 +324,8 @@ $(function  () {
                 $item.removeClass("list-button-line");  
             };  
             _super($item, container);
-            tempJson3.appCode.pages[0].pageComponents = fc.convertNested(document.querySelectorAll('#component-list'));
-            fc.elements = [];   
-            document.getElementById('viewer').srcdoc = fc.jsonToHtml(tempJson3, 'index.html');
+            tempJson.appCode.pages[tempJson.appCode.pages.findIndex(element => {if (element.href == fc.pageSelected) return element})].pageComponents = fc.convertNested(document.querySelectorAll('#component-list'));
+            document.getElementById('viewer').srcdoc = fc.jsonToHtml(tempJson, fc.pageSelected);
         } 
     });
 
@@ -326,6 +333,15 @@ $(function  () {
         group: 'nested',
         drop: false,
     });
+});
+
+$('#modal-button').click(function(event) {
+    event.preventDefault();
+    tempJson.appCode.pages.push({
+        href: `${$('#namePageModal').val()}.html`,
+        pageComponents: []
+    });
+    fc.attPages(tempJson);
 });
 
   

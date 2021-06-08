@@ -5,6 +5,8 @@ const fs = require('fs');
 
 const Project = require('../models/project');
 
+const tempJson2 = require('../../../../site/scripts/json/tempJson')
+
 const router = express.Router();
 
 router.use(authMiddleare);
@@ -26,6 +28,8 @@ router.get('/:projectId', async(req, res) => {
     try {
         const project = await Project.findById(req.params.projectId).populate('user');
 
+        
+
         return res.send({ project });
 
     } catch (error) {
@@ -36,10 +40,13 @@ router.get('/:projectId', async(req, res) => {
 router.post('/', async(req, res) => {
 
     try {
-        const {title, subtitle, version, projetos} = req.body;
+        const {title, subtitle, version, pages} = req.body;
 
-        const project = await Project.create({ title, subtitle, version, projetos, user: req.userId,});
+        const project = await Project.create({ title, subtitle, version, pages, user: req.userId,});
         
+        data = tempJson2.appCode
+        const texto = JSON.stringify(data)
+
         fs.mkdir(path.join
             (__dirname, '..', '..', 'userProject', req.userId), (err) => {
             if (err) {
@@ -49,10 +56,10 @@ router.post('/', async(req, res) => {
 
         fs.appendFile(path.join(
             __dirname, '..', '..', 
-            'userProject', req.userId, project._id+'.js'),
-             'teste', function(err){
+            'userProject', req.userId, project._id+'.json'),
+            texto, function(err){
             if(err){
-                console.log('erro')
+                console.log(err)
             }
         }) 
         

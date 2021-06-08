@@ -15,7 +15,7 @@ const ProjectSchema = new mongoose.Schema({
         ref: 'User',
         require: true,
     },
-    projetos:{
+    pages:{
         type: String,
         require: true,
     },

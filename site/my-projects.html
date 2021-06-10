@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Meus Projetos</title>
+    <link rel="stylesheet" type="text/css" href="css/global.css">
+    <link rel="stylesheet" type="text/css" href="css/my-projects.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+    <script type="text/javascript" src="scripts/my-projects.js"></script>
+    <script type="text/javascript" src="scripts/nav.js"></script>
+</head>
+<body>
+    <nav>
+        <div id="menu">
+            <div id="logo-wrapper">
+                <a href="my-projects.html"><img src="images/logo.png"></a>
+            </div>
+            <div id="right-div">
+                <div id="menu-links-wrapper">
+                    <ul>
+                        <li><a href="chose-creation-way.html">Novo Projeto</a></li>
+                        <li><a href="my-projects.html">Meus Projetos</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="premium.html">Premium</a></li>
+                        <li><a href="about-us.html">Sobre nós</a></li>
+                    </ul>
+                </div>     
+                <div id="user-wrapper">
+                    <div id="user-profile-picture-wrapper">
+                        <a href="my-profile.html"><img src="images/user-default-picture.jpg"></a>
+                    </div>
+                    <div id="user-information-container">
+                        <h3><a href="my-profile.html">Fábio Junior</a></h3>
+                        <p><a href="my-profile.html">fabiojr@gmail.com</a></p>
+                    </div>
+                    <div id="user-arrow-container" onclick="showDropdown()">
+                        <i class="fas fa-chevron-down"></i>
+                        <div id="dropdown-content">
+                            <div class="dropdown-action-wrapper" onclick="myProfile()">
+                                <span>Meu Perfil</span>
+                            </div>
+                            <div class="dropdown-action-wrapper exit" onclick="sair()">
+                                <span>Sair da conta</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- USAR O DISPLAY NONE DE ACORDO COM A SITUAÇÃO DO USUÁRIO-->
+    <div id="container-none">
+        <div id="title-wrapper">
+            <h1>Meus Projetos</h1>
+        </div>
+        <div id="content-container">
+            <h2>Crie seu primeiro projeto</h2>
+            <p>a um clique de distância da forma mais fácil de criar seu gerenciador de negócios.</p>
+            <button class="new-project-button-big" onclick=""><i class="fas fa-plus"></i>Novo Projeto</button>
+        </div>
+    </div>
+    <!--
+    <div id="container-free">
+        <header class="header one">
+            <div>
+                <h1>Meus Projetos</h1>
+            </div>
+        </header>
+        <div class="content">
+            <div id="project-preview-wrapper">
+                <img src="">
+                <i class="fas fa-pencil-alt" onclick=""></i>
+            </div>
+            <div id="project-information-container">
+                <h3>Nome do Projeto</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque lacinia vitae orci ut luctus. Curabitur eget dui in ante tincidunt vehicula. Vivamus tristique tellus nisl. Pellentesque bibendum imperdiet lacus sed vestibulum. Cras interdum ligula sit amet viverra placerat.uisque lacinia vitae orci ut luctus. Curabitur eget dui in ante tincidunt vehicula. Vivamus tristique tellus nisl. Pellentesque bibendum imperdiet lacus sed.</p>
+                <div class="sub-information">
+                    <p>Data de Criação:</p>
+                    <p>00/00/0000</p>
+                </div>
+                <div class="sub-information">
+                    <p>Última vez editado:</p>
+                    <p>00/00/0000</p>
+                </div>
+                <div id="buttons-container">
+                    <button onclick="">Editar Projeto</button>
+                    <button onclick="">Excluir Projeto</button>
+                </div>
+            </div>
+        </div>
+        <div id="publicity-container">
+            <h3>Atualize para premium e receba privilégios</h3>
+            <button>Saiba Mais</button>
+        </div>
+    </div>
+    <div id="container-premium">
+        <header class="header three">
+            <div>
+                <h1>Meus Projetos</h1>
+                <h2>Selecione um projeto para<br>visualiza-lo</h2>
+            </div>
+            <button class="new-project-button" onclick="newProject()"><i class="fas fa-plus"></i>Novo Projeto</button>
+        </header>
+        <div id="projects-wrapper" onclick="">
+            <div class="project-frame">
+                <div class="frame-tool-bar">
+                    <div class="tool-bar-icons-wrapper">
+                        <i class="far fa-window-minimize"></i>
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+                <h3>Nome do Projeto</h3>
+            </div>
+        </div>
+    </div>
+-->
+    <footer>
+		<div id="footer-content">
+			<div id="logo-footer-wrapper">
+				<a href="#"><img src="images/logo.png"></a>
+			</div>
+			<div id="footer-information">
+				<h3><a href="about-us.html">Sobre nós</a></h3>
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique tenetur at quia perferendis. Blanditiis nihil facere delectus suscipit debitis impedit, qui molestias error.</p>
+				<br>
+				<h3><a href="contact.html">Contato</a></h3>
+				<p><a href="mailto: contato@imanager.net">contato@imanager.net</a></p>
+			</div>
+			<div id="footer-section-navigation">
+				<div class="footer-navigation-link-wrapper">
+					<h3><a href="">Novo Projeto</a></h3>
+				</div>
+				<div class="footer-navigation-link-wrapper">
+					<h3><a href="">Meus Projetos</a></h3>
+				</div>
+				<div class="footer-navigation-link-wrapper">
+					<h3><a href="">Premium</a></h3>
+				</div>
+				<div class="footer-navigation-link-wrapper">
+					<h3><a href="">Sobre Nós</a></h3>
+				</div>
+				<div class="footer-navigation-link-wrapper">
+					<h3><a href="">FAQ</a></h3>
+				</div>
+			</div>
+		</div>
+		<div id="footer-copyright">
+			<p>©2021 por Imanager - CNPJ 00.000.000/0000-00</p>
+		</div>
+	</footer>
+    <script src="./scripts/base.js"></script>
+</body>
+</html>

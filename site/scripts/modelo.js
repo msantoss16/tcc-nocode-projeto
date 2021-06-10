@@ -68,7 +68,7 @@ fc = {
 
     selectComponent: function(id) {
         for (cElements in tempJson.appCode.pages[tempJson.appCode.pages.findIndex(element => {if (element.href == fc.pageSelected) return element})].pageComponents) {
-            let component = fc.idInJson([tempJson.appCode.pages[0].pageComponents[cElements]], id, false);
+            let component = fc.idInJson([tempJson.appCode.pages[tempJson.appCode.pages.findIndex(element => {if (element.href == fc.pageSelected) return element})].pageComponents[cElements]], id, false);
             if (component)
                 break;
         }

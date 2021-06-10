@@ -1,0 +1,179 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="css/global.css">
+        <link rel="stylesheet" href="css/modelo-style.css">
+        <script type="text/javascript" src="scripts/nav.js"></script>
+        <script type="text/javascript" src="scripts/teste.js"></script>
+        <script type="text/javascript" src="scripts/new-page-modal.js"></script>
+        <script type="text/javascript" src="scripts/new-property-modal.js"></script>
+        <script type="text/javascript" src="scripts/new-style-modal.js"></script>
+        <title>Novo Projeto</title>
+    </head>
+    <body>
+        <div id="page-wrapper">
+            <nav>
+                <div id="menu">
+                    <div id="logo-wrapper">
+                        <a href="my-projects.html"><img src="images/logo.png"></a>
+                    </div>
+                    <div id="right-div">
+                        <div id="menu-links-wrapper">
+                            <ul>
+                                <li><a href="chose-creation-way.html">Novo Projeto</a></li>
+                                <li><a href="my-projects.html">Meus Projetos</a></li>
+                                <li><a href="faq.html">FAQ</a></li>
+                                <li><a href="premium.html">Premium</a></li>
+                                <li><a href="about-us.html">Sobre nós</a></li>
+                            </ul>
+                        </div>     
+                        <div id="user-wrapper">
+                            <div id="user-profile-picture-wrapper">
+                                <a href="my-profile.html"><img src="images/user-default-picture.jpg"></a>
+                            </div>
+                            <div id="user-information-container">
+                                <h3><a href="my-profile.html">Fábio Junior</a></h3>
+                                <p><a href="my-profile.html">fabiojr@gmail.com</a></p>
+                            </div>
+                            <div id="user-arrow-container" onclick="showDropdown()">
+                                <i class="fas fa-chevron-down"></i>
+                                <div id="dropdown-content">
+                                    <div class="dropdown-action-wrapper" onclick="myProfile()">
+                                        <span>Meu Perfil</span>
+                                    </div>
+                                    <div class="dropdown-action-wrapper exit" onclick="sair()">
+                                        <span>Sair da conta</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <div id="content-wrapper">
+                <div class="window-left">
+                    <div id="pallete-wrapper">
+                        <h3>Palheta</h3>
+                        <div class="palette">
+                            <div class="category" id="category">
+                                <ul class="list-button"></ul>
+                            </div>
+                            <div class="c-components" id="c-components">
+                                <ol class="list-button defaultCc cElementos"></ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="pages-wrapper">
+                        <h3>Páginas</h3>
+                        <i class="fas fa-plus-circle" onclick="showPageModal()"></i>
+                        <div class="pages" id="pages">
+                            <ul class="list-button"></ul>
+                        </div>
+                    </div>
+                    <div id="components-wrapper">
+                        <h3>Elementos</h3>
+                        <div class="components" id="components">
+                            <ol class="defaultC vertical" id="component-list">
+                                
+                            </ol>
+                        </div>
+                    </div>
+                </div>  
+                <div class="window-center">
+                    <iframe id="viewer"></iframe>
+                </div>
+                <div class="window-right">
+                    <h3 class="component-title" id="component-title"></h3>
+                    <h4 class="property-title">Propriedades</h4>
+                    <div class="property" id="componentProperty">
+                        <ul class="propertyEdit" id="propertyEdit">
+                            
+                        </ul>
+                    </div>
+                    <i class="fas fa-plus-circle" onclick="addProperty()"></i>
+                    <h4 class="style-title">Estilos</h4>
+                    <div class="componentStyle" id="componentStyle">
+                        <ul class="styleEdit" id="styleEdit">
+                            
+                        </ul>
+                    </div>
+                    <i class="fas fa-plus-circle" onclick="addStyle()"></i>
+                </div>
+            </div>
+            <div id="new-page-modal">
+                <div id="new-page-modal-content">
+                    <i class="fas fa-times" id="new-page-modal-close-icon" onclick="closePageModal()"></i>
+                    <h3>Nova Página</h3>
+                    <form id="new-page-modal-form">
+                        <div id="page-name-container">
+                            <h3>Nome da Página</h3>
+                            <input class="text-input" id="namePageModal" type="text" placeholder="Insira o nome da nova página"/>
+                        </div>
+                        <div id="page-size-container">
+                            <h3>Tamanho da Página</h3>
+                            <div class="radio-input-container">
+                                <input id="radio-input-auto" class="radio-input" type="radio" name="page-size-radio" onchange="disableSetSize()"/>
+                                <label for="radio-input-auto">Auto (tamanho definido automaticamente)</label>
+                            </div>
+                            <div class="radio-input-container">
+                                <input id="radio-input-px" class="radio-input" type="radio" name="page-size-radio" onchange="enableSetSize()"/>
+                                <label for="radio-input-px">Tamanho em pixel (definir tamanho manualmente)</label>
+                            </div>
+                            <div id="page-size-in-pixels">
+                                <div class="set-size">
+                                    <i class="fas fa-arrows-alt-h"></i>
+                                    <label>Comprimento (px):</label>
+                                    <input id="width" class="text-input size" type="text" disabled/>
+                                </div>
+                                <div class="set-size">
+                                    <i class="fas fa-arrows-alt-v"></i>
+                                    <label>Altura (px):</label>
+                                    <input id="height" class="text-input size" type="text" disabled/>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="new-page-modal-button">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="new-property-modal">
+            <div id="new-property-modal-content">
+                <i class="fas fa-times" id="new-property-modal-close-icon" onclick="closePropertyModal()"></i>
+                <h3>Adicionar Propriedade</h3>
+                <div id="new-property-left">
+                    <div id="property-list"><p>lista aqui</p></div>
+                </div>
+                <div id="new-property-right">
+                    <div id="new-property-arguments-container">
+                        <h3>Argumentos</h3>
+                        <textarea id="new-property-arguments"></textarea>
+                    </div>
+                    <button id="new-property-modal-button">Enviar</button>
+                </div>
+            </div>
+        </div>
+        <div id="new-style-modal">
+            <div id="new-style-modal-content">
+                <i class="fas fa-times" id="new-style-modal-close-icon" onclick="closeStyleModal()"></i>
+                <h3>Adicionar Estilo</h3>
+                <div id="new-style-left">
+                    <div id="style-list"><p>lista aqui</p></div>
+                </div>
+                <div id="new-style-right">
+                    <div id="new-style-arguments-container">
+                        <h3>Argumentos</h3>
+                        <textarea id="new-style-arguments"></textarea>
+                    </div>
+                    <button id="new-style-modal-button">Enviar</button>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+        <script src="scripts/plugins/jquery-sortable.js"></script>
+        <script src="scripts/json/tempJson.js"></script>
+        <script src="scripts/json/newJson.js"></script>
+        <script src="scripts/json/modelos.js"></script>
+        <script src="scripts/modelo.js"></script>
+    </body>
+</html>

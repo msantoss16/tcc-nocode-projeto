@@ -362,3 +362,5 @@ tempJson2 = {
         }]  
     }
 }
+
+module.exports = tempJson2;

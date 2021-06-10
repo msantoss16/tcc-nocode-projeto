@@ -15,10 +15,6 @@ const ProjectSchema = new mongoose.Schema({
         ref: 'User',
         require: true,
     },
-    pages:{
-        type: String,
-        require: true,
-    },
     version: {
         type: String,
         require: true,

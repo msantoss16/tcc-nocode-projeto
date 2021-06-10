@@ -12,6 +12,7 @@ $('#btncad').click(function(event){
     let _password = $('#pregis').val();
     let _passwordC = $('#pcregis').val();
     let _check = $('#check');
+    let data = {name: _username, email: _email, password: _password}
     
     
     if(_username === "" || _username.length <4){
@@ -27,11 +28,15 @@ $('#btncad').click(function(event){
         md.showNotification('top', 'center', 'warning', 'Necessário aceitar os termos');
     }
     else if (_password === _passwordC){
-        axios.post(`${serverURL}auth/register`, {name: _username, email: _email, password: _password})
+        axios.post(`${serverURL}auth/register`, data)
             .then(response => {
                 let token = response.data.token;
+                let id = response.data.user._id;
                 Cookies.set('token', token, { expires: 1 });
                 window.location.replace("my-projects.html");
+                localStorage.setItem('nome', _username)
+                localStorage.setItem('email', _email)
+                localStorage.setItem('id', id)
             })
             .catch(error => {
                 md.showNotification('top', 'center', 'danger', error.response.data.error);  

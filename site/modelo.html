@@ -62,7 +62,7 @@
                     </div>
                     <div id="pages-wrapper">
                         <h3>Páginas</h3>
-                        <i class="fas fa-plus-circle" onclick="showModal()"></i>
+                        <i class="fas fa-plus-circle" onclick="showPageModal()"></i>
                         <div class="pages" id="pages">
                             <ul class="list-button"></ul>
                         </div>
@@ -78,6 +78,9 @@
                 </div>  
                 <div class="window-center">
                     <iframe id="viewer"></iframe>
+                    <div id="delete-container">
+                        <i class="fas fa-times"></i>
+                    </div>
                 </div>
                 <div class="window-right">
                     <h3 class="component-title" id="component-title"></h3>
@@ -87,21 +90,37 @@
                             
                         </ul>
                     </div>
-                    <i class="fas fa-plus-circle" onclick=""></i>
+                    <i class="fas fa-plus-circle" onclick="addProperty()"></i>
                     <h4 class="style-title">Estilos</h4>
                     <div class="componentStyle" id="componentStyle">
                         <ul class="styleEdit" id="styleEdit">
                             
                         </ul>
                     </div>
-                    <i class="fas fa-plus-circle" onclick=""></i>
+                    <i class="fas fa-plus-circle" onclick="addStyle()"></i>
+                </div>
+            </div>
+            <div id="settings">
+                <div id="settings-hover-text">
+                    <span>Configurações</span>
+                </div>
+                <div id="settings-icon-container" onclick="showSettingsModal()">
+                    <i class="fas fa-cog"></i>
+                </div>
+            </div>
+            <div id="settings">
+                <div id="settings-hover-text">
+                    <span>Configurações</span>
+                </div>
+                <div id="settings-icon-container" onclick="showSettingsModal()">
+                    <i class="fas fa-cog"></i>
                 </div>
             </div>
             <div id="new-page-modal">
-                <div id="modal-content">
-                    <i class="fas fa-times" id="modal-close-icon" onclick="closeModal()"></i>
+                <div id="new-page-modal-content">
+                    <i class="fas fa-times" id="new-page-modal-close-icon" onclick="closePageModal()"></i>
                     <h3>Nova Página</h3>
-                    <form id="modal-form">
+                    <form id="new-page-modal-form">
                         <div id="page-name-container">
                             <h3>Nome da Página</h3>
                             <input class="text-input" id="namePageModal" type="text" placeholder="Insira o nome da nova página"/>
@@ -129,8 +148,61 @@
                                 </div>
                             </div>
                         </div>
-                        <button id="modal-button">Enviar</button>
+                        <button id="new-page-modal-button">Enviar</button>
                     </form>
+                </div>
+            </div>
+        </div>
+        <div id="settings-modal">
+            <div id="settings-modal-content">
+                <i class="fas fa-times" id="settings-modal-close-icon" onclick="closeSettingsModal()"></i>
+                <h3>Configurações</h3>
+                <form id="settings-form">
+                    <div id="project-name-container">
+                        <h3>Nome do Projeto</h3>
+                        <input class="text-input" id="project-name" type="text"/>
+                    </div>
+                    <div id="project-description-container">
+                        <h3>Descrição do Projeto</h3>
+                        <textarea class="text-input" id="project-description" type="text"/></textarea>
+                    </div>
+                    <div id="project-version-container">
+                        <h3>Versão: <span>1.0.0</span></h3>
+                    </div>
+                    <button id="settings-modal-button">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+        <div id="new-property-modal">
+            <div id="new-property-modal-content">
+                <i class="fas fa-times" id="new-property-modal-close-icon" onclick="closePropertyModal()"></i>
+                <h3>Adicionar Propriedade</h3>
+                <div id="new-property-left">
+                    <div id="property-list"><p>lista aqui</p></div>
+                </div>
+                <div id="new-property-right">
+                    <div id="new-property-arguments-container">
+                        <h3>Argumentos</h3>
+                        <textarea id="new-property-arguments"></textarea>
+                    </div>
+                    <button id="new-property-modal-button">Enviar</button>
+                </div>
+            </div>
+        </div>
+        <div id="new-style-modal">
+            <div id="new-style-modal-content">
+                <i class="fas fa-times" id="new-style-modal-close-icon" onclick="closeStyleModal()"></i>
+                <h3>Adicionar Estilo</h3>
+                <div id="new-style-left">
+                    <div id="style-list"><p>lista aqui</p></div>
+                </div>
+                <div id="new-style-right">
+                    <div id="new-style-arguments-container">
+                        <h3>Argumentos</h3>
+                        <textarea id="new-style-arguments"></textarea>
+                    </div>
+                    <button id="new-style-modal-button">Enviar</button>
                 </div>
             </div>
         </div>

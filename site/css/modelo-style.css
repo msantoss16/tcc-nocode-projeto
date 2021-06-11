@@ -141,8 +141,12 @@ dl{
 .window-center{
     width: calc(100% - 32rem);
     height: 100%;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     background-color: #E5E5E5;
+    position: relative;
+    display: flex;
+    justify-content: center;
 }
 
 iframe{
@@ -150,6 +154,32 @@ iframe{
     height: 100%;
     border: none;
 }
+
+#delete-container{
+    position: absolute;
+    /*bottom: -3rem*/
+    bottom: 1.5rem;
+    right: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #2c2c2C;
+    border-radius: 2.5rem;
+    z-index: 50;
+}
+
+#delete-container i{
+    font-size: 1.7rem;
+    color: #FFFFFF;
+}
+
+/*
+elemento:hover #delete-container{
+    right: 1.5rem;
+}
+*/
 
 
 
@@ -160,6 +190,7 @@ iframe{
     height: 100%;
     z-index: 10;
     border-left: solid 1px #778899;
+    overflow: auto;
 }
 
 .component-ID{
@@ -208,6 +239,20 @@ iframe{
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    position: relative;
+}
+
+.remove-property{
+    position: absolute;
+    right: 0;
+    top: calc(50% - 7px);
+    font-size: 1.5em;
+    color: #2c2c2c;
+}
+
+.remove-property:hover{
+    color: red;
+    cursor: pointer;
 }
 
 .property-content{
@@ -267,6 +312,20 @@ iframe{
     -ms-user-select: none;
     user-select: none;
     text-align: left;
+    position: relative;
+}
+
+.remove-style{
+    position: absolute;
+    right: 0;
+    top: calc(50% - 7px);
+    font-size: 1.5em;
+    color: #2c2c2c;
+}
+
+.remove-style:hover{
+    color: red;
+    cursor: pointer;
 }
 
 .style-content{
@@ -313,7 +372,9 @@ iframe{
 
 
 
-#new-page-modal{ 
+
+
+#settings-modal{
     background-color: rgba( 0, 0, 0, 0.7);
     width: 100vw;
     height: 100vh;
@@ -329,7 +390,22 @@ iframe{
     transition: opacity 400ms ease-in-out;
 }
 
-#modal-content{
+#settings-modal h3{
+    font-family: var(--primary-font);
+    font-weight: normal;
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    font-size: 1.5em;
+    font-weight: bold;
+    -webkit-user-select: none;        
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #76a9db;
+}
+
+#settings-modal-content{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -346,7 +422,7 @@ iframe{
     transition: top 400ms ease-in-out;
 }
 
-#modal-close-icon{
+#settings-modal-close-icon{
     position: absolute;
     top: 2rem;
     right: 2rem;
@@ -355,19 +431,36 @@ iframe{
     font-weight: bold;
 }
 
-#modal-close-icon:hover{
+#settings-modal-close-icon:hover{
     cursor: pointer;
     color: #778899;
 }
 
-#modal-form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+#settings-form h3{
+    position: unset;
+    font-size: 1.2rem;
+    font-family: var(--secondary-font);
+    text-align: center;
+    color: #2c2c2c;
+    font-weight: bold;
+    -webkit-user-select: none;        
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
-#modal-button{
+#project-description-container textarea{
+    max-width: 24rem;
+    min-width: 24rem;
+    min-height: 6rem;
+    max-height: 12rem;
+    padding: 0.3rem 0.5rem;
+    font-family: var(--text-font);
+    font-size: 0.8em;
+    transition: none;
+}
+
+#settings-modal-button{
     position: absolute;
     right: 2rem;
     bottom: 2rem;
@@ -385,12 +478,112 @@ iframe{
     margin-left: calc(100% - 12rem);
 }
 
-#modal-button:hover{
+#settings-modal-button:hover{
     background-color: #76a9db;
     cursor: pointer;
 }
 
-#modal-content h3{
+#project-version-container{
+    display: flex;
+    align-items: center;
+}
+
+#project-version-container h3{
+    font-size: 1em;
+    line-height: 1rem;
+    margin-top: 0.5rem;
+    color: #868686;
+    -webkit-user-select: unset;        
+    -moz-user-select: unset;
+    -ms-user-select: unset;
+    user-select: unset;
+}
+
+#project-version-container span{
+    text-decoration: underline;
+}
+
+
+
+
+#new-page-modal{ 
+    background-color: rgba( 0, 0, 0, 0.7);
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    z-index: 150;
+    position: fixed;
+    top: -100%;
+    opacity: 0;
+    -webkit-transition: opacity 400ms ease-in-out;
+    -moz-transition: opacity 400ms ease-in-out;
+    transition: opacity 400ms ease-in-out;
+}
+
+#new-page-modal-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 32rem;
+    width: 30rem;
+    padding: 0 3rem;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    position: relative;
+    top: -100%;
+    -webkit-transition: top 400ms ease-in-out;
+    -moz-transition: top 400ms ease-in-out;
+    transition: top 400ms ease-in-out;
+}
+
+#new-page-modal-close-icon{
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-size: 1.5em;
+    color: #5692CD;
+    font-weight: bold;
+}
+
+#new-page-modal-close-icon:hover{
+    cursor: pointer;
+    color: #778899;
+}
+
+#new-page-modal-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+#new-page-modal-button{
+    position: absolute;
+    right: 2rem;
+    bottom: 2rem;
+    width: 8rem;
+    height: 2rem;
+    margin-top: 2rem;
+    font-size: 1em;
+    background-color: #5692CD;
+    border: none;
+    border-radius: 2.5rem;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    font-family: var(--text-font);
+    font-weight: 500;
+    margin-left: calc(100% - 12rem);
+}
+
+#new-page-modal-button:hover{
+    background-color: #76a9db;
+    cursor: pointer;
+}
+
+#new-page-modal-content h3{
     font-family: var(--primary-font);
     font-weight: normal;
     position: absolute;
@@ -548,4 +741,330 @@ ol.vertical li.placeholder:before {
 
 ol.cElementos li {
     list-style-type: none;
+}
+
+#new-property-modal{
+    background-color: rgba( 0, 0, 0, 0.7);
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    z-index: 150;
+    position: fixed;
+    top: -100%;
+    opacity: 0;
+    -webkit-transition: opacity 400ms ease-in-out;
+    -moz-transition: opacity 400ms ease-in-out;
+    transition: opacity 400ms ease-in-out;
+}
+
+#new-property-modal-content{
+    display: flex;
+    align-items: center;
+    padding: 4.5rem 2rem 2rem 2rem;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    position: relative;
+    top: -100%;
+    -webkit-transition: top 400ms ease-in-out;
+    -moz-transition: top 400ms ease-in-out;
+    transition: top 400ms ease-in-out;
+}
+
+#new-property-modal-close-icon{
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-size: 1.5em;
+    color: #5692CD;
+    font-weight: bold;
+}
+
+#new-property-modal-close-icon:hover{
+    cursor: pointer;
+    color: #778899;
+}
+
+#new-property-modal-content h3{
+    font-family: var(--primary-font);
+    font-weight: normal;
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    font-size: 1.5em;
+    font-weight: bold;
+    -webkit-user-select: none;        
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #76a9db;
+}
+
+#new-property-left{
+    min-height: 25rem;
+    max-height: 25rem;
+    max-width: 22rem;
+    min-width: 22rem;
+    margin-right: 1rem;
+}
+
+#property-list{
+    width: 100%;
+    min-height: 25rem;
+    max-height: 25rem;
+    border-radius: 2px;
+    background-color: #cacaca;
+}
+
+#new-property-right{
+    min-height: 25rem;
+    max-height: 25rem;
+    min-width: 16rem;
+    max-width: 16rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#new-property-right h3{
+    position: unset;
+    top: 0;
+    left: 0;
+    font-family: var(--secondary-font);
+    font-size: 1.2em;
+    color: #2c2c2c;
+    margin-bottom: 0.2rem;
+}
+
+#new-property-arguments-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 23rem;
+    margin-bottom: 3rem;
+}
+
+#new-property-arguments{
+    max-width: 100%;
+    min-width: 100%;
+    max-height: 20.5rem;
+    min-height: 10rem;
+    outline: none;
+}
+
+#new-property-modal-button{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin-top: 1rem;
+    width: 8rem;
+    height: 2rem;
+    font-size: 1em;
+    background-color: #5692CD;
+    border: none;
+    border-radius: 2rem;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    font-family: var(--text-font);
+    font-weight: 500;
+}
+
+#new-property-modal-button:hover{
+    background-color: #76a9db;
+    cursor: pointer;
+}
+
+#new-style-modal{
+    background-color: rgba( 0, 0, 0, 0.7);
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    z-index: 150;
+    position: fixed;
+    top: -100%;
+    opacity: 0;
+    -webkit-transition: opacity 400ms ease-in-out;
+    -moz-transition: opacity 400ms ease-in-out;
+    transition: opacity 400ms ease-in-out;
+}
+
+#new-style-modal-content{
+    display: flex;
+    align-items: center;
+    padding: 4.5rem 2rem 2rem 2rem;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    position: relative;
+    top: -100%;
+    -webkit-transition: top 400ms ease-in-out;
+    -moz-transition: top 400ms ease-in-out;
+    transition: top 400ms ease-in-out;
+}
+
+#new-style-modal-close-icon{
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-size: 1.5em;
+    color: #5692CD;
+    font-weight: bold;
+}
+
+#new-style-modal-close-icon:hover{
+    cursor: pointer;
+    color: #778899;
+}
+
+#new-style-modal-content h3{
+    font-family: var(--primary-font);
+    font-weight: normal;
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    font-size: 1.5em;
+    font-weight: bold;
+    -webkit-user-select: none;        
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #76a9db;
+}
+
+#new-style-left{
+    min-height: 25rem;
+    max-height: 25rem;
+    max-width: 22rem;
+    min-width: 22rem;
+    margin-right: 1rem;
+}
+
+#style-list{
+    width: 100%;
+    min-height: 25rem;
+    max-height: 25rem;
+    border-radius: 2px;
+    background-color: #cacaca;
+}
+
+#new-style-right{
+    min-height: 25rem;
+    max-height: 25rem;
+    min-width: 16rem;
+    max-width: 16rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#new-style-right h3{
+    position: unset;
+    top: 0;
+    left: 0;
+    font-family: var(--secondary-font);
+    font-size: 1.2em;
+    color: #2c2c2c;
+    margin-bottom: 0.2rem;
+}
+
+#new-style-arguments-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 23rem;
+    margin-bottom: 3rem;
+}
+
+#new-style-arguments{
+    max-width: 100%;
+    min-width: 100%;
+    max-height: 20.5rem;
+    min-height: 10rem;
+    outline: none;
+}
+
+#new-style-modal-button{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin-top: 1rem;
+    width: 8rem;
+    height: 2rem;
+    font-size: 1em;
+    background-color: #5692CD;
+    border: none;
+    border-radius: 2rem;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    font-family: var(--text-font);
+    font-weight: 500;
+}
+
+#new-style-modal-button:hover{
+    background-color: #76a9db;
+    cursor: pointer;
+}
+
+#settings{
+    display: flex;
+    position: fixed;
+    align-items: center;
+    z-index: 50;
+    right: 1.5rem;
+    bottom: 1.5rem;
+}
+
+#settings-hover-text{
+    padding: 0 0.5rem ;
+    background-color: #2c2c2c;
+    position: relative;
+    height: 1.7rem;
+    display: none;
+    cursor: default;
+    margin-right: 0.6rem;
+}
+
+#settings-hover-text span{
+    color: #FFFFFF;
+    font-size: 0.8em;
+    font-family: var(--text-font);
+    line-height: 1.7rem;
+}
+
+#settings span::after{
+    content: "";
+    position: absolute;
+    border-top: 5px solid #2c2c2c;
+    border-left: 10px solid #2c2c2c;
+    border-bottom: 5px solid #2c2c2c;
+    right: -0.2rem;
+    z-index: 0;
+    top: 50%;
+    transform: translate(0, -50%) rotate(45deg);
+}
+
+#settings-icon-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2c2c2c;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#settings:hover #settings-hover-text{
+    display: block;
+}
+
+#settings-icon-container i{
+    color: #FFFFFF;
+    font-size: 1.4em;
 }

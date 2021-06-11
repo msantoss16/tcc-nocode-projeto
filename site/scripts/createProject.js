@@ -19,9 +19,7 @@ $('#modal-button').click(function(event){
         axios.post(`${serverURL}projects/`, {authHeader: _token, title: _name, subtitle: _desc})
         .then( () =>{
             md.showNotification('top', 'center', 'sucess', 'criado com sucesso');
-            setTimeout(function(){
                 window.location.replace("my-projects.html")  
-            }, 2000)
         })
         .catch((error) => {
             md.showNotification('top', 'center', 'danger', error.response.data.error);

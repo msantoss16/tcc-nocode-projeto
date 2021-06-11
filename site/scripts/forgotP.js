@@ -1,5 +1,9 @@
 const serverURL = 'http://localhost:3000/';
 
+if (Cookies.get('token')){
+    window.location.replace("my-projects.html");
+}
+
 $('#btnEnv').click(function(event){
     event.preventDefault();
     let _email = $('#email').val();

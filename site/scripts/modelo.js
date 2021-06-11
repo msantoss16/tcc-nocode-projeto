@@ -86,7 +86,7 @@ fc = {
             if (Object.keys(component[Object.keys(component)[0]]).indexOf("property") > -1) {
                 for (property of Object.keys(component[Object.keys(component)[0]].property)) {
                     let li = document.createElement('li');
-                    li.innerHTML = `<p class=\"property-name\">${property}</p><input type=\"text\" ttype="property" ppName=\"${property}\" class=\"property-content\" value=\"${component[Object.keys(component)[0]].property[property]}\" onchange=\"fc.editProperty(\'${component[Object.keys(component)[0]].id}\', this)\">`;
+                    li.innerHTML = `<p class=\"property-name\"><span class=\"remove-property"\>&times;</span>${property}</p><input type=\"text\" ttype="property" ppName=\"${property}\" class=\"property-content\" value=\"${component[Object.keys(component)[0]].property[property]}\" onchange=\"fc.editProperty(\'${component[Object.keys(component)[0]].id}\', this)\">`;
                     divProperty.querySelector('#propertyEdit').appendChild(li);
                 };
             };
@@ -101,7 +101,7 @@ fc = {
                     if (style == Object.keys(component[Object.keys(component)[0]].style)[0]) {
                         li.classList.add("first-component");
                     }
-                    li.innerHTML = `<p class=\"style-name\">${style}</p><input type=\"text\" ttype="style" ppName=\"${style}\" class=\"style-content\" value=\"${component[Object.keys(component)[0]].style[style]}\" onchange=\"fc.editProperty(\'${component[Object.keys(component)[0]].id}\', this)\">`;
+                    li.innerHTML = `<p class=\"style-name\"><span class=\"remove-style"\>&times;</span>${style}</p><input type=\"text\" ttype="style" ppName=\"${style}\" class=\"style-content\" value=\"${component[Object.keys(component)[0]].style[style]}\" onchange=\"fc.editProperty(\'${component[Object.keys(component)[0]].id}\', this)\">`;
                     divStyle.querySelector('#styleEdit').appendChild(li);
                 };
             };
@@ -335,7 +335,7 @@ $(function  () {
     });
 });
 
-$('#modal-button').click(function(event) {
+$('#new-page-modal-button').click(function(event) {
     event.preventDefault();
     tempJson.appCode.pages.push({
         href: `${$('#namePageModal').val()}.html`,
@@ -344,4 +344,50 @@ $('#modal-button').click(function(event) {
     fc.attPages(tempJson);
 });
 
-  
+function addStyle(){
+    let modalContainer = document.getElementById('new-style-modal');
+    let modalContent = document.getElementById('new-style-modal-content');
+    modalContainer.style.opacity = "1";
+    modalContainer.style.top = "0";
+    modalContent.style.top = "0";
+};
+
+function closeStyleModal(){
+    let modalContainer = document.getElementById('new-style-modal');
+    let modalContent = document.getElementById('new-style-modal-content');
+    modalContainer.style.opacity = "0";
+    modalContainer.style.top = "-100%";
+    modalContent.style.top = "-100%";
+};
+
+function showSettingsModal(){
+    let modalContainer = document.getElementById('settings-modal');
+    let modalContent = document.getElementById('settings-modal-content');
+    modalContainer.style.opacity = "1";
+    modalContainer.style.top = "0";
+    modalContent.style.top = "0";
+}
+
+function closeSettingsModal(){
+    let modalContainer = document.getElementById('settings-modal');
+    let modalContent = document.getElementById('settings-modal-content');
+    modalContainer.style.opacity = "0";
+    modalContainer.style.top = "-100%";
+    modalContent.style.top = "-100%";
+};
+
+function addProperty(){
+    let modalContainer = document.getElementById('new-property-modal');
+    let modalContent = document.getElementById('new-property-modal-content');
+    modalContainer.style.opacity = "1";
+    modalContainer.style.top = "0";
+    modalContent.style.top = "0";
+};
+
+function closePropertyModal(){
+    let modalContainer = document.getElementById('new-property-modal');
+    let modalContent = document.getElementById('new-property-modal-content');
+    modalContainer.style.opacity = "0";
+    modalContainer.style.top = "-100%";
+    modalContent.style.top = "-100%";
+};

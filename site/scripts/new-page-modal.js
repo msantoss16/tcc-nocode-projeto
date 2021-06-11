@@ -1,13 +1,17 @@
-function showModal(){
-    document.getElementById('new-page-modal').style.opacity = "1";
-    document.getElementById('new-page-modal').style.top = "0";
-    document.getElementById('modal-content').style.top = "0";
+function showPageModal(){
+    let modalContainer = document.getElementById('new-page-modal');
+    let modalContent = document.getElementById('new-page-modal-content');
+    modalContainer.style.opacity = "1";
+    modalContainer.style.top = "0";
+    modalContent.style.top = "0";
 }
   
-function closeModal(){
-    document.getElementById('new-page-modal').style.opacity = "0";
-    document.getElementById('new-page-modal').style.top = "-100%";
-    document.getElementById('modal-content').style.top = "-100%";
+function closePageModal(){
+    let modalContainer = document.getElementById('new-page-modal');
+    let modalContent = document.getElementById('new-page-modal-content');
+    modalContainer.style.opacity = "0";
+    modalContainer.style.top = "-100%";
+    modalContent.style.top = "-100%";
 }
 
 function enableSetSize(){

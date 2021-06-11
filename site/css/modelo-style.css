@@ -141,8 +141,12 @@ dl{
 .window-center{
     width: calc(100% - 32rem);
     height: 100%;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     background-color: #E5E5E5;
+    position: relative;
+    display: flex;
+    justify-content: center;
 }
 
 iframe{
@@ -150,6 +154,32 @@ iframe{
     height: 100%;
     border: none;
 }
+
+#delete-container{
+    position: absolute;
+    /*bottom: -3rem*/
+    bottom: 1.5rem;
+    right: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #2c2c2C;
+    border-radius: 2.5rem;
+    z-index: 50;
+}
+
+#delete-container i{
+    font-size: 1.7rem;
+    color: #FFFFFF;
+}
+
+/*
+elemento:hover #delete-container{
+    right: 1.5rem;
+}
+*/
 
 
 
@@ -160,6 +190,7 @@ iframe{
     height: 100%;
     z-index: 10;
     border-left: solid 1px #778899;
+    overflow: auto;
 }
 
 .component-ID{
@@ -336,6 +367,140 @@ iframe{
 .window-right i:hover{
     font-size: 2.3em;
     cursor: pointer;
+}
+
+
+
+
+
+
+#settings-modal{
+    background-color: rgba( 0, 0, 0, 0.7);
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    z-index: 150;
+    position: fixed;
+    top: -100%;
+    opacity: 0;
+    -webkit-transition: opacity 400ms ease-in-out;
+    -moz-transition: opacity 400ms ease-in-out;
+    transition: opacity 400ms ease-in-out;
+}
+
+#settings-modal h3{
+    font-family: var(--primary-font);
+    font-weight: normal;
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    font-size: 1.5em;
+    font-weight: bold;
+    -webkit-user-select: none;        
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #76a9db;
+}
+
+#settings-modal-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 32rem;
+    width: 30rem;
+    padding: 0 3rem;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    position: relative;
+    top: -100%;
+    -webkit-transition: top 400ms ease-in-out;
+    -moz-transition: top 400ms ease-in-out;
+    transition: top 400ms ease-in-out;
+}
+
+#settings-modal-close-icon{
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-size: 1.5em;
+    color: #5692CD;
+    font-weight: bold;
+}
+
+#settings-modal-close-icon:hover{
+    cursor: pointer;
+    color: #778899;
+}
+
+#settings-form h3{
+    position: unset;
+    font-size: 1.2rem;
+    font-family: var(--secondary-font);
+    text-align: center;
+    color: #2c2c2c;
+    font-weight: bold;
+    -webkit-user-select: none;        
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#project-description-container textarea{
+    max-width: 24rem;
+    min-width: 24rem;
+    min-height: 6rem;
+    max-height: 12rem;
+    padding: 0.3rem 0.5rem;
+    font-family: var(--text-font);
+    font-size: 0.8em;
+    transition: none;
+}
+
+#settings-modal-button{
+    position: absolute;
+    right: 2rem;
+    bottom: 2rem;
+    width: 8rem;
+    height: 2rem;
+    margin-top: 2rem;
+    font-size: 1em;
+    background-color: #5692CD;
+    border: none;
+    border-radius: 2.5rem;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    font-family: var(--text-font);
+    font-weight: 500;
+    margin-left: calc(100% - 12rem);
+}
+
+#settings-modal-button:hover{
+    background-color: #76a9db;
+    cursor: pointer;
+}
+
+#project-version-container{
+    display: flex;
+    align-items: center;
+}
+
+#project-version-container h3{
+    font-size: 1em;
+    line-height: 1rem;
+    margin-top: 0.5rem;
+    color: #868686;
+    -webkit-user-select: unset;        
+    -moz-user-select: unset;
+    -ms-user-select: unset;
+    user-select: unset;
+}
+
+#project-version-container span{
+    text-decoration: underline;
 }
 
 
@@ -844,4 +1009,62 @@ ol.cElementos li {
 #new-style-modal-button:hover{
     background-color: #76a9db;
     cursor: pointer;
+}
+
+#settings{
+    display: flex;
+    position: fixed;
+    align-items: center;
+    z-index: 50;
+    right: 1.5rem;
+    bottom: 1.5rem;
+}
+
+#settings-hover-text{
+    padding: 0 0.5rem ;
+    background-color: #2c2c2c;
+    position: relative;
+    height: 1.7rem;
+    display: none;
+    cursor: default;
+    margin-right: 0.6rem;
+}
+
+#settings-hover-text span{
+    color: #FFFFFF;
+    font-size: 0.8em;
+    font-family: var(--text-font);
+    line-height: 1.7rem;
+}
+
+#settings span::after{
+    content: "";
+    position: absolute;
+    border-top: 5px solid #2c2c2c;
+    border-left: 10px solid #2c2c2c;
+    border-bottom: 5px solid #2c2c2c;
+    right: -0.2rem;
+    z-index: 0;
+    top: 50%;
+    transform: translate(0, -50%) rotate(45deg);
+}
+
+#settings-icon-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2c2c2c;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#settings:hover #settings-hover-text{
+    display: block;
+}
+
+#settings-icon-container i{
+    color: #FFFFFF;
+    font-size: 1.4em;
 }

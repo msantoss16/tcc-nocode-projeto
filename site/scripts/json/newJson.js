@@ -13,7 +13,10 @@ tempJson = {
                         "subtitle": {
                             "id": "99dd1d021effd7",
                             "html": "h3",
-                            "content": "Grupo A"
+                            "content": "Grupo A",
+                            "style": {
+                                "font-family": ""
+                            }
                         }},
                         {
                         "tableView": {

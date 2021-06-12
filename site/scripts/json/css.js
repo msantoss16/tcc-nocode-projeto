@@ -2784,4 +2784,11 @@ cssComponents = {
             },
         }
     },
+};
+
+propComponents = {
+    "accept": {
+        "description": "Lista de tipos que o servidor aceita, tipicamente um tipo de arquivo.",
+        "elements": ["form", "input"]
+    }
 }

@@ -54,7 +54,7 @@ router.post('/', async(req, res) => {
         data = tempJson2.appCode
         const texto = JSON.stringify(data)
         
-        let project = await Project.create({ title, subtitle, version, user: req.userId,});
+        let project = await Project.create({ title, subtitle, version, user: req.userId, });
 
         fs.mkdir(path.join
             (__dirname, '..', '..', 'userProject', req.userId), (err) => {

@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<title>Meus Projetos</title>
     <link rel="stylesheet" type="text/css" href="css/global.css">
-    <link rel="stylesheet" type="text/css" href="css/my-projects.css">
+    <link rel="stylesheet" type="text/css" href="css/my-projects-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
     <script type="text/javascript" src="scripts/nav.js"></script>
@@ -32,8 +32,8 @@
                         <a href="my-profile.html"><img src="images/user-default-picture.jpg"></a>
                     </div>
                     <div id="user-information-container">
-                        <h3><a href="my-profile.html">Fábio Junior</a></h3>
-                        <p><a href="my-profile.html">fabiojr@gmail.com</a></p>
+                        <h3><a href="my-profile.html" id="nomeU"></a></h3>
+                        <p><a href="my-profile.html" id="emailU"></a></p>
                     </div>
                     <div id="user-arrow-container" onclick="showDropdown()">
                         <i class="fas fa-chevron-down"></i>
@@ -74,15 +74,15 @@
                 <i class="fas fa-pencil-alt" onclick=""></i>
             </div>
             <div id="project-information-container">
-                <h3>Nome do Projeto</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque lacinia vitae orci ut luctus. Curabitur eget dui in ante tincidunt vehicula. Vivamus tristique tellus nisl. Pellentesque bibendum imperdiet lacus sed vestibulum. Cras interdum ligula sit amet viverra placerat.uisque lacinia vitae orci ut luctus. Curabitur eget dui in ante tincidunt vehicula. Vivamus tristique tellus nisl. Pellentesque bibendum imperdiet lacus sed.</p>
+                <h3 id='titulo'>Nome do Projeto</h3>
+                <p id='descricao'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque lacinia vitae orci ut luctus. Curabitur eget dui in ante tincidunt vehicula. Vivamus tristique tellus nisl. Pellentesque bibendum imperdiet lacus sed vestibulum. Cras interdum ligula sit amet viverra placerat.uisque lacinia vitae orci ut luctus. Curabitur eget dui in ante tincidunt vehicula. Vivamus tristique tellus nisl. Pellentesque bibendum imperdiet lacus sed.</p>
                 <div class="sub-information">
                     <p>Data de Criação:</p>
-                    <p>00/00/0000</p>
+                    <p id="dataC">00/00/0000</p>
                 </div>
                 <div class="sub-information">
                     <p>Última vez editado:</p>
-                    <p>00/00/0000</p>
+                    <p id="dataU">00/00/0000</p>
                 </div>
                 <div id="buttons-container">
                     <button onclick="">Editar Projeto</button>
@@ -95,6 +95,7 @@
             <button>Saiba Mais</button>
         </div>
     </div>
+
     <div id="container-premium">
         <header class="header three">
             <div>
@@ -115,7 +116,6 @@
             </div>
         </div>
     </div>
--->
     <footer>
 		<div id="footer-content">
 			<div id="logo-footer-wrapper">

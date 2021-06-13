@@ -13,7 +13,7 @@ router.use(authMiddleare);
 
 router.get('/', async(req, res) =>{  
     try {
-        const projects = await Project.find().populate('user');
+        const projects = await Project.find({user:req.userId}).populate('user');
 
         return res.send({ projects });
 
@@ -34,7 +34,7 @@ router.get('/:projectId', async(req, res) => {
             }else{
                 data = data.toString();
                 data = JSON.parse(data);
-
+                data = {appCode:data}
                 const project = await Project.findById(req.params.projectId, data).populate('user');
                 return res.send( project );
             }
@@ -49,7 +49,7 @@ router.get('/:projectId', async(req, res) => {
 router.post('/', async(req, res) => {
 
     try {
-        const {title, subtitle, version} = req.body;
+        const {title, subtitle, version} = req.headers
 
         data = tempJson2.appCode
         const texto = JSON.stringify(data)

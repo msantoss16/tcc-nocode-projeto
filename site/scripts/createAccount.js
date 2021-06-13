@@ -34,8 +34,6 @@ $('#btncad').click(function(event){
                 let id = response.data.user._id;
                 Cookies.set('token', token, { expires: 1 });
                 window.location.replace("my-projects.html");
-                localStorage.setItem('nome', _username)
-                localStorage.setItem('email', _email)
                 localStorage.setItem('id', id)
             })
             .catch(error => {

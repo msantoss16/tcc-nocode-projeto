@@ -2785,3 +2785,550 @@ cssComponents = {
         }
     },
 }
+
+propComponents = {
+    "accept": {
+        "description": "Lista de tipos que o servidor aceita, tipicamente um tipo de arquivo",
+        "elements": ["form", "input"]
+    },
+
+    "accept-charset": {
+        "description": "Lista de conjunto de caracteres suportados",
+        "elements": ["form"]
+    },
+
+    "accesskey": {
+        "description": "Define um atalho no teclado para ativar ou adicionar foco ao elemento",
+        "elements": ["Atributo Global"]
+    },
+
+    "action": {
+        "description": "A URI de um programa que processa a informação submetida através do formulário",
+        "elements": ["form"]
+    },
+
+    "align": {
+        "description": "Especifica o alinhamento horizontal do elemento",
+        "elements": ["applet", "caption", "col", "colgroup",  "hr", "iframe", "img", "table", "tbody",  "td",  "tfoot" , "th", "thead", "tr"]
+    },
+
+    "alt": {
+        "description": "Texto alternativo caso uma imagem não possa ser exibida",
+        "elements": ["applet", "area", "img", "input"]
+    },
+
+    "async": {
+        "description": "Indica que o script deve ser executado assíncrono",
+        "elements": ["script"]
+    },
+
+    "autocomplete": {
+        "description": "Indica se controles  neste formulário podem por padrão ter seus valores completados automaticamente pelo navegador",
+        "elements": ["form", "input"]
+    },
+
+    "autofocus": {
+        "description": "O elemento deve ser focado automaticamente após a página ser carregada.",
+        "elements": ["button", "input", "keygen", "select", "textarea"]
+    },
+
+    "autoplay": {
+        "description": "O aúdio ou vídeo deve ser reproduzido assim que possível",
+        "elements": ["audio", "video"]
+    },
+
+    "bgcolor": {
+        "description": "Cor do plano de fundo do elemento. Este é um atributo legado, use a propriedade CSS background-color em vez disso",
+        "elements": ["body", "col", "colgroup", "marquee", "table", "tbody", "tfoot", "td", "th", "tr"]
+	},
+
+    "border": {
+        "description": "A largura da borda. Este é um atributo legado, use a propriedade CSS border em vez disso",
+        "elements": ["img", "object", "table"]
+	},
+
+    "buffered": {
+        "description": "Contém o intervalo de tempo da mídia que já foi carregada",
+        "elements": ["audio", "video"]
+	},
+
+    "challenge": {
+        "description": "Uma string de desafio enviada junto com a chave pública",
+        "elements": ["keygen"]
+	},
+
+    "charset": {
+        "description": "Declara a codificação dos caracteres da página ou do script",
+        "elements": ["meta", "script"]
+	},
+
+    "checked": {
+        "description": "Indica se o elemento deve ser checado no carregamento da página",
+        "elements": ["command", "input"]
+	},
+
+    "cite": {
+        "description": "Contêm uma URI que aponta para a fonte da citação ou alteração",
+        "elements": ["blockquote", "del", "ins", "q"]
+	},
+
+    "class": {
+        "description": "Frequentemente usado com CSS para estilizar os elementos com propriedades comuns",
+        "elements": ["Atributo Global"]
+	},
+
+    "class": {
+        "description": "Frequentemente usado com CSS para estilizar os elementos com propriedades comuns",
+        "elements": ["Global attribute"]
+	},
+
+    "code": {
+        "description": "Especifica a URL do arquivo de classe do miniaplicativo que será carregado e executado",
+        "elements": ["applet"]
+	},
+
+    "codebase": {
+        "description": "Este atributo fornece a URL absoluta ou relativa do diretório onde os arquivos .class do miniaplicativo são armazenados",
+        "elements": ["applet"]
+	},
+
+    "color": {
+        "description": "Este atributo define a cor do texto. Este é um atributo legado, Por favor use a propriedade CSS color em vez disso",
+        "elements": ["basefont", "font", "hr"]
+	},
+
+    "cols": {
+        "description": "Define o número de colunas numa area de texto",
+        "elements": ["textarea"]
+	},
+
+    "colspan": {
+        "description": "O atributo colspan define o número de colunas que uma célula deve conter",
+        "elements": ["td", "th"]
+	},
+
+    "content": {
+        "description": "Um valor associado com http-equiv ou name dependendo do contexto.",
+        "elements": ["meta"]
+	},
+
+    "contenteditable": {
+        "description": "Indica se o conteúdo do elemento é editável",
+        "elements": ["Atributo Global"]
+	},
+
+    "contextmenu": {
+        "description": "Define o ID de um elemento <menu> que servirá como o menu de contexto de um outro elemento",
+        "elements": ["Atributo Global"]
+	},
+
+    "controls": {
+        "description": "Indica se o navegador deve mostrar ou não os controles de reprodução ao usuário",
+        "elements": ["audio", "video"]
+	},
+
+    "coords": {
+        "description": "Uma escolha de valores especificando as coordenadas da região hot-spot",
+        "elements": ["area"]
+	},
+
+    "data": {
+        "description": "Especifica a URL do recurso",
+        "elements": ["object"]
+	},
+
+    "datetime": {
+        "description": "Indica a data e o horário associados ao elemento",
+        "elements": ["del", "ins", "time"]
+	},
+
+    "default": {
+        "description": "Indica que a faixa deve estar habilitada a não ser que as preferências do usuário indiquem algo diferente",
+        "elements": ["track"]
+	},
+
+    "defer": {
+        "description": "Indica que o script deve ser executado após a página ter sido analisada",
+        "elements": ["script"]
+	},
+
+    "dir": {
+        "description": "Defina a direção do texto. Os valores permitidos são ltr (Esquerda para direita) e rtl (Direita para esquerda)",
+        "elements": ["Atributo Global"]
+	},
+
+    "dirname": {
+        "description": "",
+        "elements": ["Atributo Global"]
+	},
+
+    "disabled": {
+        "description": "Indica se o usuário pode ou não interagir com o elemento.",
+        "elements": ["button", "command", "fieldset", "input", "keygen", "optgroup", "option", "select", "textarea"]
+	},
+
+    "draggable": {
+        "description": "Define se o elemento pode ser arrastado",
+        "elements": ["Atributo Global"]
+	},
+
+    "dropzone": {
+        "description": "Indica que o elemento aceita a soltagem de conteúdo nele",
+        "elements": ["Atributo Global"]
+	},
+
+    "enctype": {
+        "description": "Define o tipo de conteúdo da data do formulário quando o method é POST",
+        "elements": ["form"]
+	},
+
+    "for": {
+        "description": "Descreve elementos na qual pertencem a este",
+        "elements": ["label", "output"]
+	},
+
+    "form": {
+        "description": "Indica o formulário que é o proprietário do elemento",
+        "elements": ["button", "fieldset", "input", "keygen", "label", "meter", "object", "output", "progress", "select", "textarea"]
+	},
+
+    "headers": {
+        "description": "IDs dos elementos <th> na qual se aplicam a este elemento",
+        "elements": ["td", "th"]
+	},
+
+    "height": {
+        "description": "Em algumas instâncias, tal como <div>, isto é um atributo legado, em cujo caso  a propriedade CSS height deveria ser usado em vez. Em outros casos, assim como <canvas>, a altura deve ser especificado com esse atributo",
+        "elements": ["canvas", "embed", "iframe", "img", "input", "object", "video"]
+	},
+
+    "hidden": {
+        "description": "Indica a relevância de um elemento",
+        "elements": ["Atributo Global"]
+	},
+
+    "high": {
+        "description": "Indica o menor limite da faixa superior",
+        "elements": ["meter"]
+	},
+
+    "href": {
+        "description": "A URL de um recurso ligado",
+        "elements": ["a", "area", "base", "link"]
+	},
+
+    "hreflang": {
+        "description": "Especifica o idioma de um recurso ligado",
+        "elements": ["a", "area", "link"]
+	},
+
+    "http-equiv": {
+        "description": "",
+        "elements": ["meta"]
+	},
+
+    "icon": {
+        "description": "Especifica uma imagem na qual represente o comando",
+        "elements": ["command"]
+	},
+
+    "id": {
+        "description": "Frequentemente usado com CSS para estilizar um elemento específico. O valor deste atributo deve ser único",
+        "elements": ["Atributo Global"]
+	},
+
+    "ismap": {
+        "description": "Indica que a imagem é parte de um mapa de imagem sever-side",
+        "elements": ["img"]
+	},
+
+    "itemprop": {
+        "description": "",
+        "elements": ["Atributo Global"]
+	},
+
+    "keytype": {
+        "description": "Especifica o tipo de chave gerada",
+        "elements": ["keygen"]
+	},
+
+    "kind": {
+        "description": "Especifica o tipo de caminho de texto",
+        "elements": ["track"]
+	},
+
+    "label": {
+        "description": "Especifica um título user-releadable de um caminho de texto",
+        "elements": ["track"]
+	},
+
+    "lang": {
+        "description": "Define o idioma usado no elemento",
+        "elements": ["Atributo Global"]
+	},
+
+    "language": {
+        "description": "Define o idioma do script usado no elemento",
+        "elements": ["script"]
+	},
+
+    "list": {
+        "description": "Identifica uma lista de opções pré definidas para sugerir ao usuário",
+        "elements": ["input"]
+	},
+
+    "loop": {
+        "description": "Indica se a mídia deveria começar tocando do começo quando ela é finalizada",
+        "elements": ["audio", "bgsound", "marquee", "video"]
+	},
+
+    "low": {
+        "description": "Indica o maior limite da menor distância",
+        "elements": ["meter"]
+	},
+
+    "manifest": {
+        "description": "Especifica a URL do cache manifest do documento",
+        "elements": ["html"]
+	},
+
+    "max": {
+        "description": "Indica o valor máximo permitido",
+        "elements": ["input", "meter", "progress"]
+	},
+
+    "maxlenght": {
+        "description": "Define o núemro máximo de caracteres permitido no elemento",
+        "elements": ["input", "textarea"]
+	},
+
+    "media": {
+        "description": "Especifica uma sugestão da mídia para qual recurso ligado foi designado",
+        "elements": ["a", "area", "link", "source", "style"]
+	},
+
+    "method": {
+        "description": "Define qual método HTTP usar quando enviar um formulário. Pode ser GET(padrão) ou POST",
+        "elements": ["form"]
+	},
+
+    "min": {
+        "description": "Indica o valor mínimo permitido",
+        "elements": ["input", "meter"]
+	},
+
+    "multiple": {
+        "description": "Indica se múltiplos valores podem ser inseridos em uma entrada do tipo email ou file",
+        "elements": ["input", "select"]
+	},
+
+    "name": {
+        "description": "Nome do elemento. Por exemplo usado pelo servidor para identificar os campos no envio do formulário",
+        "elements": ["button", "form", "fieldset", "iframe", "input", "keygen", "object", "output", "select", "textarea", "map", "meta", "param"]
+	},
+
+    "novalidate": {
+        "description": "Este atributo indica que o formulário não deveria ser validado quando enviado",
+        "elements": ["form"]
+	},
+
+    "open": {
+        "description": "Indica se os detalhes serão mostrados no carregamento da página",
+        "elements": ["details"]
+	},
+
+    "optimum": {
+        "description": "Indica o valor numérico optimal",
+        "elements": ["meter"]
+	},
+
+    "pattern": {
+        "description": "Define uma espreção regular na qual o valor do elemento será validado de encontro",
+        "elements": ["input"]
+	},
+
+    "ping": {
+        "description": "",
+        "elements": ["a", "area"]
+	},
+
+    "placeholder": {
+        "description": "Fornece uma sugestão ao usuário de o que pode ser inserido no campo",
+        "elements": ["input", "textarea"]
+	},
+
+    "poster": {
+        "description": "Uma URL indicando uma poster frame para mostrar desde que o usuário toque ou busque",
+        "elements": ["video"]
+	},
+
+    "preload": {
+        "description": "Indica se todo o recurso, partes dele ou nada deveria ser pré carregado",
+        "elements": ["video", "video"]
+	},
+
+    "pubdate": {
+        "description": "Indica se esta data e tempo é a data no mais próximo elemento antecessor <article>",
+        "elements": ["time"]
+	},
+
+    "radiogroup": {
+        "description": "Indica se esta data e tempo é a data no mais próximo elemento antecessor <article>",
+        "elements": ["command"]
+	},
+
+    "readonly": {
+        "description": "Indica se o elemento pode ser editado",
+        "elements": ["input", "textarea"]
+	},
+
+    "rel": {
+        "description": "Especifica o relacionamento do objeto alvo para o objeto ligado",
+        "elements": ["a", "area", "link"]
+	},
+
+    "required": {
+        "description": "Indica se este elemento é requerido para preencher ou não",
+        "elements": ["input", "select", "textarea"]
+	},
+
+    "reversed": {
+        "description": "Indica se a lista deveria ser mostrada em uma ordem decrescente em vez de uma crescente",
+        "elements": ["ol"]
+	},
+
+    "rows": {
+        "description": "Define o número de linhas em uma área de texto",
+        "elements": ["textarea"]
+	},
+
+    "rowspan": {
+        "description": "Define o número de linhas que uma célula de tabela deveria abranger mais",
+        "elements": ["td", "th"]
+	},
+
+    "sandbox": {
+        "description": "",
+        "elements": ["iframe"]
+	},
+
+    "spellcheck": {
+        "description": "Indica se o spell de checagem está permitido para o elemento",
+        "elements": ["Atributo Global"]
+	},
+
+    "scope": {
+        "description": "",
+        "elements": ["th"]
+	},
+
+    "scoped": {
+        "description": "",
+        "elements": ["style"]
+	},
+
+    "seamless": {
+        "description": "",
+        "elements": ["iframe"]
+	},
+
+    "selected": {
+        "description": "Define o valor na qual será selecionado no carregamento da página",
+        "elements": ["option"]
+	},
+
+    "shape": {
+        "description": "",
+        "elements": ["a", "area"]
+	},
+
+    "size": {
+        "description": "Define a largura do elemento (em pixels). Se o elemento de atributo type é text ou password então este é o número de caracteres",
+        "elements": ["input", "select"]
+	},
+
+    "sizes": {
+        "description": "",
+        "elements": ["link"]
+	},
+
+    "span": {
+        "description": "",
+        "elements": ["col", "colgroup"]
+	},
+
+    "src": {
+        "description": "URL de um conteúdo incorporável",
+        "elements": ["audio", "embed", "iframe", "img", "input", "script", "source", "track", "video"]
+	},
+
+    "srcdoc": {
+        "description": "",
+        "elements": ["iframe"]
+	},
+
+    "srclang": {
+        "description": "",
+        "elements": ["track"]
+	},
+
+    "start": {
+        "description": "Define o primeiro número se não for 1",
+        "elements": ["ol"]
+	},
+
+    "step": {
+        "description": "",
+        "elements": ["input"]
+	},
+
+    "style": {
+        "description": "Define estilos CSS na qual ultrapassarão estilos previamente configurados",
+        "elements": ["Atributo Global"]
+	},
+
+    "summary": {
+        "description": "",
+        "elements": ["table"]
+	},
+
+    "tabindex": {
+        "description": "Ultrapassa a ordem de tabulação padrão do navegador e segue o especificado como alternativa",
+        "elements": ["Atributo Global"]
+	},
+
+    "target": {
+        "description": "Ultrapassa a ordem de tabulação padrão do navegador e segue o especificado como alternativa",
+        "elements": ["a", "area", "base", "form"]
+	},
+
+    "title": {
+        "description": "Texto a ser mostrado em uma dica quando suspenso sobre um elemento",
+        "elements": ["Atributo Global"]
+	},
+
+    "type": {
+        "description": "Define o tipo de elemento",
+        "elements": ["button", "input", "command", "embed", "object", "script", "source", "style", "menu"]
+	},
+
+    "usemap": {
+        "description": "",
+        "elements": ["img", "input", "object"]
+	},
+
+    "value": {
+        "description": "Define o valor padrão na qual será mostrado no elemento no carregar da página",
+        "elements": ["button", "option", "input", "li", "meter", "progress", "param"]
+	},
+
+    "width": {
+        "description": "Em algumas instâncias, tal como <div>, este é um atributo legado, no caso da propriedade CSS width deveria ser usado ao em vez. em outros casos, tal como <canvas>, a largura deve ser especificada com este atributo",
+        "elements": ["canvas", "embed", "iframe", "img", "input", "object", "video"]
+	},
+
+    "wrap": {
+        "description": "Indica se o texto deveria ser enrolado",
+        "elements": ["textarea"]
+	}
+}

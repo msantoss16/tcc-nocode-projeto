@@ -140,19 +140,21 @@ dl{
 
 .window-center{
     width: calc(100% - 32rem);
-    height: 100%;
+    height: calc(100% - 2rem);
     overflow-y: auto;
     overflow-x: hidden;
     background-color: #E5E5E5;
     position: relative;
     display: flex;
     justify-content: center;
+    padding: 1rem 1rem;
 }
 
 iframe{
-    width: 100%;
-    height: 100%;
     border: none;
+    background-color: #FFFFFF;
+    width: 52rem;
+    height: 35rem;
 }
 
 #delete-container{

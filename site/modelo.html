@@ -4,11 +4,7 @@
         <link rel="stylesheet" href="css/global.css">
         <link rel="stylesheet" href="css/modelo-style.css">
         <script type="text/javascript" src="scripts/nav.js"></script>
-        <script type="text/javascript" src="scripts/teste.js"></script>
         <script type="text/javascript" src="scripts/new-page-modal.js"></script>
-        <script type="text/javascript" src="scripts/new-property-modal.js"></script>
-        <script type="text/javascript" src="scripts/new-style-modal.js"></script>
-        <script type="text/javascript" src="scripts/settings-modal.js"></script>
         <title>Novo Projeto</title>
     </head>
     <body>
@@ -84,6 +80,7 @@
                     <iframe id="viewer"></iframe>
                     <div id="delete-container">
                         <i class="fas fa-times"></i>
+                        <ol class="deleteDefault" id="deleteDefault"></ol>
                     </div>
                 </div>
                 <div class="window-right">
@@ -101,16 +98,16 @@
                             
                         </ul>
                     </div>
-                    <i class="fas fa-plus-circle" onclick="addStyle()"></i>
+                    <i class="fas fa-plus-circle" id="addStyleButton" onclick="addStyle()"></i>
                 </div>
             </div>
-            <div id="settings">
-                <div id="settings-hover-text">
-                    <span>Configurações</span>
+            <div id="options">
+                <div class="option-btn">
+                    <i class="fas fa-cogs toggleBtn option-button"></i>
                 </div>
-                <div id="settings-icon-container" onclick="showSettingsModal()">
-                    <i class="fas fa-cog"></i>
-                </div>
+                <div class="option-btn"><i class="fab fa-css3-alt"></i></div>
+                <div class="option-btn"><i class="fab fa-js-square"></i></div>
+                <div class="option-btn" onclick="showSettingsModal()"><i class="fas fa-cog"></i></div>
             </div>
             <div id="new-page-modal">
                 <div id="new-page-modal-content">
@@ -148,61 +145,83 @@
                     </form>
                 </div>
             </div>
-            <div id="settings-modal">
-                <div id="settings-modal-content">
-                    <i class="fas fa-times" id="settings-modal-close-icon" onclick="closeSettingsModal()"></i>
-                    <h3>Configurações</h3>
-                    <form id="settings-form">
-                        <div id="project-name-container">
-                            <h3>Nome do Projeto</h3>
-                            <input class="text-input" id="project-name" type="text"/>
-                        </div>
-                        <div id="project-description-container">
-                            <h3>Descrição do Projeto</h3>
-                            <textarea class="text-input" id="project-description" type="text"/></textarea>
-                        </div>
-                        <div id="project-version-container">
-                            <h3>Versão: <span>1.0.0</span></h3>
-                        </div>
-                        <button id="settings-modal-button">Enviar</button>
-                    </form>
-                </div>
+        </div>
+        <div id="settings-modal">
+            <div id="settings-modal-content">
+                <i class="fas fa-times" id="settings-modal-close-icon" onclick="closeSettingsModal()"></i>
+                <h3>Configurações</h3>
+                <form id="settings-form">
+                    <div id="project-name-container">
+                        <h3>Nome do Projeto</h3>
+                        <input class="text-input" id="project-name" type="text"/>
+                    </div>
+                    <div id="project-description-container">
+                        <h3>Descrição do Projeto</h3>
+                        <textarea class="text-input" id="project-description" type="text"></textarea>
+                    </div>
+                    <div id="project-version-container">
+                        <h3>Versão: <span>1.0.0</span></h3>
+                    </div>
+                    <button id="settings-modal-button">Enviar</button>
+                </form>
             </div>
-            <div id="new-property-modal">
-                <div id="new-property-modal-content">
-                    <i class="fas fa-times" id="new-property-modal-close-icon" onclick="closePropertyModal()"></i>
-                    <h3>Adicionar Propriedade</h3>
-                    <div id="new-property-left">
-                        <div id="property-list"><p>lista aqui</p></div>
+        </div>
+    </div>
+        <div id="new-property-modal">
+            <div id="new-property-modal-content">
+                <i class="fas fa-times" id="new-property-modal-close-icon" onclick="closePropertyModal()"></i>
+                <h3>Adicionar Propriedade</h3>
+                <div id="new-property-left">
+                    <div id="search-bar-property-container">
+                        <h3>Pesquisar:</h3>
+                        <input id="search-property" placeholder="" type="text">
                     </div>
-                    <div id="new-property-right">
-                        <div id="new-property-arguments-container">
-                            <h3>Argumentos</h3>
-                            <textarea id="new-property-arguments"></textarea>
-                        </div>
-                        <button id="new-property-modal-button">Enviar</button>
-                    </div>
-                </div>
-            </div>
-            <div id="new-style-modal">
-                <div id="new-style-modal-content">
-                    <i class="fas fa-times" id="new-style-modal-close-icon" onclick="closeStyleModal()"></i>
-                    <h3>Adicionar Estilo</h3>
-                    <div id="new-style-left">
-                        <div id="style-list"><p>lista aqui</p></div>
-                    </div>
-                    <div id="new-style-right">
-                        <div id="new-style-arguments-container">
-                            <h3>Argumentos</h3>
-                            <textarea id="new-style-arguments"></textarea>
-                        </div>
-                        <button id="new-style-modal-button">Enviar</button>
+                    <div id="property-list"><ul id="property-list-content"></ul></div>
+                    <div class="syntax-container">
+                        <p>syntax: pipipi popopo<br>pipipi popopo</p>
                     </div>
                 </div>
+                <div id="new-property-right">
+                    <div id="other-property-container">
+                        <h3>Outra propriedade:</h3>
+                        <input id="other-property" type="text">
+                    </div>
+                    <div id="new-property-arguments-container">
+                        <h3>Argumentos</h3>
+                        <textarea id="new-property-arguments"></textarea>
+                    </div>
+                    <button id="new-property-modal-button">Enviar</button>
+                </div>
             </div>
+        </div>
+        <div id="new-style-modal">
+            <div id="new-style-modal-content">
+                <i class="fas fa-times" id="new-style-modal-close-icon" onclick="closeStyleModal()"></i>
+                <h3>Adicionar Estilo</h3>
+                <div id="new-style-left">
+                    <div id="search-bar-style-container">
+                        <h3>Pesquisar:</h3>
+                        <input id="search-style" placeholder="" type="text">
+                    </div>
+                    <div id="style-list">
+                        <ul id="style-list-content"></ul>
+                    </div>
+                    <div class="syntax-container">
+                        <p>syntax: pipipi popopo<br>pipipi popopo</p>
+                    </div>
+                </div>
+                <div id="new-style-right">
+                    <div id="new-style-arguments-container">
+                        <h3>Argumentos</h3>
+                        <textarea id="new-style-arguments"></textarea>
+                    </div>
+                    <button id="new-style-modal-button">Enviar</button>
+                </div>
+            </div>
+        </div>
         <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
         <script src="scripts/plugins/jquery-sortable.js"></script>
-        <script src="scripts/json/tempJson.js"></script>
+        <script src="scripts/json/css.js"></script>
         <script src="scripts/json/newJson.js"></script>
         <script src="scripts/json/modelos.js"></script>
         <script src="scripts/modelo.js"></script>

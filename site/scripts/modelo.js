@@ -2,7 +2,30 @@ fc = {
     pages: [],
     elements: [],
     pageSelected: tempJson.appCode.pages[0].href,
-    listModelos: {},   
+    listModelos: {},
+    cssTempSelected: "",
+    elementSelected: "",   
+
+    attStyle: function(style) {
+        let styleArg = document.getElementById('new-style-arguments');
+        styleArg.setAttribute('placeholder', cssComponents[style].syntax);
+        fc.cssTempSelected = style;
+    },
+
+    removeStyle: function(styleName) {
+        let returnIndex = fc.elements.findIndex(element => {
+            if (element[Object.keys(element)[0]].id == fc.elementSelected)
+                return element
+        });
+        if (returnIndex > -1) {
+            try {
+                delete fc.elements[returnIndex][Object.keys(fc.elements[returnIndex])[0]].style[styleName];
+            } catch {}
+            tempJson.appCode.pages[tempJson.appCode.pages.findIndex(element => {if (element.href == page) return element})].pageComponents = fc.convertNested(document.querySelectorAll('#component-list'));
+            document.getElementById('viewer').srcdoc = fc.jsonToHtml(tempJson, page);
+            fc.selectComponent(fc.elementSelected);
+        };
+    },
 
     convertNested: function(ol) {
         let tempJsonN = [];
@@ -21,7 +44,8 @@ fc = {
                     if (typeof tempJsonN[tempJsonN.length-1][Object.keys(tempJsonN[tempJsonN.length-1])[0]].content == "object")
                         tempJsonN[tempJsonN.length-1][Object.keys(tempJsonN[tempJsonN.length-1])[0]].content = "";
                         if (nodeListLI[li].querySelectorAll(':scope > ol').length > 0) {
-                            tempJsonN[tempJsonN.length-1][Object.keys(tempJsonN[tempJsonN.length-1])[0]].content = fc.convertNested(nodeListLI[li].querySelectorAll(':scope>ol'));
+                            if (nodeListLI[li].querySelectorAll(':scope > ol > li').length > 0) 
+                                tempJsonN[tempJsonN.length-1][Object.keys(tempJsonN[tempJsonN.length-1])[0]].content = fc.convertNested(nodeListLI[li].querySelectorAll(':scope>ol'));
                         }
                 }
             }
@@ -59,14 +83,14 @@ fc = {
                     fc.elements[elementObj][Object.keys(fc.elements[elementObj])].style[element.getAttribute('ppname')] = element.value;
                 }
                 break;
-            }
+            }   
         };
-        tempJson.appCode.pages[0].pageComponents = fc.convertNested(document.querySelectorAll('#component-list'));
-        fc.elements = [];
+        tempJson.appCode.pages[tempJson.appCode.pages.findIndex(element => {if (element.href == fc.pageSelected) return element})].pageComponents = fc.convertNested(document.querySelectorAll('#component-list'));
         document.getElementById('viewer').srcdoc = fc.jsonToHtml(tempJson, fc.pageSelected);
     },
 
     selectComponent: function(id) {
+        fc.elementSelected = id;
         for (cElements in tempJson.appCode.pages[tempJson.appCode.pages.findIndex(element => {if (element.href == fc.pageSelected) return element})].pageComponents) {
             let component = fc.idInJson([tempJson.appCode.pages[tempJson.appCode.pages.findIndex(element => {if (element.href == fc.pageSelected) return element})].pageComponents[cElements]], id, false);
             if (component)
@@ -92,7 +116,7 @@ fc = {
             };
             if (typeof component[Object.keys(component)[0]].content == "string") {
                 let li = document.createElement('li');
-                li.innerHTML = `<p class=\"property-name\"><span class=\"remove-property"\>&times;</span>Content</p><input type=\"text\" ttype="property" ppName=\"content\" class=\"property-content\" value=\"${component[Object.keys(component)[0]].content}\" onchange=\"fc.editProperty(\'${component[Object.keys(component)[0]].id}\', this)\">`;
+                li.innerHTML = `<p class=\"property-name\">Content</p><input type=\"text\" ttype="property" ppName=\"content\" class=\"property-content\" value=\"${component[Object.keys(component)[0]].content}\" onchange=\"fc.editProperty(\'${component[Object.keys(component)[0]].id}\', this)\">`;
                 divProperty.querySelector('#propertyEdit').appendChild(li);
             }
             if (Object.keys(component[Object.keys(component)[0]]).indexOf("style") > -1) {
@@ -101,7 +125,7 @@ fc = {
                     if (style == Object.keys(component[Object.keys(component)[0]].style)[0]) {
                         li.classList.add("first-component");
                     }
-                    li.innerHTML = `<p class=\"style-name\"><span class=\"remove-style"\>&times;</span>${style}</p><input type=\"text\" ttype="style" ppName=\"${style}\" class=\"style-content\" value=\"${component[Object.keys(component)[0]].style[style]}\" onchange=\"fc.editProperty(\'${component[Object.keys(component)[0]].id}\', this)\">`;
+                    li.innerHTML = `<p class=\"style-name\"><span class=\"remove-style\" onclick=\"fc.removeStyle(\'${style}\')\">&times;</span>${style}</p><input type=\"text\" ttype="style" ppName=\"${style}\" class=\"style-content\" value=\"${component[Object.keys(component)[0]].style[style]}\" onchange=\"fc.editProperty(\'${component[Object.keys(component)[0]].id}\', this)\">`;
                     divStyle.querySelector('#styleEdit').appendChild(li);
                 };
             };
@@ -166,7 +190,6 @@ fc = {
         fc.pageSelected = page;
         fc.attComponents(tempJson, page);
         tempJson.appCode.pages[tempJson.appCode.pages.findIndex(element => {if (element.href == page) return element})].pageComponents = fc.convertNested(document.querySelectorAll('#component-list'));
-        //fc.elements = [];
         document.getElementById('viewer').srcdoc = fc.jsonToHtml(tempJson, page);
     },
 
@@ -210,7 +233,15 @@ fc = {
     verifyJson: function(dadosNext) {
         let tempHTML = '';
         for (dado of dadosNext) {
-            fc.elements.push(dado); 
+            elementIndex = fc.elements.findIndex(element => {
+                if (element[Object.keys(element)[0]].id == dado[Object.keys(dado)[0]].id)
+                    return element
+            });
+            if (elementIndex > -1) {
+                fc.elements[elementIndex] = dado
+            } else {
+                fc.elements.push(dado);
+            } 
             if (Object.keys(dado).length > 0) {
                 for (chave of Object.keys(dado)) {
                     tempHTML = tempHTML + fc.recursivityJson(chave, dado[chave]);
@@ -274,7 +305,15 @@ fc = {
         for (pageHTML of tempJson.appCode.pages) {
             if (pageHTML.href == page) {
                 for (component of pageHTML.pageComponents) {
-                    fc.elements.push(component);
+                    elementIndex = fc.elements.findIndex(element => {
+                        if (element[Object.keys(element)[0]].id == component[Object.keys(component)[0]].id)
+                            return element
+                    });
+                    if (elementIndex > -1) {
+                        fc.elements[elementIndex] = component;
+                    } else {
+                        fc.elements.push(component);
+                    }
                     html = html + fc.recursivityJson(Object.keys(component), component[Object.keys(component)]);
                 }
             }
@@ -310,6 +349,7 @@ $(function  () {
             _super($item, container); 
         },
         onDrop: function($item, container, _super) {
+            console.log(container.el[0].classList == "deleteDefault")
             if ($item.is('.list-button-line')) {
                 let modelo = fc.listModelos[$item.text()];
                 let id = fc.generateId(15);
@@ -317,13 +357,17 @@ $(function  () {
                     [$item.text()]: {
                         html: modelo.html,
                         id,
-                        content: 'titulo',
-                    },
+                        content: ""
+                    },      
                 });
-                $item.html(`<p class=\"component\" componentid=\"${id}\" onclick=\"fc.selectComponent(\'${id}\')\">${$item.text()}</p>`);
+                $item.html(`<p class=\"component\" componentid=\"${id}\" onclick=\"fc.selectComponent(\'${id}\')\">${$item.text()}</p><ol></ol>`);
                 $item.removeClass("list-button-line");  
             };  
-            _super($item, container);
+            if (container.el[0].classList == "deleteDefault") {
+                document.getElementById('deleteDefault').innerHTML = '';
+            } else {
+                _super($item, container);
+            }
             tempJson.appCode.pages[tempJson.appCode.pages.findIndex(element => {if (element.href == fc.pageSelected) return element})].pageComponents = fc.convertNested(document.querySelectorAll('#component-list'));
             document.getElementById('viewer').srcdoc = fc.jsonToHtml(tempJson, fc.pageSelected);
         } 
@@ -333,6 +377,10 @@ $(function  () {
         group: 'nested',
         drop: false,
     });
+
+    $('ol.deleteDefault').sortable({
+        group: 'nested'
+    })
 });
 
 $('#new-page-modal-button').click(function(event) {
@@ -344,4 +392,96 @@ $('#new-page-modal-button').click(function(event) {
     fc.attPages(tempJson);
 });
 
-  
+$('#addStyleButton').click(function(event) {
+    divStyleList = document.getElementById('style-list');
+    for (let cStyle of Object.keys(cssComponents)) {
+        let li = document.createElement('li');
+        li.classList.add("list-button-line");
+        li.innerHTML = `<button class='styleButton' onclick="fc.attStyle(\'${cStyle}\')">${cStyle}</button>`;
+        divStyleList.querySelector("ul").appendChild(li);
+    }
+    $('#style-list > ul > li > button').click(function(){
+        $("#style-list > ul > li > .active").removeClass("active");
+        $(this).addClass('active');
+    });
+    $('#new-style-modal-close-icon').click(function() {
+        fc.cssTempSelected = '';
+    });
+    $('#new-style-modal-button').click(function() {
+        let newP = $('#new-style-arguments').val();
+        if (fc.cssTempSelected != '' && newP != '') {
+            let returnIndex = fc.elements.findIndex(element => {
+                if (element[Object.keys(element)[0]].id == fc.elementSelected)
+                    return element
+            });
+            if (returnIndex > -1) {
+                let tempElement = fc.elements[returnIndex][Object.keys(fc.elements[returnIndex])[0]]
+                if (tempElement.style == undefined) {
+                    tempElement.style = {
+                        [cssComponents[fc.cssTempSelected].css]: newP
+                    };
+                } else {
+                    if (Object.keys(tempElement).indexOf(fc.selectComponent) == -1)
+                        tempElement.style[cssComponents[fc.cssTempSelected].css] = newP;
+                };
+                tempJson.appCode.pages[tempJson.appCode.pages.findIndex(element => {if (element.href == page) return element})].pageComponents = fc.convertNested(document.querySelectorAll('#component-list'));
+                document.getElementById('viewer').srcdoc = fc.jsonToHtml(tempJson, page);
+                fc.selectComponent(fc.elementSelected);
+            };
+        };
+        closeStyleModal();
+    });
+});
+
+function addStyle(){
+    let modalContainer = document.getElementById('new-style-modal');
+    let modalContent = document.getElementById('new-style-modal-content');
+    let modalArguments = document.getElementById('new-style-arguments');
+    modalContainer.style.opacity = "1";
+    modalContainer.style.top = "0";
+    modalContent.style.top = "0";
+    fc.cssTempSelected = "";
+    modalArguments.setAttribute('placeholder', '');
+    $('#new-style-arguments').val('');
+};
+
+function closeStyleModal(){
+    let modalContainer = document.getElementById('new-style-modal');
+    let modalContent = document.getElementById('new-style-modal-content');
+    modalContainer.style.opacity = "0";
+    modalContainer.style.top = "-100%";
+    modalContent.style.top = "-100%";
+    fc.cssTempSelected = '';
+};
+
+function showSettingsModal(){
+    let modalContainer = document.getElementById('settings-modal');
+    let modalContent = document.getElementById('settings-modal-content');
+    modalContainer.style.opacity = "1";
+    modalContainer.style.top = "0";
+    modalContent.style.top = "0";
+}
+
+function closeSettingsModal(){
+    let modalContainer = document.getElementById('settings-modal');
+    let modalContent = document.getElementById('settings-modal-content');
+    modalContainer.style.opacity = "0";
+    modalContainer.style.top = "-100%";
+    modalContent.style.top = "-100%";
+};
+
+function addProperty(){
+    let modalContainer = document.getElementById('new-property-modal');
+    let modalContent = document.getElementById('new-property-modal-content');
+    modalContainer.style.opacity = "1";
+    modalContainer.style.top = "0";
+    modalContent.style.top = "0";
+};
+
+function closePropertyModal(){
+    let modalContainer = document.getElementById('new-property-modal');
+    let modalContent = document.getElementById('new-property-modal-content');
+    modalContainer.style.opacity = "0";
+    modalContainer.style.top = "-100%";
+    modalContent.style.top = "-100%";
+};

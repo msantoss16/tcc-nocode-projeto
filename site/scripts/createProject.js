@@ -1,6 +1,5 @@
 const serverURL = 'http://localhost:3000/';
 
-
 if (!Cookies.get('token')){
     window.location.replace("index.html");
 }

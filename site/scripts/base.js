@@ -10,6 +10,10 @@ function sair() {
     location.reload();
 };
 
+function update(){
+    window.location.replace("modelo.html")
+}
+
 id = localStorage.getItem('id')
 
 axios.get(`${serverURL}auth/`+id)

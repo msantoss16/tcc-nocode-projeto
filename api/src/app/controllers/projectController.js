@@ -5,7 +5,7 @@ const fs = require('fs');
 
 const Project = require('../models/project');
 
-const tempJson2 = require('../../../../site/scripts/json/tempJson');
+const tempJson2 = require('../json/tempJson');
 
 const router = express.Router();
 
@@ -49,7 +49,7 @@ router.get('/:projectId', async(req, res) => {
 router.post('/', async(req, res) => {
 
     try {
-        const {title, subtitle, version} = req.headers
+        const {title, subtitle, version} = req.body
 
         data = tempJson2.appCode
         const texto = JSON.stringify(data)

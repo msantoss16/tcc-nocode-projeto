@@ -10,11 +10,12 @@ $('#modal-button').click(function(event){
     let _name = $('#modal-project-name').val();
     let _desc = $('#modal-project-description').val();
     let token = {headers: {'Authorization': ('Bearer '+Cookies.get('token'))}};
+    console.log(token)
     
     if(_name === "" || _desc.length <1){
         md.showNotification('top', 'center', 'warning', 'preencha todos os campos');
     }else{
-        axios.post(`${serverURL}projects/`, token)
+        axios.post(`${serverURL}projects/`, {title:_name, subtitle:_desc}, token)
         .then( () =>{
             md.showNotification('top', 'center', 'sucess', 'criado com sucesso');
             window.location.replace('my-projects.html')

@@ -349,7 +349,6 @@ $(function  () {
             _super($item, container); 
         },
         onDrop: function($item, container, _super) {
-            console.log(container.el[0].classList == "deleteDefault")
             if ($item.is('.list-button-line')) {
                 let modelo = fc.listModelos[$item.text()];
                 let id = fc.generateId(15);

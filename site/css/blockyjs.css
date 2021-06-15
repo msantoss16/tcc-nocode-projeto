@@ -1,0 +1,12 @@
+.tabs__content code {
+    padding: 18px;
+    min-height: 480px;
+}
+
+.hljs {
+    display: block;
+    overflow-x: auto;
+    padding: .5em;
+    background: #3f3f3f;
+    color: #dcdcdc;
+}

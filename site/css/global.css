@@ -50,6 +50,8 @@ p{
 footer{
     background-color: #3f6e9c;
     padding: 1rem 6rem;
+    position: relative;
+    bottom: 0;
 }
 
 #footer-content{

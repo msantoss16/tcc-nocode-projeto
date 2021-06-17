@@ -10,9 +10,11 @@ $('#btnlogin').click(function(event){
     let _password = $('#plogin').val();
     axios.post(`${serverURL}auth/authenticate`, {email: _email, password: _password})
         .then(response => {
+            let id = response.data.user._id
             let token = response.data.token;
             Cookies.set('token', token, {expires: 1});
             location.reload()
+            localStorage.setItem('id', id)
         })
         .catch(error => {
             md.showNotification('top', 'center', 'danger', error.response.data.error);

@@ -9,7 +9,7 @@ $('#btnEnv').click(function(event){
     let _email = $('#email').val();
     axios.post(`${serverURL}auth/forgot_password`, {email: _email})
     .then( () => {
-        md.showNotification('top', 'center', 'sucess', 'confira seu Email');
+        md.showNotification('top', 'center', 'sucess', 'Confira seu Email');
     })
     .catch(error => {
         md.showNotification('top', 'center', 'danger', error.response.data.error);

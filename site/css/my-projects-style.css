@@ -1,7 +1,3 @@
-#container-premium{
-    display: none;
-}
-
 #projects-wrapper{
     display: flex;
     flex-wrap: wrap;
@@ -293,4 +289,22 @@
 
 #content-container i{
     margin: 0.8rem;
+}
+
+/*
+"display: block;" - APARECE
+"display: none;" - SOME
+*/
+
+
+#container-none{
+    display: block;
+}
+
+#container-free{
+    display: none;
+}
+
+#container-premium{
+    display: none;
 }

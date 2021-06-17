@@ -1,65 +1,87 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <link rel="stylesheet" href="css/plugins/dracula.css">
         <link rel="stylesheet" href="css/global.css">
         <link rel="stylesheet" href="css/blockyjs.css">
         <script type="text/javascript" src="scripts/nav.js"></script>
         <title>Blockly Js</title>
     </head>
     <body>
-        <div id="page-wrapper">
-            <nav>
-                <div id="menu">
-                    <div id="logo-wrapper">
-                        <a href="my-projects.html"><img src="images/logo.png"></a>
-                    </div>
-                    <div id="right-div">
-                        <div id="menu-links-wrapper">
-                            <ul>
-                                <li><a href="chose-creation-way.html">Novo Projeto</a></li>
-                                <li><a href="my-projects.html">Meus Projetos</a></li>
-                                <li><a href="faq.html">FAQ</a></li>
-                                <li><a href="premium.html">Premium</a></li>
-                                <li><a href="about-us.html">Sobre nós</a></li>
-                            </ul>
-                        </div>     
-                        <div id="user-wrapper">
-                            <div id="user-profile-picture-wrapper">
-                                <a href="my-profile.html"><img src="images/user-default-picture.jpg"></a>
-                            </div>
-                            <div id="user-information-container">
-                                <h3><a href="my-profile.html">Fábio Junior</a></h3>
-                                <p><a href="my-profile.html">fabiojr@gmail.com</a></p>
-                            </div>
-                            <div id="user-arrow-container" onclick="showDropdown()">
-                                <i class="fas fa-chevron-down"></i>
-                                <div id="dropdown-content">
-                                    <div class="dropdown-action-wrapper" onclick="myProfile()">
-                                        <span>Meu Perfil</span>
-                                    </div>
-                                    <div class="dropdown-action-wrapper exit" onclick="sair()">
-                                        <span>Sair da conta</span>
-                                    </div>
+      <div class="container">
+        <nav>
+            <div id="menu">
+                <div id="logo-wrapper">
+                    <a href="my-projects.html"><img src="images/mancoLOGO.svg"></a>
+                </div>
+                <div id="right-div">
+                    <div id="menu-links-wrapper">
+                        <ul>
+                            <li><a href="chose-creation-way.html">Novo Projeto</a></li>
+                            <li><a href="my-projects.html">Meus Projetos</a></li>
+                            <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="premium.html">Premium</a></li>
+                            <li><a href="about-us.html">Sobre nós</a></li>
+                        </ul>
+                    </div>     
+                    <div id="user-wrapper">
+                        <div id="user-profile-picture-wrapper">
+                            <a href="my-profile.html"><img src="images/user-default-picture.jpg"></a>
+                        </div>
+                        <div id="user-information-container">
+                            <h3><a href="my-profile.html">Fábio Junior</a></h3>
+                            <p><a href="my-profile.html">fabiojr@gmail.com</a></p>
+                        </div>
+                        <div id="user-arrow-container" onclick="showDropdown()">
+                            <i class="fas fa-chevron-down"></i>
+                            <div id="dropdown-content">
+                                <div class="dropdown-action-wrapper" onclick="myProfile()">
+                                    <span>Meu Perfil</span>
+                                </div>
+                                <div class="dropdown-action-wrapper exit" onclick="sair()">
+                                    <span>Sair da conta</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </nav>
-            <div id="contentBlockly">
-                <div id="blocklyDiv" style="display: absolute;"></div>
             </div>
-            <div class="tabs__content">
-                <pre id="js">
-                    <code class="javascript hljs">
-
-                    </code>
-                </pre>
+        </nav>
+        <div id="options-menu">
+            <div id="back-icon-wrapper">
+              <a href="modelo.html"><i class="fas fa-arrow-alt-circle-left"></i></a>
+            </div>
+            <div id="pages-menu">
+              <select>
+                <option selected>index</option>
+                <option>pag</option>
+                <option>pag</option>
+                <option>pag</option>
+                <option>pag</option>
+              </select>
+            </div>
+            <div id="css-button-wrapper">
+              <button id="css-button"><i class="fab fa-css3-alt"></i>CSS</button>
+            </div>
+            <div id="language-wrapper">
+              <select>
+                <option>Português-BR</option>
+                <option selected>English</option>
+              </select>
             </div>
         </div>
+        <div id="page-wrapper">
+          <div id="contentBlockly">
+              <div id="blocklyDiv" style="display: absolute;"></div>
+          </div>
+          <div class="tabs__content" id="tabs__content">
+              <pre id="js">
+                  <code class="javascript hljs" id="jsCode">
 
-          
-        <xml id="toolbox" style="display: none">
+                  </code>
+              </pre>
+          </div>
+          <xml id="toolbox" style="display: none">
             <category id="catLogic" colour="210" name="Logic">
               <block type="controls_if"></block>
               <block type="logic_compare"></block>
@@ -362,74 +384,74 @@
             <category id="catVariables" colour="330" custom="VARIABLE" name="Variables"></category>
             <category id="catFunctions" colour="290" custom="PROCEDURE" name="Functions"></category>
           </xml>
-        <xml id="blocklyDefault" style="display: none">
-          <block type="variables_set">
-            <field name="VAR">Count</field>
-            <value name="VALUE">
-              <block type="math_number">
-                <field name="NUM">1</field>
-              </block>
-            </value>
-            <next>
-            <block type="controls_whileUntil" x="16" y="16">
-              <field name="MODE">WHILE</field>
-                <value name="BOOL">
-                  <block type="logic_compare">
-                    <field name="OP">LTE</field>
-                    <value name="A">
-                      <block type="variables_get">
+          <xml id="blocklyDefault" style="display: none">
+            <block type="variables_set">
+              <field name="VAR">Count</field>
+              <value name="VALUE">
+                <block type="math_number">
+                  <field name="NUM">1</field>
+                </block>
+              </value>
+              <next>
+              <block type="controls_whileUntil" x="16" y="16">
+                <field name="MODE">WHILE</field>
+                  <value name="BOOL">
+                    <block type="logic_compare">
+                      <field name="OP">LTE</field>
+                      <value name="A">
+                        <block type="variables_get">
+                          <field name="VAR">Count</field>
+                        </block>
+                      </value>
+                      <value name="B">
+                        <block type="math_number">
+                          <field name="NUM">3</field>
+                        </block>
+                      </value>
+                    </block>
+                  </value>
+                  <statement name="DO">
+                    <block type="text_print">
+                      <value name="TEXT">
+                        <block type="text">
+                          <field name="TEXT">Hello World!</field>
+                        </block>
+                      </value>
+                      <next>
+                        <block type="variables_set">
                         <field name="VAR">Count</field>
-                      </block>
-                    </value>
-                    <value name="B">
-                      <block type="math_number">
-                        <field name="NUM">3</field>
-                      </block>
-                    </value>
-                  </block>
-                </value>
-                <statement name="DO">
-                  <block type="text_print">
-                    <value name="TEXT">
-                      <block type="text">
-                        <field name="TEXT">Hello World!</field>
-                      </block>
-                    </value>
-                    <next>
-                      <block type="variables_set">
-                      <field name="VAR">Count</field>
-                        <value name="VALUE">
-                          <block type="math_arithmetic">
-                          <field name="OP">ADD</field>
-                            <value name="A">
-                              <block type="variables_get">
-                                <field name="VAR">Count</field>
-                              </block>
-                            </value>
-                            <value name="B">
-                              <block type="math_number">
-                                <field name="NUM">1</field>
-                              </block>
-                            </value>
-                          </block>
-                        </value>
-                      </block>
-                    </next>
-                  </block>
-                </statement>
+                          <value name="VALUE">
+                            <block type="math_arithmetic">
+                            <field name="OP">ADD</field>
+                              <value name="A">
+                                <block type="variables_get">
+                                  <field name="VAR">Count</field>
+                                </block>
+                              </value>
+                              <value name="B">
+                                <block type="math_number">
+                                  <field name="NUM">1</field>
+                                </block>
+                              </value>
+                            </block>
+                          </value>
+                        </block>
+                      </next>
+                    </block>
+                  </statement>
+                </block>
               </block>
-            </block>
-        </xml>
+          </xml>
+          <script src="https://unpkg.com/@highlightjs/cdn-assets@11.0.1/highlight.min.js"></script>
+          <script src="https://unpkg.com/@highlightjs/cdn-assets@11.0.1/languages/go.min.js"></script>
+          <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+          <script src="./scripts/plugins/blockly_compressed.js"></script>
+          <script src="./scripts/plugins/block_compressed.js"></script>
+          <script src="./scripts/plugins/javascript_compressed.js"></script>
+          <script src="./scripts/msg/pt.js"></script>
+          <script src="./scripts/blocklyJS.js"></script>
 
-        <script src="https://unpkg.com/blockly/blockly.min.js"></script>
-        <script src="./scripts/plugins/blockly_compressed.js"></script>
-        <script src="./scripts/plugins/block_compressed.js"></script>
-        <script src="./scripts/plugins/javascript_compressed.js"></script>
-        <script src="./scripts/msg/pt.js"></script>
- 
-        <script>
-            var workspace = Blockly.inject('blocklyDiv',
-                {toolbox: document.getElementById('toolbox')});
-        </script>
+        </div>
+      </div>
     </body>
 </html>

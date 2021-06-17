@@ -1,10 +1,17 @@
+const serverURL = 'http://localhost:3000/';
+const token = {headers: {'Authorization': ('Bearer '+Cookies.get('token'))}};
+var tempJson;
 fc = {
     pages: [],
     elements: [],
-    pageSelected: tempJson.appCode.pages[0].href,
+    pageSelected: '',
     listModelos: {},
     cssTempSelected: "",
     elementSelected: "",   
+
+    attCode: function() {
+        window.location.replace(`blocklyJs.html?projeto=${fc.pageSelected}&page=${fc.pageSelected}`);
+    },
 
     attStyle: function(style) {
         let styleArg = document.getElementById('new-style-arguments');
@@ -321,14 +328,53 @@ fc = {
         html = html + '</body></html>'
         return html;
     },
+
+    salvarDados: function() {
+
+    },
+};
+
+async function autoSave() {
+    setTimeout(function () {
+        console.log('salvando');
+        axios.put(`${serverURL}projects/${getUrlParameter('projeto')}`, tempJson, token)
+        autoSave();
+    }, 180000);
 }
 
-fc.attPalette();
-fc.attPaletteComponents("Common")
-fc.attPages(tempJson);
-fc.attComponents(tempJson, fc.pageSelected);
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
 
-document.getElementById('viewer').srcdoc = fc.jsonToHtml(tempJson, fc.pageSelected);
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return typeof sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+    return false;
+};
+
+axios.get(`${serverURL}projects/${getUrlParameter('projeto')}`, token)
+.then(response => {
+    tempJson = response.data;
+    console.log(tempJson)
+    try {
+        fc.pageSelected = tempJson.appCode.pages[0].href
+    } catch (err) {fc.pageSelected = ""}
+    fc.attPalette();
+    fc.attPaletteComponents("Common")
+    fc.attPages(tempJson);
+    fc.attComponents(tempJson, fc.pageSelected);
+
+    document.getElementById('viewer').srcdoc = fc.jsonToHtml(tempJson, fc.pageSelected);
+    $('#project-name').val(tempJson.title);
+    $('#project-description').val(tempJson.subtitle);
+    autoSave();
+});
 
 $('#category > ul > li > button').click(function(){
     $("#category > ul > li > .active").removeClass("active");
@@ -384,11 +430,21 @@ $(function  () {
 
 $('#new-page-modal-button').click(function(event) {
     event.preventDefault();
-    tempJson.appCode.pages.push({
-        href: `${$('#namePageModal').val()}.html`,
-        pageComponents: []
-    });
+    let pageEx = false;
+    for (page of tempJson.appCode.pages) {
+        try {
+            if (`${$('#namePageModal').val()}.html` == page.href)
+                pageEx = true;
+        } catch (err) {}
+    }
+    if (!pageEx) {
+        tempJson.appCode.pages.push({
+            href: `${$('#namePageModal').val()}.html`,
+            pageComponents: []
+        });
+    }
     fc.attPages(tempJson);
+    closePageModal()
 });
 
 $('#addStyleButton').click(function(event) {

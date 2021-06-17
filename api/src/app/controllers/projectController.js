@@ -1,68 +1,127 @@
 const express = require('express');
 const authMiddleare = require('../middlewares/auth');
+const path = require('path');
+const fs = require('fs');
 
 const Project = require('../models/project');
+
+const tempJson2 = require('../json/tempJson');
 
 const router = express.Router();
 
 router.use(authMiddleare);
 
-router.get('/', async(req, res) =>{
+router.get('/', async(req, res) =>{  
     try {
-        const projects = await Project.find().populate('user');
+        const projects = await Project.find({user:req.userId}).populate('user');
 
         return res.send({ projects });
 
     } catch (error) {
+        console.log(error)
         return res.status(400).send({ error: 'Error Loading projects' });
+        
     }
 });
 
 router.get('/:projectId', async(req, res) => {
     try {
-        const project = await Project.findById(req.params.projectId).populate('user');
+        const caminho = 'userProject/'+req.userId+'/'+req.params.projectId+'.json';
 
-        return res.send({ project });
-
+        fs.readFile(caminho, async function(err, data){
+            if(err){
+                console.log(err)
+            }else{
+                data = data.toString();
+                data = JSON.parse(data);
+                let project = await Project.findById(req.params.projectId).populate('user');
+                let a = project.toObject();
+                a.appCode = data;
+                return res.send( a );
+            }
+        })
+            
     } catch (error) {
+        console.log(error)
         return res.status(400).send({ error: 'Error Loading project' });
     }
 });
 
 router.post('/', async(req, res) => {
-    try {
-        const project = await Project.create({ ...req.body, user: req.userId });
 
-        return res.send({project});
+    try {
+        const {title, subtitle, version} = req.body
+
+        data = tempJson2.appCode
+        const texto = JSON.stringify(data)
+        
+        let project = await Project.create({ title, subtitle, version, user: req.userId, });
+
+        fs.mkdir(path.join
+            (__dirname, '..', '..', 'userProject', req.userId), (err) => {
+            if (err) {
+                return console.error(err);
+            }
+        });
+
+        fs.appendFile(path.join(
+            __dirname, '..', '..', 
+            'userProject', req.userId, project._id+'.json'),
+            texto, function(err){
+            if(err){
+                console.log(err)
+            }
+        }) 
+                
+        return res.send(project);
         
     } catch (error) {
+        console.log(error)
         return res.status(400).send({ error: 'Error Creating new project' });
     }
+
 });
 
 router.put('/:projectId', async(req, res) => {
     try {
+        const { title, subtitle, version, appCode} = req.body;
+        console.log(appCode)
+        pages = JSON.stringify(appCode);
 
-        const { title, subtitle, version} = req.body;
+        const caminho = 'userProject/'+req.userId+'/'+req.params.projectId+'.json';
 
-        const project = await Project.findByIdAndUpdate(req.params.projectId, { 
-            title,
-            subtitle, 
-            version
-        }, {new: true });
-
-        return res.send();
-
+        fs.writeFile(caminho, pages, async function(err, texto){
+            if(err){
+                console.log(err)
+            }else{
+                const project = await Project.findByIdAndUpdate(req.params.projectId,{
+                    title,
+                    subtitle, 
+                    version,
+                    pages}, {new: true });
+                        
+                return res.send(project);
+            }
+        })
     } catch (error) {
+        console.log(error)
         return res.status(400).send({ error: 'Error Updating project' });
     }
 });
 
 router.delete('/:projectId', async(req, res) => {
     try {
-        await Project.findByIdAndRemove(req.params.projectId);
+        const caminho = 'userProject/'+req.userId+'/'+req.params.projectId+'.json';
 
-        return res.send();
+        fs.unlink(caminho, async function(err, data){
+            if(err){
+                console.log(err)
+            }else{
+                await Project.findByIdAndRemove(req.params.projectId, data);
+                return res.send();
+            }
+
+        })
 
     } catch (error) {
         return res.status(400).send({ error: 'Error Deleting project' });

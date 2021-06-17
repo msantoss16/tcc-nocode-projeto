@@ -13,7 +13,7 @@
     <nav>
         <div id="menu">
             <div id="logo-wrapper">
-                <a href="my-projects.html"><img src="images/logo.png"></a>
+                <a href="my-projects.html"><img src="images/logo2.svg"></a>
             </div>
             <div id="right-div">
                 <div id="menu-links-wrapper">
@@ -77,13 +77,9 @@
                     <p>Data de Criação:</p>
                     <p>00/00/0000</p>
                 </div>
-                <div class="sub-information">
-                    <p>Última vez editado:</p>
-                    <p>00/00/0000</p>
-                </div>
                 <div id="buttons-container">
-                    <button onclick="">Editar Projeto</button>
-                    <button onclick="">Excluir Projeto</button>
+                    <button>Editar Projeto</button>
+                    <button onclick="showDeleteModal()">Excluir Projeto</button>
                 </div>
             </div>
         </div>
@@ -111,6 +107,16 @@
                 <h3>Nome do Projeto</h3>
             </div>
         </div>
+    </div>
+    <div id="delete-project-modal">
+        <h3>Deseja realmente excluir o projeto?</h3>
+        <div id="delete-buttons-container">
+            <button onclick="deleteProject()">Sim</button>
+            <button onclick="cancelDelete()">Cancelar</button>
+        </div>
+    </div>
+    <div id="deleted-project-modal">
+        <h3>Projeto excluido com sucesso!</h3>
     </div>
     <footer>
 		<div id="footer-content">

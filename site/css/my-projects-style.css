@@ -58,6 +58,74 @@
     margin-right: 0.2rem;
 }
 
+#delete-project-modal{
+    position: fixed;
+    width: 22rem;
+    height: 5rem;
+    padding: 1rem;
+    top: -8rem;
+    opacity: 0;
+    left: calc(50% - 11rem);
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    -webkit-box-shadow: 2px 5px 15px 2px rgba(0,0,0,0.5); 
+    box-shadow: 2px 5px 15px 2px rgba(0,0,0,0.5);
+    transition: all 0.3s;
+}
+
+#delete-project-modal h3{
+    font-family: var(--text-font);
+    color: #5692CD;
+    font-size: 1.2em;
+}
+
+#delete-buttons-container{
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+}
+
+#delete-buttons-container button{
+    width: 6rem;
+    height: 2.2rem;
+    font-size: 1em;
+    color: red;
+    background-color: transparent;
+    border: 2px solid red;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#delete-buttons-container button:nth-child(2){
+    margin-left: 0.2rem;
+    color: #5692CD;
+    border: 2px solid #5692CD;
+}
+
+#deleted-project-modal{
+    position: fixed;
+    width: 22rem;
+    top: -6rem;
+    opacity: 0;
+    left: calc(50% - 11rem);
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    -webkit-box-shadow: 2px 5px 15px 2px rgba(0,0,0,0.5); 
+    box-shadow: 2px 5px 15px 2px rgba(0,0,0,0.5);
+    transition: all 0.3s;
+}
+
+#deleted-project-modal h3{
+    font-family: var(--text-font);
+    color: #5692CD;
+    font-size: 1.2em;
+    margin: 1rem;
+    text-align: center;
+}
+
 .header{
     display: flex;
     margin: 2rem 3.5rem;
@@ -144,7 +212,7 @@
 }
 
 #project-information-container{
-    min-width: 32rem;
+    flex: 1;
     margin-left: 3rem;
 }
 
@@ -248,6 +316,7 @@
     margin: 2rem auto;
     width: calc(100% - 7rem);
     color: #48719A;
+    display: none;
 }
 
 #title-wrapper h1{

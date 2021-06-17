@@ -49,21 +49,19 @@ p{
 
 footer{
     background-color: #3f6e9c;
-    padding: 2rem 6rem;
+    padding: 1rem 6rem;
 }
 
 #footer-content{
     display: flex;
-    flex-wrap: wrap;
     position: relative;
+    align-items: center;
 }
 
 #logo-footer-wrapper{
-    flex: 1;
-    max-width: 25%;
+    min-width: 25%;
     justify-content: center;
-    height: 7rem;
-    padding: 2rem 0;
+    height: 6rem;
 }
 
 #logo-footer-wrapper img{
@@ -74,8 +72,8 @@ footer{
 
 #footer-information{
     flex: 1;
-    max-width: 50%;
-    padding: 0.5rem;
+    padding: 0.2rem;
+    color: #FFFFFF;
 }
 
 #footer-information h3{
@@ -94,29 +92,6 @@ footer{
 #footer-information p{
     font-family: var(--text-font);
     color: #FFFFFF;
-}
-
-.footer-navigation-link-wrapper{
-    width: 50%;
-    float: left;
-    margin: 1.2rem 0;
-}
-
-#footer-section-navigation{
-    flex: 1;
-    max-width: 25%;
-}
-
-#footer-section-navigation a{
-    text-decoration: none;
-    color: #FFFFFF;
-    font-family: 'Metrophobic', sans-serif;
-    font-weight: normal;
-    width: 100%;
-}
-
-#footer-section-navigation a:hover{
-    text-decoration: underline#FFFFFF;
 }
 
 #footer-copyright{
@@ -270,4 +245,18 @@ nav{
 
 .dropdown-action-wrapper:nth-child(2) span{
     color: red;
+}
+
+#login-container{
+    margin-left: 1rem;
+}
+
+#login-container h4{
+    font-size: 1.1em;
+    color: #FFFFFF;
+    font-family: var(--secondary-font);
+}
+
+#login-container a{
+    color: #FFFFFF;
 }

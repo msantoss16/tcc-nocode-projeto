@@ -178,9 +178,9 @@ fc = {
         for (page of this.pages) {
             let li = document.createElement('li');
             if (page == pages[0]) {
-                li.innerHTML = `<button class='page-select active' onclick="fc.selectPage(\'${page}\', tempJson)">${page.slice(0, page.length-5)}</button>`;
+                li.innerHTML = `<button class='page-select active' onclick="fc.selectPage(\'${page}\', tempJson)">${page.slice(0, page.length-5)}</button><span class='remove-page'>&times;</span>`;
             } else {
-                li.innerHTML = `<button class='page-select' onclick="fc.selectPage(\'${page}\', tempJson)">${page.slice(0, page.length-5)}</button>`;
+                li.innerHTML = `<button class='page-select' onclick="fc.selectPage(\'${page}\', tempJson)">${page.slice(0, page.length-5)}</button><span class='remove-page'>&times;</span>`;
             }
             divPages.querySelector("ul").appendChild(li);
         }

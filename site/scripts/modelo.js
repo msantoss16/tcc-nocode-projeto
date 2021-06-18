@@ -1,5 +1,14 @@
 const serverURL = 'http://localhost:3000/';
 const token = {headers: {'Authorization': ('Bearer '+Cookies.get('token'))}};
+if (!Cookies.get('token')){
+    window.location.replace("index.html");
+};
+
+function salvar() {
+    axios.put(`${serverURL}projects/${getUrlParameter('projeto')}`, tempJson, token);
+    console.log('salvo');
+};
+
 var tempJson;
 fc = {
     pages: [],
@@ -8,6 +17,20 @@ fc = {
     listModelos: {},
     cssTempSelected: "",
     elementSelected: "",   
+
+    downloadApp: function() {
+        axios.post(`${serverURL}projects/download`, tempJson, token)
+            .then(response => {
+                document.getElementById('generate-modal').style.display = "flex";
+                setTimeout(function () {
+                    document.getElementById('linkDownload').setAttribute('href', response.data.link);
+                    document.getElementById('loading').style.display = "none";
+                    document.getElementById('loaded').style.display = "flex";
+                }, 120000);
+            }).catch(err => {
+                console.log('err');
+            });
+    },
 
     attCode: function() {
         window.location.replace(`blocklyJs.html?projeto=${fc.pageSelected}&page=${fc.pageSelected}`);
@@ -97,45 +120,50 @@ fc = {
     },
 
     selectComponent: function(id) {
-        fc.elementSelected = id;
-        for (cElements in tempJson.appCode.pages[tempJson.appCode.pages.findIndex(element => {if (element.href == fc.pageSelected) return element})].pageComponents) {
-            let component = fc.idInJson([tempJson.appCode.pages[tempJson.appCode.pages.findIndex(element => {if (element.href == fc.pageSelected) return element})].pageComponents[cElements]], id, false);
-            if (component)
-                break;
-        }
-        const divProperty = document.getElementById('componentProperty');
-        const divStyle = document.getElementById('componentStyle');
-        divStyle.innerHTML = "<ul class=\"styleEdit\" id=\"styleEdit\"></ul>";
-        divProperty.innerHTML = "<ul class=\"propertyEdit\" id=\"propertyEdit\"></ul>";
-        if (component != "") {
-            let title = document.getElementById('component-title');
-            title.innerText = Object.keys(component)[0];
-            let id = document.createElement("p");
-            id.classList.add("component-ID");
-            id.innerText = component[Object.keys(component)[0]].id;
-            divProperty.querySelector('#propertyEdit').appendChild(id);
-            if (Object.keys(component[Object.keys(component)[0]]).indexOf("property") > -1) {
-                for (property of Object.keys(component[Object.keys(component)[0]].property)) {
-                    let li = document.createElement('li');
-                    li.innerHTML = `<p class=\"property-name\"><span class=\"remove-property"\>&times;</span>${property}</p><input type=\"text\" ttype="property" ppName=\"${property}\" class=\"property-content\" value=\"${component[Object.keys(component)[0]].property[property]}\" onchange=\"fc.editProperty(\'${component[Object.keys(component)[0]].id}\', this)\">`;
-                    divProperty.querySelector('#propertyEdit').appendChild(li);
-                };
-            };
-            if (typeof component[Object.keys(component)[0]].content == "string") {
-                let li = document.createElement('li');
-                li.innerHTML = `<p class=\"property-name\">Content</p><input type=\"text\" ttype="property" ppName=\"content\" class=\"property-content\" value=\"${component[Object.keys(component)[0]].content}\" onchange=\"fc.editProperty(\'${component[Object.keys(component)[0]].id}\', this)\">`;
-                divProperty.querySelector('#propertyEdit').appendChild(li);
+        if (id == undefined) {
+            document.getElementsByClassName('window-right-container')[0 ].classList.remove('block');
+        } else {
+            document.getElementsByClassName('window-right-container')[0].classList.add('block');
+            fc.elementSelected = id;
+            for (cElements in tempJson.appCode.pages[tempJson.appCode.pages.findIndex(element => {if (element.href == fc.pageSelected) return element})].pageComponents) {
+                let component = fc.idInJson([tempJson.appCode.pages[tempJson.appCode.pages.findIndex(element => {if (element.href == fc.pageSelected) return element})].pageComponents[cElements]], id, false);
+                if (component)
+                    break;
             }
-            if (Object.keys(component[Object.keys(component)[0]]).indexOf("style") > -1) {
-                for (style of Object.keys(component[Object.keys(component)[0]].style)) {
-                    let li = document.createElement('li');
-                    if (style == Object.keys(component[Object.keys(component)[0]].style)[0]) {
-                        li.classList.add("first-component");
-                    }
-                    li.innerHTML = `<p class=\"style-name\"><span class=\"remove-style\" onclick=\"fc.removeStyle(\'${style}\')\">&times;</span>${style}</p><input type=\"text\" ttype="style" ppName=\"${style}\" class=\"style-content\" value=\"${component[Object.keys(component)[0]].style[style]}\" onchange=\"fc.editProperty(\'${component[Object.keys(component)[0]].id}\', this)\">`;
-                    divStyle.querySelector('#styleEdit').appendChild(li);
+            const divProperty = document.getElementById('componentProperty');
+            const divStyle = document.getElementById('componentStyle');
+            divStyle.innerHTML = "<ul class=\"styleEdit\" id=\"styleEdit\"></ul>";
+            divProperty.innerHTML = "<ul class=\"propertyEdit\" id=\"propertyEdit\"></ul>";
+            if (component != "") {
+                let title = document.getElementById('component-title');
+                title.innerText = Object.keys(component)[0];
+                let id = document.createElement("p");
+                id.classList.add("component-ID");
+                id.innerText = component[Object.keys(component)[0]].id;
+                divProperty.querySelector('#propertyEdit').appendChild(id);
+                if (Object.keys(component[Object.keys(component)[0]]).indexOf("property") > -1) {
+                    for (property of Object.keys(component[Object.keys(component)[0]].property)) {
+                        let li = document.createElement('li');
+                        li.innerHTML = `<p class=\"property-name\"><span class=\"remove-property"\>&times;</span>${property}</p><input type=\"text\" ttype="property" ppName=\"${property}\" class=\"property-content\" value=\"${component[Object.keys(component)[0]].property[property]}\" onchange=\"fc.editProperty(\'${component[Object.keys(component)[0]].id}\', this)\">`;
+                        divProperty.querySelector('#propertyEdit').appendChild(li);
+                    };
                 };
-            };
+                if (typeof component[Object.keys(component)[0]].content == "string") {
+                    let li = document.createElement('li');
+                    li.innerHTML = `<p class=\"property-name\">Content</p><input type=\"text\" ttype="property" ppName=\"content\" class=\"property-content\" value=\"${component[Object.keys(component)[0]].content}\" onchange=\"fc.editProperty(\'${component[Object.keys(component)[0]].id}\', this)\">`;
+                    divProperty.querySelector('#propertyEdit').appendChild(li);
+                }
+                if (Object.keys(component[Object.keys(component)[0]]).indexOf("style") > -1) {
+                    for (style of Object.keys(component[Object.keys(component)[0]].style)) {
+                        let li = document.createElement('li');
+                        if (style == Object.keys(component[Object.keys(component)[0]].style)[0]) {
+                            li.classList.add("first-component");
+                        }
+                        li.innerHTML = `<p class=\"style-name\"><span class=\"remove-style\" onclick=\"fc.removeStyle(\'${style}\')\">&times;</span>${style}</p><input type=\"text\" ttype="style" ppName=\"${style}\" class=\"style-content\" value=\"${component[Object.keys(component)[0]].style[style]}\" onchange=\"fc.editProperty(\'${component[Object.keys(component)[0]].id}\', this)\">`;
+                        divStyle.querySelector('#styleEdit').appendChild(li);
+                    };
+                };
+            }
         }
     },
 
@@ -194,6 +222,7 @@ fc = {
     },
 
     selectPage: function(page, tempJson) {
+        fc.selectComponent(undefined);
         fc.pageSelected = page;
         fc.attComponents(tempJson, page);
         tempJson.appCode.pages[tempJson.appCode.pages.findIndex(element => {if (element.href == page) return element})].pageComponents = fc.convertNested(document.querySelectorAll('#component-list'));
@@ -223,7 +252,6 @@ fc = {
                 let ol = divComponents.querySelector('ol');
                 ol.innerHTML = '';
                 for (firstsItensComponents of pageAccess.pageComponents) {  
-                    console.log(firstsItensComponents)
                     let li = document.createElement('li');
                     if (typeof firstsItensComponents[Object.keys(firstsItensComponents)[0]].content == 'object') {
                         li.innerHTML = `<p class=\"component\" componentId=\'${firstsItensComponents[Object.keys(firstsItensComponents)[0]].id}\' onclick=\"fc.selectComponent(\'${firstsItensComponents[Object.keys(firstsItensComponents)[0]].id}\')\">${Object.keys(firstsItensComponents)[0]}</p>${fc.verifyJsonToList(firstsItensComponents[Object.keys(firstsItensComponents)[0]].content)}`;
@@ -358,6 +386,9 @@ var getUrlParameter = function getUrlParameter(sParam) {
     return false;
 };
 
+if (!getUrlParameter('projeto'))
+    window.location.replace("my-projects.html");
+
 axios.get(`${serverURL}projects/${getUrlParameter('projeto')}`, token)
 .then(response => {
     tempJson = response.data;
@@ -369,10 +400,14 @@ axios.get(`${serverURL}projects/${getUrlParameter('projeto')}`, token)
     fc.attPaletteComponents("Common")
     fc.attPages(tempJson);
     fc.attComponents(tempJson, fc.pageSelected);
-
+    for (page of tempJson.appCode.pages) {
+        fc.jsonToHtml(tempJson, page.href);
+    };
     document.getElementById('viewer').srcdoc = fc.jsonToHtml(tempJson, fc.pageSelected);
     $('#project-name').val(tempJson.title);
     $('#project-description').val(tempJson.subtitle);
+    if (tempJson.appCode.pages.length == 0)
+        showPageModal()
     autoSave();
 });
 
@@ -410,6 +445,7 @@ $(function  () {
             };  
             if (container.el[0].classList == "deleteDefault") {
                 document.getElementById('deleteDefault').innerHTML = '';
+                fc.selectComponent(undefined);
             } else {
                 _super($item, container);
             }
@@ -442,6 +478,7 @@ $('#new-page-modal-button').click(function(event) {
             href: `${$('#namePageModal').val()}.html`,
             pageComponents: []
         });
+        fc.pageSelected = `${$('#namePageModal').val()}.html`;
     }
     fc.attPages(tempJson);
     closePageModal()
@@ -486,6 +523,14 @@ $('#addStyleButton').click(function(event) {
         };
         closeStyleModal();
     });
+});
+
+$('#settings-modal-button').click(function(event) {
+    event.preventDefault();
+    tempJson.title = $('#project-name').val();
+    tempJson.subtitle = $('#project-description').val();
+    salvar();
+    closeSettingsModal();
 });
 
 function addStyle(){

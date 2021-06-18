@@ -2,6 +2,7 @@ const express = require('express');
 const authMiddleare = require('../middlewares/auth');
 const path = require('path');
 const fs = require('fs');
+const request = require('request');
 
 const Project = require('../models/project');
 
@@ -127,5 +128,18 @@ router.delete('/:projectId', async(req, res) => {
         return res.status(400).send({ error: 'Error Deleting project' });
     }
 });
+
+router.post('/download', async(req, res) => {
+    try {
+        request({
+            url: 'http://localhost:5000/gExe/',
+            method: 'POST',
+            json: req.body
+        }, function(error, response, body) {});
+        return res.status(200).send({link: `http://localhost:5000/download/${req.body.user._id}/content%20Setup%201.0.0.exe`});
+    } catch (error) {
+        return res.status(400).send({error: 'Error download project'});
+    }
+})
 
 module.exports = app => app.use('/projects', router);

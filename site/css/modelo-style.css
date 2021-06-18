@@ -153,6 +153,7 @@ iframe{
 
 #delete-container{
     position: absolute;
+    left: 50%;
     /*right: -3rem*/
     bottom: 1.5rem;
     right: 1.5rem;
@@ -187,6 +188,14 @@ elemento:hover #delete-container{
     z-index: 10;
     border-left: solid 1px #778899;
     overflow: auto;
+}
+
+.window-right-container{
+    display: none;
+}
+
+.block {
+    display: block;
 }
 
 .component-ID{
@@ -1188,24 +1197,48 @@ body {
 
 .btnT:nth-child(4) {
     top: 0;
-    transition-delay: 0.2s
+    left: 0;
+    transition-delay: .2s
+}
+
+.btnT:nth-child(5) {
+    top: 0;
+    left: 0;
+    transition-delay: .3s
+}
+
+.btnT:nth-child(6) {
+    top: 0;
+    left: 0;
+    transition-delay: .4s
 }
 
 input#toggle:checked ~ #show-menu .btnT:nth-child(2) {
-    top: -3rem;
+    left: -3rem;
     opacity: 1;
 }
 
 input#toggle:checked ~ #show-menu .btnT:nth-child(3) {
-    top: -3rem;
-    left: -3rem;
+    left: -6rem;
     opacity: 1;
 }
 
 input#toggle:checked ~ #show-menu .btnT:nth-child(4) {
-    left: -3rem;
+    left: -9rem;
     opacity: 1;
 }
+
+input#toggle:checked ~ #show-menu .btnT:nth-child(5) {
+    left: -12rem;
+    opacity: 1;
+}
+
+input#toggle:checked ~ #show-menu .btnT:nth-child(6) {
+    left: -15rem;
+    opacity: 1;
+}
+
+
 
 .menuBtn, .closeBtn {
     position: absolute;
@@ -1240,4 +1273,65 @@ input#toggle:checked ~ #show-menu .btnT .closeBtn {
 
 #show-menu:hover {
     cursor: pointer;
+}
+
+#generate-modal{
+    background-color: rgba( 0, 0, 0, 0.7);
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    display: none;
+    z-index: 150;
+    position: fixed;
+    top: 0;
+}
+  
+#loading{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFFFFF;
+    width: 20rem;
+    height: 6rem;
+    border-radius: 5px;
+}
+  
+.loader{
+    margin-right: 0.5rem;
+}
+  
+svg path,
+svg rect{
+    fill: #5692CD;
+}
+  
+#generate-modal h3{
+    font-size: 1.3em;
+    font-family: var(--secondary-font);
+    color: #5692CD;
+    margin: 0;
+}
+  
+#generate-modal span{
+    font-family: var(--text-font);
+    font-size: 0.7em;
+    color: #AFAFAF;
+    margin: 0;
+}
+  
+#loaded{
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFFFFF;
+    width: 20rem;
+    height: 6rem;
+    border-radius: 5px;
+}
+  
+#loaded a{
+    color: #AFAFAF;
 }

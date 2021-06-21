@@ -88,6 +88,7 @@ router.put('/:projectId', async(req, res) => {
         const { title, subtitle, version, appCode} = req.body;
         console.log(appCode)
         pages = JSON.stringify(appCode);
+        console.log(pages)
 
         const caminho = 'userProject/'+req.userId+'/'+req.params.projectId+'.json';
 

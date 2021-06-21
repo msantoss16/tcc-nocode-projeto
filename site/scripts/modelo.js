@@ -16,6 +16,7 @@ fc = {
     pageSelected: '',
     listModelos: {},
     cssTempSelected: "",
+    propertySelected: "",
     elementSelected: "",   
 
     downloadApp: function() {
@@ -33,13 +34,46 @@ fc = {
     },
 
     attCode: function() {
-        window.location.replace(`blocklyJs.html?projeto=${fc.pageSelected}&page=${fc.pageSelected}`);
+        if (fc.pageSelected != "") {
+            window.location.replace(`blocklyJs.html?projeto=${getUrlParameter('projeto')}&page=${fc.pageSelected}`);
+        }
+        else {
+            alert('Selecione uma página!'); 
+        }
     },
 
     attStyle: function(style) {
         let styleArg = document.getElementById('new-style-arguments');
         styleArg.setAttribute('placeholder', cssComponents[style].syntax);
+        document.querySelector('.syntax-container>p').innerText = cssComponents[style].description;
         fc.cssTempSelected = style;
+    },
+
+    attProperty: function(property) {
+        fc.propertySelected = property;
+        let propDesc = document.querySelector('.description-container > p');
+        if (property == "outro") {
+            document.getElementById('other-property').removeAttribute("disabled", true);
+            propDesc.innerText = "Adicione uma propriedade não listada";
+        } else {
+            document.getElementById('other-property').setAttribute("disabled", true);
+            propDesc.innerText = propComponents[property].description;
+        }
+    },
+
+    removeProperty: function(propName) {
+        let returnIndex = fc.elements.findIndex(element => {
+            if (element[Object.keys(element)[0]].id == fc.elementSelected)
+                return element
+        });
+        if (returnIndex > -1) {
+            try {
+                delete fc.elements[returnIndex][Object.keys(fc.elements[returnIndex])[0]].property[propName];
+            } catch {}
+            tempJson.appCode.pages[tempJson.appCode.pages.findIndex(element => {if (element.href == fc.pageSelected) return element})].pageComponents = fc.convertNested(document.querySelectorAll('#component-list'));
+            document.getElementById('viewer').srcdoc = fc.jsonToHtml(tempJson, fc.pageSelected);
+            fc.selectComponent(fc.elementSelected);
+        }
     },
 
     removeStyle: function(styleName) {
@@ -51,8 +85,8 @@ fc = {
             try {
                 delete fc.elements[returnIndex][Object.keys(fc.elements[returnIndex])[0]].style[styleName];
             } catch {}
-            tempJson.appCode.pages[tempJson.appCode.pages.findIndex(element => {if (element.href == page) return element})].pageComponents = fc.convertNested(document.querySelectorAll('#component-list'));
-            document.getElementById('viewer').srcdoc = fc.jsonToHtml(tempJson, page);
+            tempJson.appCode.pages[tempJson.appCode.pages.findIndex(element => {if (element.href == fc.pageSelected) return element})].pageComponents = fc.convertNested(document.querySelectorAll('#component-list'));
+            document.getElementById('viewer').srcdoc = fc.jsonToHtml(tempJson, fc.pageSelected);
             fc.selectComponent(fc.elementSelected);
         };
     },
@@ -144,7 +178,7 @@ fc = {
                 if (Object.keys(component[Object.keys(component)[0]]).indexOf("property") > -1) {
                     for (property of Object.keys(component[Object.keys(component)[0]].property)) {
                         let li = document.createElement('li');
-                        li.innerHTML = `<p class=\"property-name\"><span class=\"remove-property"\>&times;</span>${property}</p><input type=\"text\" ttype="property" ppName=\"${property}\" class=\"property-content\" value=\"${component[Object.keys(component)[0]].property[property]}\" onchange=\"fc.editProperty(\'${component[Object.keys(component)[0]].id}\', this)\">`;
+                        li.innerHTML = `<p class=\"property-name\"><span class=\"remove-property"\ onclick="fc.removeProperty(\'${property}\')">&times;</span>${property}</p><input type=\"text\" ttype="property" ppName=\"${property}\" class=\"property-content\" value=\"${component[Object.keys(component)[0]].property[property]}\" onchange=\"fc.editProperty(\'${component[Object.keys(component)[0]].id}\', this)\">`;
                         divProperty.querySelector('#propertyEdit').appendChild(li);
                     };
                 };
@@ -391,7 +425,7 @@ if (!getUrlParameter('projeto'))
 
 axios.get(`${serverURL}projects/${getUrlParameter('projeto')}`, token)
 .then(response => {
-    tempJson = response.data;
+    tempJson = response.data;   
     console.log(tempJson)
     try {
         fc.pageSelected = tempJson.appCode.pages[0].href
@@ -484,6 +518,62 @@ $('#new-page-modal-button').click(function(event) {
     closePageModal()
 });
 
+$('#addPropertyButton').click(function(event) {
+    divPropertList = document.getElementById('property-list');
+    divPropertList.querySelector("ul").innerHTML = '<li class="list-button-line"><button class="propertyButton" onclick="fc.attProperty(\'outro\')">Outra propriedade</button></li>';
+    let returnIndex = fc.elements.findIndex(element => {
+        if (element[Object.keys(element)[0]].id == fc.elementSelected)
+            return element
+    });
+    let htmlofElement = fc.elements[returnIndex][Object.keys(fc.elements[returnIndex])[0]].html
+    for (let cProperty of Object.keys(propComponents)) {
+        if (propComponents[cProperty].elements.indexOf(htmlofElement) > -1 || propComponents[cProperty].elements.indexOf("Atributo Global") > -1 ) {
+            li = document.createElement('li');
+            li.classList.add("list-button-line");
+            li.innerHTML = `<button class="propertyButton" onclick="fc.attProperty(\'${cProperty}\')">${cProperty}</button>`
+            divPropertList.querySelector("ul").appendChild(li);
+        }
+    };
+    $('#new-property-modal-button').click(function(event) {
+        let newPP = $('#new-property-arguments').val();
+        if (fc.propertySelected != '' && newPP != '') {
+            let returnIndex = fc.elements.findIndex(element => {
+                if (element[Object.keys(element)[0]].id == fc.elementSelected)
+                    return element
+            });
+            if (returnIndex > -1) {
+                let tempElement = fc.elements[returnIndex][Object.keys(fc.elements[returnIndex])[0]]
+                if (fc.propertySelected != 'outro') {
+                    if (tempElement.property == undefined) {
+                        tempElement.property = {
+                            [fc.propertySelected]: newPP
+                        };
+                    } else {
+                        if (Object.keys(tempElement).indexOf(fc.selectComponent) == -1)
+                            tempElement.property[fc.propertySelected] = newPP;
+                    };
+                } else {
+                    let otherProperty = document.getElementById('other-property').value;
+                    if (otherProperty != '') {
+                        if (tempElement.property == undefined) {    
+                            tempElement.property = {
+                                [otherProperty]: newPP
+                            };
+                        } else {
+                            if (Object.keys(tempElement).indexOf(fc.selectComponent) == -1)
+                                tempElement.property[otherProperty] = newPP;
+                        };
+                    }
+                }
+                tempJson.appCode.pages[tempJson.appCode.pages.findIndex(element => {if (element.href == fc.pageSelected) return element})].pageComponents = fc.convertNested(document.querySelectorAll('#component-list'));
+                document.getElementById('viewer').srcdoc = fc.jsonToHtml(tempJson, fc.pageSelected);
+                fc.selectComponent(fc.elementSelected);
+            }
+        };
+        closePropertyModal();
+    });
+}); 
+
 $('#addStyleButton').click(function(event) {
     divStyleList = document.getElementById('style-list');
     for (let cStyle of Object.keys(cssComponents)) {
@@ -516,14 +606,16 @@ $('#addStyleButton').click(function(event) {
                     if (Object.keys(tempElement).indexOf(fc.selectComponent) == -1)
                         tempElement.style[cssComponents[fc.cssTempSelected].css] = newP;
                 };
-                tempJson.appCode.pages[tempJson.appCode.pages.findIndex(element => {if (element.href == page) return element})].pageComponents = fc.convertNested(document.querySelectorAll('#component-list'));
-                document.getElementById('viewer').srcdoc = fc.jsonToHtml(tempJson, page);
+                tempJson.appCode.pages[tempJson.appCode.pages.findIndex(element => {if (element.href == fc.pageSelected) return element})].pageComponents = fc.convertNested(document.querySelectorAll('#component-list'));
+                document.getElementById('viewer').srcdoc = fc.jsonToHtml(tempJson, fc.pageSelected);
                 fc.selectComponent(fc.elementSelected);
             };
         };
         closeStyleModal();
     });
 });
+
+
 
 $('#settings-modal-button').click(function(event) {
     event.preventDefault();
@@ -581,7 +673,11 @@ function addProperty(){
 function closePropertyModal(){
     let modalContainer = document.getElementById('new-property-modal');
     let modalContent = document.getElementById('new-property-modal-content');
+    document.getElementById('other-property').value = '';
+    document.getElementById('other-property').setAttribute('disabled', true);
+    document.getElementById('new-property-arguments').value = '';
     modalContainer.style.opacity = "0";
     modalContainer.style.top = "-100%";
     modalContent.style.top = "-100%";
+    fc.propertySelected = '';
 };

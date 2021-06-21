@@ -2784,7 +2784,7 @@ cssComponents = {
             },
         }
     },
-}
+};
 
 propComponents = {
     "accept": {
@@ -2879,7 +2879,7 @@ propComponents = {
 
     "class": {
         "description": "Frequentemente usado com CSS para estilizar os elementos com propriedades comuns",
-        "elements": ["Global attribute"]
+        "elements": ["Atributo Global"]
 	},
 
     "code": {

@@ -52,21 +52,20 @@
               <a href="modelo.html"><i class="fas fa-arrow-alt-circle-left"></i></a>
             </div>
             <div id="pages-menu">
-              <select>
+              <select id="pages" onchange="javascript: pageSelect(this)">
                 <option selected>index</option>
-                <option>pag</option>
-                <option>pag</option>
-                <option>pag</option>
-                <option>pag</option>
               </select>
+            </div>
+            <div id="save-button-wrapper">
+              <button id="save-button" onclick="javascript: salvar()"><i class="fas fa-save"></i>Salvar</button>
             </div>
             <div id="css-button-wrapper">
               <button id="css-button"><i class="fab fa-css3-alt"></i>CSS</button>
             </div>
             <div id="language-wrapper">
               <select>
-                <option>Português-BR</option>
-                <option selected>English</option>
+                <option selected>Português-BR</option>
+                <option>English</option>
               </select>
             </div>
         </div>
@@ -121,6 +120,7 @@
               <block type="controls_flow_statements"></block>
             </category>
             <category id="catMath" colour="230" name="Math">
+              <block type="dom_getfromId"></block>
               <block type="math_number"></block>
               <block type="math_arithmetic">
                 <value name="A">
@@ -383,65 +383,15 @@
             <sep></sep>
             <category id="catVariables" colour="330" custom="VARIABLE" name="Variables"></category>
             <category id="catFunctions" colour="290" custom="PROCEDURE" name="Functions"></category>
-          </xml>
-          <xml id="blocklyDefault" style="display: none">
-            <block type="variables_set">
-              <field name="VAR">Count</field>
-              <value name="VALUE">
-                <block type="math_number">
-                  <field name="NUM">1</field>
-                </block>
-              </value>
-              <next>
-              <block type="controls_whileUntil" x="16" y="16">
-                <field name="MODE">WHILE</field>
-                  <value name="BOOL">
-                    <block type="logic_compare">
-                      <field name="OP">LTE</field>
-                      <value name="A">
-                        <block type="variables_get">
-                          <field name="VAR">Count</field>
-                        </block>
-                      </value>
-                      <value name="B">
-                        <block type="math_number">
-                          <field name="NUM">3</field>
-                        </block>
-                      </value>
-                    </block>
-                  </value>
-                  <statement name="DO">
-                    <block type="text_print">
-                      <value name="TEXT">
-                        <block type="text">
-                          <field name="TEXT">Hello World!</field>
-                        </block>
-                      </value>
-                      <next>
-                        <block type="variables_set">
-                        <field name="VAR">Count</field>
-                          <value name="VALUE">
-                            <block type="math_arithmetic">
-                            <field name="OP">ADD</field>
-                              <value name="A">
-                                <block type="variables_get">
-                                  <field name="VAR">Count</field>
-                                </block>
-                              </value>
-                              <value name="B">
-                                <block type="math_number">
-                                  <field name="NUM">1</field>
-                                </block>
-                              </value>
-                            </block>
-                          </value>
-                        </block>
-                      </next>
-                    </block>
-                  </statement>
-                </block>
+            <category id="catDomDocuments" colour="20" name="DOM Documents">
+              <block type="getDomWithId">
+
               </block>
+            </category>
           </xml>
+          <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+          <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+          <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
           <script src="https://unpkg.com/@highlightjs/cdn-assets@11.0.1/highlight.min.js"></script>
           <script src="https://unpkg.com/@highlightjs/cdn-assets@11.0.1/languages/go.min.js"></script>
           <script src="https://unpkg.com/blockly/blockly.min.js"></script>

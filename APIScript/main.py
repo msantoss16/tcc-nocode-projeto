@@ -60,6 +60,10 @@ def recursivityJson(dados):
                 return "<{} componentId={}>{}</{}>\n".format(dados[dadosK]['html'], dados[dadosK]['id'], dados[dadosK]['content'], dados[dadosK]['html'])
     return ''
 
+def verifyJs(dPage):
+    if ('js' in list(dPage)):
+        return dPage['js']
+
 def gerarExe(req):
     if os.path.exists('usersContent/{}'.format(req['user']['_id'])):
         contentE = os.path.join(app.root_path, r'usersContent\{}'.format(req['user']["_id"]))
@@ -77,14 +81,15 @@ def gerarExe(req):
         with open('usersContent/{}/content/{}'.format(req['user']["_id"], page['href']), 'w+') as f:
             f.write("""<html>
     <head>
-        <head>
+        <meta charset="utf-8">
     </head>
     <body>
     {}
     </body>
     <script>
+    {}
     </script>
-</html>""".format(html))
+</html>""".format(html, verifyJs(page)))
     fMain = open("base.js", "r")
     with open('usersContent/{}/content/main.js'.format(req['user']["_id"]), 'w+') as arquivo:
         arquivo.write('page = \"{}\";\n'.format(req['appCode']['pages'][0]['href']))

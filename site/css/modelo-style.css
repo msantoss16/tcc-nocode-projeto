@@ -154,10 +154,9 @@ iframe{
 #delete-container{
     position: absolute;
     left: 50%;
-    /*right: -3rem*/
-    bottom: 1.5rem;
+    bottom: 0;
     right: 1.5rem;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     width: 2.5rem;

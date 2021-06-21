@@ -106,7 +106,7 @@
                                 
                             </ul>
                         </div>
-                        <i class="fas fa-plus-circle" onclick="addProperty()"></i>
+                        <i class="fas fa-plus-circle" id="addPropertyButton" onclick="addProperty()"></i>
                         <h4 class="style-title">Estilos</h4>
                         <div class="componentStyle" id="componentStyle">
                             <ul class="styleEdit" id="styleEdit">
@@ -185,14 +185,14 @@
                         <input id="search-property" placeholder="" type="text">
                     </div>
                     <div id="property-list"><ul id="property-list-content"></ul></div>
-                    <div class="syntax-container">
-                        <p>syntax: pipipi popopo<br>pipipi popopo</p>
+                    <div class="description-container">
+                        <p></p>
                     </div>
                 </div>
                 <div id="new-property-right">
                     <div id="other-property-container">
                         <h3>Outra propriedade:</h3>
-                        <input id="other-property" type="text">
+                        <input id="other-property" type="text" disabled>
                     </div>
                     <div id="new-property-arguments-container">
                         <h3>Argumentos</h3>
@@ -215,7 +215,7 @@
                         <ul id="style-list-content"></ul>
                     </div>
                     <div class="syntax-container">
-                        <p>syntax: pipipi popopo<br>pipipi popopo</p>
+                        <p></p>
                     </div>
                 </div>
                 <div id="new-style-right">

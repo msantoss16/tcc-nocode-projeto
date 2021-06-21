@@ -8,9 +8,7 @@
     width: 24rem;
     background-color: #FFFFFF;
     border-right: 1px solid#778899;
-    box-shadow: 4px 13px 24px 0px rgba(0,0,0,0.5);
-    -webkit-box-shadow: 4px 13px 24px 0px rgba(0,0,0,0.5);
-    -moz-box-shadow: 4px 13px 24px 0px rgba(0,0,0,0.5);
+    box-shadow: 10px 0 5px -2px #888;
     z-index: 10;
 }
 

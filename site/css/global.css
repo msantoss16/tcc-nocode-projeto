@@ -50,6 +50,8 @@ p{
 footer{
     background-color: #3f6e9c;
     padding: 1rem 6rem;
+    position: relative;
+    bottom: 0;
 }
 
 #footer-content{
@@ -61,7 +63,7 @@ footer{
 #logo-footer-wrapper{
     min-width: 25%;
     justify-content: center;
-    height: 6rem;
+    height: 5rem;
 }
 
 #logo-footer-wrapper img{
@@ -121,7 +123,7 @@ nav{
 }
 
 #logo-wrapper{
-    height: 2.2rem;
+    height: 2.8rem;
     margin: 0 3.5rem;
 }
 

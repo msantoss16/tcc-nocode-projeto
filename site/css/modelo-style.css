@@ -91,8 +91,28 @@ ul{
     padding: 0.8rem;
 }
 
-.page-select:hover{
+.list-button li{
+    position: relative;
+}
+
+.list-button li:hover{
     background-color: #d6d6d6;
+}
+
+.remove-page{
+    position: absolute;
+    right: 0.2rem;
+    top: calc(50% - 11.5px);
+    font-size: 1.2em;
+    color: #2c2c2c;
+    font-family: var(--secondary-font);
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+
+.remove-page:hover{
+    color: red;
+    cursor: pointer;
 }
 
 #components-wrapper{

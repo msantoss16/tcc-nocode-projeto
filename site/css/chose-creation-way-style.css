@@ -19,7 +19,7 @@
 
 #title{
     position: absolute;
-    top: 2.5rem;
+    top: 4rem;
     left: 3rem;
     color: #FFFFFF;
     font-weight: 400;
@@ -61,6 +61,14 @@
 .start-button.left{
     background-color: #FFFFFF;
     color: #5692CD;
+}
+
+#left-side i{
+    position: absolute;
+    color: #FFFFFF;
+    font-size: 1.5em;
+    left: 3rem;
+    top: 1.5rem;
 }
 
 #right-side-wrapper{

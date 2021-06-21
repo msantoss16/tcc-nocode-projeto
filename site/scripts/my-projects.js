@@ -35,17 +35,10 @@ axios.get(`${serverURL}projects/`, token)
     console.log(error)
 });
 
-$('#deleteP').click(function(event){
+$('#confirmDel').click(function(event){
     event.preventDefault();
     id = a[0]._id
-    const del = confirm("Deseja excluir o projeto ?")
-
-    if(del == true){
     axios.delete(`${serverURL}projects/`+id, token)
-    .then(()=>{
-        window.alert("PROJETO EXCLUIDO")
-    })
-}
 });
 
 $('#modal-button').click(function(event){
@@ -68,3 +61,29 @@ $('#modal-button').click(function(event){
         });
     };  
 });   
+
+function showDeleteModal(){
+    let deleteModal = document.getElementById("delete-project-modal");
+    deleteModal.style.opacity = "1";
+    deleteModal.style.top = "1rem";
+}
+
+function deleteProject(){
+    let deleteModal = document.getElementById("delete-project-modal");
+    let deletedModal = document.getElementById("deleted-project-modal");
+    deleteModal.style.opacity = "0";
+    deleteModal.style.top = "-8rem"
+    deletedModal.style.opacity = "1";
+    deletedModal.style.top = "1rem";
+    setTimeout(function(){
+        location.reload();
+        deletedModal.style.opacity = "0";
+        deletedModal.style.top = "-6rem";
+    }, 2000);
+};
+
+function cancelDelete(){
+    let deleteModal = document.getElementById("delete-project-modal");
+    deleteModal.style.opacity = "0";
+    deleteModal.style.top = "-8rem"
+};

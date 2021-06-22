@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
 
 router.get('/:assetId/:projectId', async (req, res) => {
     try {
-        const assets = await Asset.findById(req.params.assetId).populate('user');
+        const assets = await Asset.findById(req.params.assetId);
         const caminho = 'userProject/' + req.userId + '/' + req.params.projectId + '.json';
 
         fs.readFile(caminho, async function (err, data) {
@@ -40,12 +40,10 @@ router.get('/:assetId/:projectId', async (req, res) => {
             }
         });
 
-
     } catch (error) {
         console.log(error)
-        return res.status(400).send({ error: 'Error Loading project' });
-
-    }
+        return res.status(400).send({ error: 'Error Loading Asset' });
+    };
 });
 
 
@@ -104,9 +102,10 @@ router.delete('/:assetId', async (req, res) => {
     }
 });
 
+
 router.put('/shared/:assetId', async (req, res) => {
     try {
-        const asset = await Asset.findOneAndUpdate(req.params.assetId,
+        const asset = await Asset.findOneAndUpdate({_id: req.params.assetId},
          {$addToSet: {"shared": req.userId}
          },{new: true})
 

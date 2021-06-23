@@ -64,6 +64,10 @@ def verifyJs(dPage):
     if ('js' in list(dPage)):
         return dPage['js']
 
+def verifyCss(dPage):
+    if ('css' in list(dPage)):
+        return dPage['css']
+
 def gerarExe(req):
     if os.path.exists('usersContent/{}'.format(req['user']['_id'])):
         contentE = os.path.join(app.root_path, r'usersContent\{}'.format(req['user']["_id"]))
@@ -82,6 +86,9 @@ def gerarExe(req):
             f.write("""<html>
     <head>
         <meta charset="utf-8">
+        <style>
+        {}
+        </style>
     </head>
     <body>
     {}
@@ -89,7 +96,7 @@ def gerarExe(req):
     <script>
     {}
     </script>
-</html>""".format(html, verifyJs(page)))
+</html>""".format(verifyCss(page), html, verifyJs(page)))
     fMain = open("base.js", "r")
     with open('usersContent/{}/content/main.js'.format(req['user']["_id"]), 'w+') as arquivo:
         arquivo.write('page = \"{}\";\n'.format(req['appCode']['pages'][0]['href']))

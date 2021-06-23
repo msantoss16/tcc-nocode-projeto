@@ -60,11 +60,11 @@
     font-family: var(--text-font);
 }
 
-#css-button-wrapper{
+#js-button-wrapper{
     margin: 0 1rem 0 0;
 }
 
-#css-button{
+#js-button{
     padding: 0.2rem 0.5rem;
     font-size: 1em;
     font-family: var(--text-font);
@@ -73,17 +73,17 @@
     transition: all 0.1s;
 }
 
-#css-button:hover{
+#js-button:hover{
     background-color: #3f3f3f;
     cursor: pointer;
     color: #FFFFFF;
 }
 
-#css-button:hover i{
+#js-button:hover i{
     color: #FFFFFF;
 }
 
-#css-button i{
+#js-button i{
     margin-right: 0.4rem;
 }
 
@@ -129,56 +129,25 @@
     font-family: var(--text-font);
 }
 
-#language-wrapper select:hover{
-    background-color: #FFFFFF;
-    color: #000000;
-}
-
-#language-wrapper option{
-    font-size: 1em;
-    background-color: #82aad7;
-    color: #FFFFFF;
-    padding: 0 0.2rem;
-    font-family: var(--text-font);
-}
-
 #page-wrapper{
     display: flex;
     height: calc(100% - 6.2rem);
 }
 
-#contentBlockly{
-    width: 70%;
-    height: 100%;
-}
-
-.blocklyMainBackground, .blocklySvg, .blocklyWorkspace{
+#contentCss{
     width: 100%;
     height: 100%;
-}
-
-.tabs__content{
-    width: 30%;
-    height: 100%;
-}
-
-#js{
-    height: 100%;
-    background-color: #3f3f3f;
-}
-
-.tabs__content code{
-    height: 100%;
-    padding: 0 1.5rem 1.5rem 1.5rem;
-}
-
-.hljs{
-    display: block;
-    overflow-x: auto;
-    background: #3f3f3f;
-    color: #dcdcdc;
 }
 
 body, html {height:100%;}
 
 div.container {height:100%; overflow:hidden;}
+
+.contentCss .code {
+    width: 100%;
+    border: 1px solid #888;
+}
+
+.CodeMirror {
+    height: 100%;
+}

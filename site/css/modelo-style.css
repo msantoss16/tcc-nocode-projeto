@@ -176,7 +176,7 @@ iframe{
     left: 50%;
     bottom: 0;
     right: 1.5rem;
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
     width: 2.5rem;

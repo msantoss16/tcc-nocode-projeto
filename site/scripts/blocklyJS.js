@@ -2,8 +2,7 @@ const serverURL = 'http://localhost:3000/';
 const token = {headers: {'Authorization': ('Bearer '+Cookies.get('token'))}};
 
 var pageSelected = "";
-axios.get(`${serverURL}projects/60ca8aaaef604a17c0fb67ae`, token)
-.then(response => {console.log(response.data)})
+
 var getUrlParameter = function getUrlParameter(sParam) {
     var sPageURL = window.location.search.substring(1),
         sURLVariables = sPageURL.split('&'),
@@ -30,10 +29,14 @@ function salvarTemp() {
             tempJson.appCode.pages[pageIndex].js = code;
         }
     }
-}
+};
 
-function pageSelect(select) {
+function pageSelect(select, isFirst=false) {
+    if (!isFirst) { 
+        salvarTemp();
+    }
     pageSelected = select.value;
+    document.getElementById('css-button').setAttribute('onclick', `window.location.replace("css.html?projeto=${getUrlParameter('projeto')}&page=${pageSelected}");`);
     let xmlP = false;
     for (pageIndex in tempJson.appCode.pages) {
         if (pageSelected == tempJson.appCode.pages[pageIndex].href) {
@@ -54,19 +57,18 @@ function pageSelect(select) {
 axios.get(`${serverURL}projects/${getUrlParameter('projeto')}`, token)
 .then(response => {
     tempJson = response.data;
-    console.log(response.data);
     document.getElementById('pages').innerHTML = "";
     let pageOptions = '';
     for (let page of tempJson.appCode.pages) {
-        if (page.href == tempJson.appCode.pages[0].href) {
-            pageOptions = pageOptions + `<option value="${page.href}" selected>${page.href}</option>`;
+        if (page.href == getUrlParameter('page')) {
+            pageOptions = pageOptions + `<option value="${page.href}" selected>${page.href.substr(0, (page.href.length-5))}</option>`;
             pageSelected = page.href;
         } else {
-            pageOptions = pageOptions + `<option value="${page.href}">${page.href}</option>`;
+            pageOptions = pageOptions + `<option value="${page.href}">${page.href.substr(0, (page.href.length-5))}</option>`;
         }
     };
     document.getElementById('pages').innerHTML = pageOptions;
-    pageSelect(document.getElementById('pages'));
+    pageSelect(document.getElementById('pages'), true);
 });
 
 var workspace = Blockly.inject('blocklyDiv',

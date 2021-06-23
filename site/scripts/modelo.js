@@ -33,6 +33,15 @@ fc = {
             });
     },
 
+    attCss: function() {
+        if (fc.pageSelected != "") {
+            window.location.replace(`css.html?projeto=${getUrlParameter('projeto')}&page=${fc.pageSelected}`);
+        }
+        else {
+            alert('Selecione uma página!'); 
+        }
+    },
+
     attCode: function() {
         if (fc.pageSelected != "") {
             window.location.replace(`blocklyJs.html?projeto=${getUrlParameter('projeto')}&page=${fc.pageSelected}`);
@@ -370,9 +379,11 @@ fc = {
     },
     
     jsonToHtml: function(tempJson, page) {
-        let html = `<html><head><title>${tempJson.title}</title></head><body>`;
+        let html = '';
+        let tempcss = "";
         for (pageHTML of tempJson.appCode.pages) {
             if (pageHTML.href == page) {
+                tempcss = pageHTML.css;
                 for (component of pageHTML.pageComponents) {
                     elementIndex = fc.elements.findIndex(element => {
                         if (element[Object.keys(element)[0]].id == component[Object.keys(component)[0]].id)
@@ -387,8 +398,9 @@ fc = {
                 }
             }
         }
+        let Temphtml = `<html><head><title>${tempJson.title}</title><style>${tempcss}</style></head><body>`;
         html = html + '</body></html>'
-        return html;
+        return (Temphtml+html);
     },
 
     salvarDados: function() {

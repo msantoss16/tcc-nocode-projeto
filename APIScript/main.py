@@ -60,40 +60,55 @@ def recursivityJson(dados):
                 return "<{} componentId={}>{}</{}>\n".format(dados[dadosK]['html'], dados[dadosK]['id'], dados[dadosK]['content'], dados[dadosK]['html'])
     return ''
 
+def verifyJs(dPage):
+    if ('js' in list(dPage)):
+        return dPage['js']
+
+def verifyCss(dPage):
+    if ('css' in list(dPage)):
+        return dPage['css']
+
 def gerarExe(req):
-    if not os.path.exists('usersContent/{}'.format(req['userId'])):
-        os.makedirs('usersContent/{}'.format(req['userId']))
-        if not os.path.exists('usersContent/{}/content'.format(req['userId'])):
-            os.makedirs('usersContent/{}/content'.format(req['userId']))
-        if not os.path.exists('usersContent/{}/exe'.format(req['userId'])):
-            os.makedirs('usersContent/{}/exe'.format(req['userId']))
+    if os.path.exists('usersContent/{}'.format(req['user']['_id'])):
+        contentE = os.path.join(app.root_path, r'usersContent\{}'.format(req['user']["_id"]))
+        shutil.rmtree(contentE)
+    if not os.path.exists('usersContent/{}'.format(req['user']["_id"])):
+        os.makedirs('usersContent/{}'.format(req['user']["_id"]))
+        if not os.path.exists('usersContent/{}/content'.format(req['user']["_id"])):
+            os.makedirs('usersContent/{}/content'.format(req['user']["_id"]))
+        if not os.path.exists('usersContent/{}/exe'.format(req['user']["_id"])):
+            os.makedirs('usersContent/{}/exe'.format(req['user']["_id"]))
     for page in req['appCode']['pages']:
         html = ''
         for component in page['pageComponents']:
             html = html + recursivityJson(component)
-        with open('usersContent/{}/content/{}'.format(req['userId'], page['href']), 'w+') as f:
+        with open('usersContent/{}/content/{}'.format(req['user']["_id"], page['href']), 'w+') as f:
             f.write("""<html>
     <head>
-        <head>
+        <meta charset="utf-8">
+        <style>
+        {}
+        </style>
     </head>
     <body>
     {}
     </body>
     <script>
+    {}
     </script>
-</html>""".format(html))
+</html>""".format(verifyCss(page), html, verifyJs(page)))
     fMain = open("base.js", "r")
-    with open('usersContent/{}/content/main.js'.format(req['userId']), 'w+') as arquivo:
+    with open('usersContent/{}/content/main.js'.format(req['user']["_id"]), 'w+') as arquivo:
         arquivo.write('page = \"{}\";\n'.format(req['appCode']['pages'][0]['href']))
         arquivo.write(fMain.read())
-    if not os.path.exists('usersContent/{}/content/package.json'.format(req['userId'])):
-        os.system('cd usersContent/{}/content && npm init -y'.format(req['userId']))
-        os.system('cd usersContent/{}/content && npm install --save-dev electron'.format(req['userId']))
-        os.system('cd usersContent/{}/content && npm install electron-builder --save-dev'.format(req['userId']))
-        os.system('cd usersContent/{}/content && electron-builder'.format(req['userId']))
-        original = os.path.join(app.root_path, r'usersContent\{}\content\dist\content Setup 1.0.0.exe'.format(req['userId']))
-        target = os.path.join(app.root_path, r'usersContent\{}\exe'.format(req['userId']))
-        contentD = os.path.join(app.root_path, r'usersContent\{}\content'.format(req['userId']))
+    if not os.path.exists('usersContent/{}/content/package.json'.format(req['user']["_id"])):
+        os.system('cd usersContent/{}/content && npm init -y'.format(req['user']["_id"]))
+        os.system('cd usersContent/{}/content && npm install --save-dev electron'.format(req['user']["_id"]))
+        os.system('cd usersContent/{}/content && npm install electron-builder --save-dev'.format(req['user']["_id"]))
+        os.system('cd usersContent/{}/content && electron-builder'.format(req['user']["_id"]))
+        original = os.path.join(app.root_path, r'usersContent\{}\content\dist\content Setup 1.0.0.exe'.format(req['user']["_id"]))
+        target = os.path.join(app.root_path, r'usersContent\{}\exe'.format(req['user']["_id"]))
+        contentD = os.path.join(app.root_path, r'usersContent\{}\content'.format(req['user']["_id"]))
         print(original)
         print(target)
         shutil.copy2(original, target)

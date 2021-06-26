@@ -2,6 +2,7 @@ const express = require('express');
 const authMiddleare = require('../middlewares/auth');
 const path = require('path');
 const fs = require('fs');
+const request = require('request');
 
 const Project = require('../models/project');
 
@@ -34,9 +35,10 @@ router.get('/:projectId', async(req, res) => {
             }else{
                 data = data.toString();
                 data = JSON.parse(data);
-                data = {appCode:data}
-                const project = await Project.findById(req.params.projectId, data).populate('user');
-                return res.send( project );
+                let project = await Project.findById(req.params.projectId).populate('user');
+                let a = project.toObject();
+                a.appCode = data;
+                return res.send( a );
             }
         })
             
@@ -83,10 +85,10 @@ router.post('/', async(req, res) => {
 
 router.put('/:projectId', async(req, res) => {
     try {
-        const { title, subtitle, version} = req.body;
-        let pages = req.body;
-
-        pages = JSON.stringify(pages);
+        const { title, subtitle, version, appCode} = req.body;
+        console.log(appCode)
+        pages = JSON.stringify(appCode);
+        console.log(pages)
 
         const caminho = 'userProject/'+req.userId+'/'+req.params.projectId+'.json';
 
@@ -127,5 +129,18 @@ router.delete('/:projectId', async(req, res) => {
         return res.status(400).send({ error: 'Error Deleting project' });
     }
 });
+
+router.post('/download', async(req, res) => {
+    try {
+        request({
+            url: 'http://localhost:5000/gExe/',
+            method: 'POST',
+            json: req.body
+        }, function(error, response, body) {});
+        return res.status(200).send({link: `http://localhost:5000/download/${req.body.user._id}/content%20Setup%201.0.0.exe`});
+    } catch (error) {
+        return res.status(400).send({error: 'Error download project'});
+    }
+})
 
 module.exports = app => app.use('/projects', router);

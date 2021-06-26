@@ -65,18 +65,63 @@ $('#save-button').click(function(event){
     event.preventDefault();
     let _password = $('#currentPassword').val();
     let _passwordC = $('#changePassword').val();
+    let _passwordCo = $('#confirmPassword').val();
     let _id = localStorage.getItem('id');
     let token = {headers: {'Authorization': ('Bearer '+Cookies.get('token'))}};
 
     if(_passwordC === "" || _passwordC.length < 8){
-        md.showNotification('top', 'center', 'warning', 'A senha deve ter no minimo 8 caracteres');
+        notificationOne();
+    }else if(_passwordC != _passwordCo){
+        notificationFour();
     }
     else{
     axios.post(`${serverURL}auth/change_password/`+_id, {password: _password, newPassword: _passwordC}, token)
     .then( () =>{
-        md.showNotification('top', 'center', 'sucess', 'Senha alterada com sucesso');
+        notificationTwo();
     })
-    .catch(error => {
-        md.showNotification('top', 'center', 'danger', error.response.data.error);
+    .catch(() => {
+        notificationThree();
     })
 }});
+
+
+function notificationOne(){
+    let noti = document.getElementById("one");
+    noti.style.opacity = "1";
+    noti.style.top = "1rem";
+    console.log("puta")
+    setTimeout(function(){
+        noti.style.opacity = "0";
+        noti.style.top = "-6rem";
+    }, 3000);
+};
+
+function notificationTwo(){
+    let noti = document.getElementById("two");
+    noti.style.opacity = "1";
+    noti.style.top = "1rem";
+    setTimeout(function(){
+        noti.style.opacity = "0";
+        noti.style.top = "-6rem";
+    }, 3000);
+};
+
+function notificationThree(){
+    let noti = document.getElementById("three");
+    noti.style.opacity = "1";
+    noti.style.top = "1rem";
+    setTimeout(function(){
+        noti.style.opacity = "0";
+        noti.style.top = "-6rem";
+    }, 3000);
+};
+
+function notificationFour(){
+    let noti = document.getElementById("four");
+    noti.style.opacity = "1";
+    noti.style.top = "1rem";
+    setTimeout(function(){
+        noti.style.opacity = "0";
+        noti.style.top = "-6rem";
+    }, 3000);
+};

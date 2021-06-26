@@ -138,7 +138,7 @@
                 <div id="gerenciar-container">
                     <h2 class="option-title">Gerenciar Conta</h2>
                     <form class="information-form">
-                        <div class="input-container">
+                        <!-- <div class="input-container">
                             <label>Nome de Usuário</label>
                             <div class="input-wrapper gerenciar" id="nomeUE">
                                 <input id="username" type="text" value="Fábio Junior">
@@ -149,7 +149,7 @@
                             <div class="input-wrapper gerenciar" id="emailUE">
                                 <input id="email" type="email" value="fabiojr@gmail.com">
                             </div>
-                        </div>
+                        </div> -->
                         <div class="input-container">
                             <label>Senha Atual</label>
                             <div class="input-wrapper gerenciar">
@@ -162,6 +162,12 @@
                                 <input id="changePassword" type="password">
                             </div>
                         </div>
+                        <div class="input-container">
+                            <label>Confirmar Nova Senha</label>
+                            <div class="input-wrapper gerenciar">
+                                <input id="confirmPassword" type="password">
+                            </div>
+                        </div>
                         <div id="save-button-wrapper">
                             <div id="save-button-icon-wrapper">
                                 <i class="fas fa-pencil-alt"></i>
@@ -172,6 +178,10 @@
                 </div>
             </div>
         </div>
+        <div class="notification" id="one"><h3>A senha deve ter no minimo 8 caracteres</h3></div>
+        <div class="notification" id="two"><h3>Senha alterada com sucesso</h3></div>
+        <div class="notification" id="three"><h3>Senha atual incorreta</h3></div>
+        <div class="notification" id="four"><h3>Senhas diferentes</h3></div>
         <footer>
             <div id="footer-content">
                 <div id="logo-footer-wrapper">

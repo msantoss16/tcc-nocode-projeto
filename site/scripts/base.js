@@ -24,6 +24,3 @@ axios.get(`${serverURL}auth/`+id)
         nomeU.innerHTML = user.name
         emailU.innerHTML = user.email
     })
-
-
-

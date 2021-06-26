@@ -3,8 +3,12 @@
         <title>Meu Perfil</title>
         <link rel="stylesheet" type="text/css" href="css/global.css">
         <link rel="stylesheet" type="text/css" href="css/my-profile-style.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/material-dashboard.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script type="text/javascript" src="scripts/nav.js"></script>
-        <script type="text/javascript" src="scripts/my-profile.js"></script>
         <script type="text/javascript" src="scripts/base.js"></script>
     </head>
     <body>
@@ -28,8 +32,8 @@
                             <a href="my-profile.html"><img src="images/user-default-picture.jpg"></a>
                         </div>
                         <div id="user-information-container">
-                            <h3><a href="my-profile.html">Fábio Junior</a></h3>
-                            <p><a href="my-profile.html">fabiojr@gmail.com</a></p>
+                            <h3><a href="my-profile.html" id="nomeU"></a></h3>
+                            <p><a href="my-profile.html" id="emailU"></a></p>
                         </div>
                         <div id="user-arrow-container" onclick="showDropdown()">
                             <i class="fas fa-chevron-down"></i>
@@ -59,7 +63,7 @@
                         </div>
                     </div>
 
-                    <h3>Fábio Junior</h3>
+                    <h3 id="nomeP"></h3>
                 </div>
                 <div id="menu-options-container">
                     <div id="geral-option-container" class="menu-option-wrapper" onclick="activeGeral()">
@@ -100,8 +104,8 @@
                     <form class="information-form">
                         <div class="input-container">
                             <label>Nome de Usuário</label>
-                            <div class="input-wrapper geral">
-                                <input type="text" disabled value="Fábio Junior">
+                            <div class="input-wrapper geral" id="nomeD">
+                                <input type="text" disabled value="">
                                 <div class="input-icon-wrapper" onclick="activeGerenciar(); editUser();">
                                     <i class="fas fa-pencil-alt"></i>
                                 </div>
@@ -109,8 +113,8 @@
                         </div>
                         <div class="input-container">
                             <label>Email</label>
-                            <div class="input-wrapper geral">
-                                <input type="email" disabled value="fabiojr@gmail.com">
+                            <div class="input-wrapper geral" id="emailD">
+                                <input type="email" disabled value="">
                                 <div class="input-icon-wrapper" onclick="activeGerenciar(); editEmail();">                                    <i class="fas fa-pencil-alt"></i>
                                 </div>
                             </div>
@@ -138,13 +142,13 @@
                     <form class="information-form">
                         <div class="input-container">
                             <label>Nome de Usuário</label>
-                            <div class="input-wrapper gerenciar">
+                            <div class="input-wrapper gerenciar" id="nomeUE">
                                 <input id="username" type="text" value="Fábio Junior">
                             </div>
                         </div>
                         <div class="input-container">
                             <label>Email</label>
-                            <div class="input-wrapper gerenciar">
+                            <div class="input-wrapper gerenciar" id="emailUE">
                                 <input id="email" type="email" value="fabiojr@gmail.com">
                             </div>
                         </div>
@@ -157,7 +161,7 @@
                         <div class="input-container">
                             <label>Nova Senha</label>
                             <div class="input-wrapper gerenciar">
-                                <input type="password">
+                                <input id="changePassword" type="password">
                             </div>
                         </div>
                         <div id="save-button-wrapper">
@@ -171,4 +175,7 @@
             </div>
         </div>
     </body>
+    <script type="text/javascript" src="scripts/my-profile.js"></script>
+    <script src="./scripts/plugins/bootstrap-notify.js"></script>
+    <script src="./scripts/functions.js"></script>
 </html>

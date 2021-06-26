@@ -1,9 +1,6 @@
-body{
-    display: block;
-}
-
 #header{
-    padding: 0 3.5rem;
+    margin: 0 0 2rem 3.5rem;
+    align-self: flex-start;
 }
 
 #header h1{
@@ -85,58 +82,184 @@ select{
     outline: none;
 }
 
-#models-wrapper{
-    display: flex;
-    flex-wrap: wrap;
-    padding: 0 3.5rem;
-    margin-bottom: 2.5rem;
-}
-
-.model-frame{
-    max-width: calc(33.333% - 0.8rem);
-    min-width: calc(33.333% - 0.8rem);
-    flex: 1;
-    background-color: #868686;
-    height: 16rem;
-    display: flex;
-    margin-top: 1.2rem;
-    border-radius: 5px;
-    border: #5692CD 1px solid;
-    box-sizing: border-box;
+a.btn {
+    background: #0096a0;
+    border-radius: 4px;
+    box-shadow: 0 2px 0px 0 rgba(0,0,0,0.25);
+    color: #ffffff;
+    display: inline-block;
+    padding: 6px 30px 8px;
     position: relative;
+    text-decoration: none;
+    transition: all 0.1s 0s ease-out;
+    font-family: var(--text-font);
 }
 
-.model-frame:nth-child(3n-1){
-    margin-left: 1.2rem;
-    margin-right: 1.2rem;
+.no-touch a.btn:hover {
+    background: #00a2ad;
+    box-shadow: 0px 8px 2px 0 rgba(0,0,0,0.075);
+    transform: translateY(-2px);
+    transition: all 0.25s 0s ease-out;
 }
 
-.model-frame h3{
+.no-touch a.btn:active, a.btn:active {
+    background: #008a93;
+    box-shadow: 0 1px 0px 0 rgba(255,255,255,0.25);
+    transform: translate3d(0,1px,0);
+    transition: all 0.025s 0s ease-out;
+}
+
+div.models-container {
+    margin: 0 auto 6rem auto;
+    max-width: 100%;
+    text-align: center;
+}
+
+div.model{
+    background: #2c2c2c;
+    display: inline-block;
+    margin: 8px;
+    max-width: 300px;
+    perspective: 1000;
+    position: relative;
+    text-align: left;
+    transition: all 0.3s 0s ease-in;
+    width: 300px;
+    z-index: 1;
+}
+
+.model-image{
+    width: 300px;
+    height: 225px;
+    object-fit: cover;
+}
+
+div.model .model-image-wrapper{
+    background: rgba(0,0,0,0.1);
+    height: 0;
+    padding-bottom: 75%;
+}
+
+div.model div.model-title{
+    background: #2c2c2c;
+    padding: 6px 15px 10px;
+    position: relative;
+    z-index: 0;
+    color: #ffffff;
+}
+
+div.model div.model-title a.toggle-info {
+    border-radius: 32px;
+    height: 32px;
+    padding: 0;
     position: absolute;
-    left: 0.5rem;
-    bottom: 0.5rem;
+    right: 15px;
+    top: 5px;
+    width: 32px;
+}
+
+div.model div.model-title a.toggle-info span {
+    background: #2c2c2c;
+    display: block;
+    height: 2px;
+    position: absolute;
+    top: 14px;
+    transition: all 0.15s 0s ease-out;
+    width: 12px;
+}
+
+div.model div.model-title a.toggle-info span.left {
+    right: 14px;
+    transform: rotate(45deg);
+}
+
+div.model div.model-title a.toggle-info span.right {
+    left: 14px;
+    transform: rotate(-45deg);
+}
+
+div.model div.model-title h2 {
+    font-size: 1.4em;
+    font-weight: 700;
     font-family: var(--secondary-font);
-    color: #FFFFFF;
-    text-shadow: 2px 2px rgba( 0, 0, 0, 0.5);
-   
+    letter-spacing: -0.05em;
+    margin: 0;
+    padding: 0;
 }
 
-.frame-tool-bar{
-    background-color: #5692CD;
+div.model div.model-description{
+    padding: 0 15px 10px;
+    position: relative;
+    font-size: 0.9em;
+    font-family: var(--text-font);
+    color: #ffffff;
+}
+
+div.model div.model-actions{
+    box-shadow: 0 2px 0px 0 rgba(0,0,0,0.075);
+    padding: 10px 15px 20px;
+    text-align: center;
+}
+
+div.model div.model-flap{
+    background: #2c2c2c;
+    position: absolute;
     width: 100%;
-    height: 0.8rem;
-    border-radius: 5px 5px 0 0;
+    transform-origin: top;
+    transform: rotateX(-90deg);
 }
 
-.tool-bar-icons-wrapper{
-    height: 100%;
-    display: flex;
-    align-items: center;
-    float: right;
+div.model div.flap1 {
+    transition: all 0.3s 0.3s ease-out;
+    z-index: -1;
 }
 
-.tool-bar-icons-wrapper i{
-    font-size: 0.7em;
-    color: #FFFFFF;
-    margin-right: 0.2rem;
+div.model div.flap2 {
+    transition: all 0.3s 0s ease-out;
+    z-index: -2;
+}
+
+div.models-container.showing div.model{
+    cursor: pointer;
+    opacity: 0.6;
+    transform: scale(0.88);
+}
+
+.no-touch div.models-container.showing div.model:hover {
+    opacity: 0.94;
+    transform: scale(0.92);
+}
+
+div.model.show {
+    opacity: 1 !important;
+    transform: scale(1) !important;
+}
+
+div.model.show div.model-title a.toggle-info {
+    background: #ff6666 !important;
+}
+
+div.model.show div.model-title a.toggle-info span {
+    top: 15px;
+}
+
+div.model.show div.model-title a.toggle-info span.left {
+    right: 10px;
+}
+
+div.model.show div.model-title a.toggle-info span.right {
+    left: 10px;
+}
+
+div.model.show div.model-flap{
+    background: #2c2c2c;
+    transform: rotateX(0deg);
+}
+
+div.model.show div.flap1 {
+    transition: all 0.3s 0s ease-out;
+}
+
+div.model.show div.flap2 {
+    transition: all 0.3s 0.2s ease-out;
 }

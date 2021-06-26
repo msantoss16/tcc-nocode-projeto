@@ -5,7 +5,6 @@
         <link rel="stylesheet" type="text/css" href="css/my-profile-style.css">
         <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="css/material-dashboard.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script type="text/javascript" src="scripts/nav.js"></script>
@@ -15,15 +14,14 @@
         <nav>
             <div id="menu">
                 <div id="logo-wrapper">
-                    <a href="my-projects.html"><img src="images/logo.png"></a>
+                    <a href="my-projects.html"><img src="images/logo.svg"></a>
                 </div>
                 <div id="right-div">
                     <div id="menu-links-wrapper">
                         <ul>
                             <li><a href="chose-creation-way.html">Novo Projeto</a></li>
                             <li><a href="my-projects.html">Meus Projetos</a></li>
-                            <li><a href="faq.html">FAQ</a></li>
-                            <li><a href="premium.html">Premium</a></li>
+                            <li><a href="documentation.html">Documentação</a></li>
                             <li><a href="about-us.html">Sobre nós</a></li>
                         </ul>
                     </div>     
@@ -106,7 +104,7 @@
                             <label>Nome de Usuário</label>
                             <div class="input-wrapper geral" id="nomeD">
                                 <input type="text" disabled value="">
-                                <div class="input-icon-wrapper" onclick="activeGerenciar(); editUser();">
+                                 <div class="input-icon-wrapper" onclick="activeGerenciar(); editUser();">
                                     <i class="fas fa-pencil-alt"></i>
                                 </div>
                             </div>
@@ -115,7 +113,7 @@
                             <label>Email</label>
                             <div class="input-wrapper geral" id="emailD">
                                 <input type="email" disabled value="">
-                                <div class="input-icon-wrapper" onclick="activeGerenciar(); editEmail();">                                    <i class="fas fa-pencil-alt"></i>
+                                  <div class="input-icon-wrapper" onclick="activeGerenciar(); editEmail();">                                    <i class="fas fa-pencil-alt"></i>
                                 </div>
                             </div>
                         </div>
@@ -174,8 +172,25 @@
                 </div>
             </div>
         </div>
+        <footer>
+            <div id="footer-content">
+                <div id="logo-footer-wrapper">
+                    <a href="my-projects.html"><img src="images/logo.svg"></a>
+                </div>
+                <div id="footer-information">
+                    <h3 class="footer-title"><a href="about-us.html">Sobre nós</a></h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique tenetur at quia perferendis. Blanditiis nihil facere delectus suscipit debitis impedit, qui molestias error. Similique tenetur at quia perferendis. Blanditiis nihil facere delectus suscipit debitis impedit, qui molestias error. </p>
+                    <br>
+                    <h3 class="footer-title">Contato</h3>
+                    <p><a href="mailto: contato@affeit.com.br">contato@affeit.com.br</a></p>
+                </div>
+            </div>
+            <div id="footer-copyright">
+                <p>©2021 por Affe-It</p>
+            </div>
+        </footer>
     </body>
-    <script type="text/javascript" src="scripts/my-profile.js"></script>
+    <script src="scripts/my-profile.js"></script>
     <script src="./scripts/plugins/bootstrap-notify.js"></script>
     <script src="./scripts/functions.js"></script>
 </html>

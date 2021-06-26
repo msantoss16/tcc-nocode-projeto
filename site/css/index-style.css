@@ -1,9 +1,7 @@
 header{
     width: 100%;
-    height: 100vh;
     overflow: hidden;
     position: relative;
-    background-color: black;
 }
 
 #background-wrapper{
@@ -20,7 +18,7 @@ header{
 #logo-header-wrapper{
     top: 1.5rem;
     left: 1.5rem;
-    height: 6rem;
+    height: 5rem;
     position: absolute;
     cursor: pointer;
 }

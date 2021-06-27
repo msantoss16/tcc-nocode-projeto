@@ -23,4 +23,6 @@ axios.get(`${serverURL}auth/`+id)
         let emailU = document.getElementById('emailU')
         nomeU.innerHTML = user.name
         emailU.innerHTML = user.email
-    })
+    });
+
+

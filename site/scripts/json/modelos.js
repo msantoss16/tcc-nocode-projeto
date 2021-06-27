@@ -53,11 +53,6 @@
                 }
             },
             {
-                "import":{
-                    "html": "link"
-                }
-            },
-            {
                 "lbl":  {
                     "html":"label"
                 }

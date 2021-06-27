@@ -6,6 +6,8 @@
         <link rel="stylesheet" href="css/blockyjs.css">
         <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+                
         <script type="text/javascript" src="scripts/nav.js"></script>
         <script type="text/javascript" src="scripts/base.js"></script>
         <title>Blockly Js</title>
@@ -27,25 +29,25 @@
                     </ul>
                 </div>     
                 <div id="user-wrapper">
-                  <div id="user-profile-picture-wrapper">
-                      <a href="my-profile.html"><img src="images/user-default-picture.jpg"></a>
-                  </div>
-                  <div id="user-information-container">
+                    <div id="user-profile-picture-wrapper">
+                        <a href="my-profile.html"><img src="images/user-default-picture.jpg"></a>
+                    </div>
+                    <div id="user-information-container">
                       <h3><a href="my-profile.html" id="nomeU"></a></h3>
                       <p><a href="my-profile.html" id="emailU"></a></p>
-                  </div>
-                  <div id="user-arrow-container" onclick="showDropdown()">
-                      <i class="fas fa-chevron-down"></i>
-                      <div id="dropdown-content">
-                          <div class="dropdown-action-wrapper" onclick="myProfile()">
-                              <span>Meu Perfil</span>
-                          </div>
-                          <div class="dropdown-action-wrapper exit" onclick="sair()">
-                              <span>Sair da conta</span>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+                    </div>
+                    <div id="user-arrow-container" onclick="showDropdown()">
+                        <i class="fas fa-chevron-down"></i>
+                        <div id="dropdown-content">
+                            <div class="dropdown-action-wrapper" onclick="myProfile()">
+                                <span>Meu Perfil</span>
+                            </div>
+                            <div class="dropdown-action-wrapper exit" onclick="sair()">
+                                <span>Sair da conta</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
           </div>
         </nav>

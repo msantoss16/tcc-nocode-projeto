@@ -266,7 +266,6 @@
     transition: all 0.2s;
 }
 
-
 .input-wrapper input:focus{
     -webkit-box-shadow: 0px 0px 20px 3px #666666; 
     box-shadow: 0px 0px 20px 3px #666666;

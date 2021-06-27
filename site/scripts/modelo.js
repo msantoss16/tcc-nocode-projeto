@@ -17,7 +17,8 @@ fc = {
     listModelos: {},
     cssTempSelected: "",
     propertySelected: "",
-    elementSelected: "",   
+    elementSelected: "", 
+    imageChanged: false,      
 
     downloadApp: function() {
         axios.post(`${serverURL}projects/download`, tempJson, token)
@@ -633,8 +634,23 @@ $('#settings-modal-button').click(function(event) {
     event.preventDefault();
     tempJson.title = $('#project-name').val();
     tempJson.subtitle = $('#project-description').val();
-    salvar();
-    closeSettingsModal();
+    if (fc.imageChanged) {
+        let formData = new FormData();
+        let imagefile = document.querySelector('#editImage');
+        formData.append("image", imagefile.files[0]);
+        axios.post(`${serverURL}projects/upload`, formData, token)
+        .then(response => {
+            console.log(response.data.image_path);
+            tempJson.image = response.data.image_path;
+            salvar();
+            closeSettingsModal();
+        }) .catch(error => {
+            console.log(error);
+        })
+    } else {
+        salvar();
+        closeSettingsModal();
+    }
 });
 
 function addStyle(){

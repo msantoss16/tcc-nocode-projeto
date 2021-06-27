@@ -402,3 +402,46 @@
     cursor: text;
     outline: none;
 }
+
+.notification{
+    position: fixed;
+    width: 22rem;
+    padding: 0.5rem 0;
+    left: calc(50% - 11rem);
+    border-radius: 10px;
+    -webkit-box-shadow: 2px 5px 15px 2px rgba(0,0,0,0.5); 
+    box-shadow: 2px 5px 15px 2px rgba(0,0,0,0.5);
+    transition: all 0.3s;
+}
+
+#one{
+    background-color: #fe9e10;
+    top: -6rem;
+    opacity: 0;
+}
+
+#two{
+    background-color: #10e2fe;
+    top: -6rem;
+    opacity: 0;
+}
+
+#three{
+    background-color: #f55246;
+    top: -6rem;
+    opacity: 0;
+}
+
+#four{
+    background-color: #fe9e10;
+    top: -6rem;
+    opacity: 0;
+}
+
+.notification h3{
+    font-family: var(--text-font);
+    color: #FFFFFF;
+    font-size: 1em;
+    padding: 0.5rem 0;
+    text-align: center;
+}

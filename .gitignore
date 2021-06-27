@@ -1,7 +1,8 @@
 node_modules
 .vscode
-userProject
-config
-APIScript/usersContent
+api/src/userProject
+api/src/config
+APIScript/usersContent/
+APIScript/usersContent/*
 api/node_modules/*
 api/src/config/*

@@ -1,10 +1,15 @@
 <html>
     <head>
         <title>Meu Perfil</title>
+        <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="css/global.css">
         <link rel="stylesheet" type="text/css" href="css/my-profile-style.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/material-dashboard.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script type="text/javascript" src="scripts/nav.js"></script>
-        <script type="text/javascript" src="scripts/my-profile.js"></script>
         <script type="text/javascript" src="scripts/base.js"></script>
     </head>
     <body>
@@ -27,8 +32,8 @@
                             <a href="my-profile.html"><img src="images/user-default-picture.jpg"></a>
                         </div>
                         <div id="user-information-container">
-                            <h3><a href="my-profile.html">Fábio Junior</a></h3>
-                            <p><a href="my-profile.html">fabiojr@gmail.com</a></p>
+                            <h3><a href="my-profile.html" id="nomeU"></a></h3>
+                            <p><a href="my-profile.html" id="emailU"></a></p>
                         </div>
                         <div id="user-arrow-container" onclick="showDropdown()">
                             <i class="fas fa-chevron-down"></i>
@@ -58,7 +63,7 @@
                         </div>
                     </div>
 
-                    <h3>Fábio Junior</h3>
+                    <h3 id="nomeP"></h3>
                 </div>
                 <div id="menu-options-container">
                     <div id="geral-option-container" class="menu-option-wrapper" onclick="activeGeral()">
@@ -99,8 +104,8 @@
                     <form class="information-form">
                         <div class="input-container">
                             <label>Nome de Usuário</label>
-                            <div class="input-wrapper geral">
-                                <input type="text" disabled value="Fábio Junior">
+                            <div class="input-wrapper geral" id="nomeD">
+                                <input type="text" disabled value="">
                                 <div class="input-icon-wrapper" onclick="activeGerenciar(); editUser();">
                                     <i class="fas fa-pencil-alt"></i>
                                 </div>
@@ -108,8 +113,8 @@
                         </div>
                         <div class="input-container">
                             <label>Email</label>
-                            <div class="input-wrapper geral">
-                                <input type="email" disabled value="fabiojr@gmail.com">
+                            <div class="input-wrapper geral" id="emailD">
+                                <input type="email" disabled value="">
                                 <div class="input-icon-wrapper" onclick="activeGerenciar(); editEmail();">                                    <i class="fas fa-pencil-alt"></i>
                                 </div>
                             </div>
@@ -135,18 +140,18 @@
                 <div id="gerenciar-container">
                     <h2 class="option-title">Gerenciar Conta</h2>
                     <form class="information-form">
-                        <div class="input-container">
+                        <!-- <div class="input-container">
                             <label>Nome de Usuário</label>
-                            <div class="input-wrapper gerenciar">
+                            <div class="input-wrapper gerenciar" id="nomeUE">
                                 <input id="username" type="text" value="Fábio Junior">
                             </div>
                         </div>
                         <div class="input-container">
                             <label>Email</label>
-                            <div class="input-wrapper gerenciar">
+                            <div class="input-wrapper gerenciar" id="emailUE">
                                 <input id="email" type="email" value="fabiojr@gmail.com">
                             </div>
-                        </div>
+                        </div> -->
                         <div class="input-container">
                             <label>Senha Atual</label>
                             <div class="input-wrapper gerenciar">
@@ -159,6 +164,12 @@
                                 <input type="password">
                             </div>
                         </div>
+                        <div class="input-container">
+                            <label>Confirmar Nova Senha</label>
+                            <div class="input-wrapper gerenciar">
+                                <input id="confirmPassword" type="password">
+                            </div>
+                        </div>
                         <div id="save-button-wrapper">
                             <div id="save-button-icon-wrapper">
                                 <i class="fas fa-pencil-alt"></i>
@@ -169,22 +180,12 @@
                 </div>
             </div>
         </div>
-        <footer>
-            <div id="footer-content">
-                <div id="logo-footer-wrapper">
-                    <a href="my-projects.html"><img src="images/logo.svg"></a>
-                </div>
-                <div id="footer-information">
-                    <h3 class="footer-title"><a href="about-us.html">Sobre nós</a></h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique tenetur at quia perferendis. Blanditiis nihil facere delectus suscipit debitis impedit, qui molestias error. Similique tenetur at quia perferendis. Blanditiis nihil facere delectus suscipit debitis impedit, qui molestias error. </p>
-                    <br>
-                    <h3 class="footer-title">Contato</h3>
-                    <p><a href="mailto: contato@affeit.com.br">contato@affeit.com.br</a></p>
-                </div>
-            </div>
-            <div id="footer-copyright">
-                <p>©2021 por Affe-It</p>
-            </div>
-        </footer>
+        <div class="notification" id="one"><h3>A senha deve ter no minimo 8 caracteres</h3></div>
+        <div class="notification" id="two"><h3>Senha alterada com sucesso</h3></div>
+        <div class="notification" id="three"><h3>Senha atual incorreta</h3></div>
+        <div class="notification" id="four"><h3>Senhas diferentes</h3></div>
     </body>
+    <script type="text/javascript" src="scripts/my-profile.js"></script>
+    <script src="./scripts/plugins/bootstrap-notify.js"></script>
+    <script src="./scripts/functions.js"></script>
 </html>

@@ -47,11 +47,19 @@ p{
     font-family: var(--text-font);
 }
 
+.container-footer {
+    height: 100%;
+}
+
 footer{
     background-color: #3f6e9c;
     padding: 1rem 6rem;
-    position: relative;
+    position: absolute;
     bottom: 0;
+}
+
+.footer-relative {
+    position: relative;
 }
 
 #footer-content{

@@ -19,6 +19,10 @@ const ProjectSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
+    image: {
+        type: String,
+        default: ""
+    },
     createdAt:{
       type: Date,
       default: Date.now,  

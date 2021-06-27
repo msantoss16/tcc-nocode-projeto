@@ -1,8 +1,10 @@
 const express = require('express');
 const authMiddleare = require('../middlewares/auth');
 const path = require('path');
+const multer = require('multer');
 const fs = require('fs');
 const request = require('request');
+const upload = multer({ dest: 'uploads/images/'});
 
 const Project = require('../models/project');
 
@@ -10,7 +12,11 @@ const tempJson2 = require('../json/tempJson');
 
 const router = express.Router();
 
-router.use(authMiddleare);
+function maybe(fn) { 
+    return function(req, res, next) { if (req.path.slice(0, 7)=== '/image/' && req.method === 'GET') { next(); } else { fn(req, res, next); } } 
+} 
+
+router.use(maybe(authMiddleare));
 
 router.get('/', async(req, res) =>{  
     try {
@@ -23,6 +29,14 @@ router.get('/', async(req, res) =>{
         return res.status(400).send({ error: 'Error Loading projects' });
         
     }
+});
+
+router.post('/upload', upload.single('image'), async(req, res) => {
+    const tempPath = req.file.path;
+    const targetPath = req.file.path+path.extname(req.file.originalname).toLowerCase()
+    let filename = req.file.filename+path.extname(req.file.originalname).toLowerCase()
+    fs.rename(tempPath, targetPath, () => {});
+    return res.status(200).send({image_path: filename});
 });
 
 router.get('/:projectId', async(req, res) => {
@@ -83,13 +97,17 @@ router.post('/', async(req, res) => {
 
 });
 
+router.get('/image/:path', async(req, res) => {
+    let pathFile = path.join("../../../uploads/images", req.params.path)
+    return res.sendFile(path.join(__dirname + pathFile));
+});
+
 router.put('/:projectId', async(req, res) => {
     try {
-        const { title, subtitle, version, appCode} = req.body;
+        const { title, subtitle, version, image, appCode} = req.body;
         console.log(appCode)
         pages = JSON.stringify(appCode);
         console.log(pages)
-
         const caminho = 'userProject/'+req.userId+'/'+req.params.projectId+'.json';
 
         fs.writeFile(caminho, pages, async function(err, texto){
@@ -100,6 +118,7 @@ router.put('/:projectId', async(req, res) => {
                     title,
                     subtitle, 
                     version,
+                    image,
                     pages}, {new: true });
                         
                 return res.send(project);

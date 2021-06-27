@@ -16,14 +16,13 @@ function update(){
 
 id = localStorage.getItem('id')
 
-// axios.get(`${serverURL}auth/`+id)
-//     .then(res => {
-//         const user = res.data.user
-//         let nomeU = document.getElementById('nomeU')
-//         let emailU = document.getElementById('emailU')
-//         nomeU.innerHTML = user.name
-//         emailU.innerHTML = user.email
-//     })
-
+axios.get(`${serverURL}auth/`+id)
+    .then(res => {
+        const user = res.data.user
+        let nomeU = document.getElementById('nomeU')
+        let emailU = document.getElementById('emailU')
+        nomeU.innerHTML = user.name
+        emailU.innerHTML = user.email
+    });
 
 

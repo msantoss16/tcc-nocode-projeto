@@ -3,6 +3,7 @@ const authConfig = require('../../config/auth');
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const authMiddleare = require('../middlewares/auth');
 const crypto = require('crypto');
 const mailer = require('../../modules/mailer');
 
@@ -136,5 +137,26 @@ router.post('/reset_password', async(req, res) => {
     }
 });
 
+router.use(authMiddleare).post('/change_password/:userId', async(req, res) => {
+    const {password, newPassword} = req.body;
+
+    try{
+        const user = await User.findById(req.params.userId).select('+password');
+
+        if(!await bcrypt.compare(password, user.password))
+        return res.status(400).send({error: 'Senha atual incorreta' });
+        user.password = undefined;
+
+        user.password = newPassword;
+
+        await user.save();
+
+        res.send("Sua senha foi alterada");
+
+    } catch (err){
+        res.status(400).send({ error: 'Não foi possivel alterar a senha, tente novamente'});
+        console.log(err);
+    }
+});
 
 module.exports = app => app.use('/auth', router);

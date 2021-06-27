@@ -11,6 +11,11 @@
                 }
             },
             {
+                "icon": {
+                    "html": "i"
+                }
+            },
+            {
                 "link": {
                     "html": "a"
                 }
@@ -45,6 +50,11 @@
             {
                 "link": {
                     "html": "a"
+                }
+            },
+            {
+                "import":{
+                    "html": "link"
                 }
             },
             {

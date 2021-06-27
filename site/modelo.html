@@ -3,8 +3,11 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="css/global.css">
         <link rel="stylesheet" href="css/modelo-style.css">
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
         <script type="text/javascript" src="scripts/nav.js"></script>
         <script type="text/javascript" src="scripts/new-page-modal.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script type="text/javascript" src="scripts/base.js"></script>
         <title>Novo Projeto</title>
     </head>
     <body>
@@ -28,8 +31,8 @@
                                 <a href="my-profile.html"><img src="images/user-default-picture.jpg"></a>
                             </div>
                             <div id="user-information-container">
-                                <h3><a href="my-profile.html">Fábio Junior</a></h3>
-                                <p><a href="my-profile.html">fabiojr@gmail.com</a></p>
+                                <h3><a href="my-profile.html" id="nomeU"></a></h3>
+                                <p><a href="my-profile.html" id="emailU"></a></p>
                             </div>
                             <div id="user-arrow-container" onclick="showDropdown()">
                                 <i class="fas fa-chevron-down"></i>

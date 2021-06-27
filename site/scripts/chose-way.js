@@ -2,6 +2,10 @@ function myProfile(){
     window.location.href("/site/")
 }
 
+function choseModel() {
+    window.location.replace("chose-models.html");
+}
+
 function showModal(){
     document.getElementById('modal').style.opacity = "1";
     document.getElementById('modal').style.top = "0";

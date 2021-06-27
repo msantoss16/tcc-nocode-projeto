@@ -1,7 +1,7 @@
  {
-    "host": "smtp.gmail.com",
+    "host": "smtp.mailtrap.io",
     "port": 2525,
-    "user": "lucassilmor2021@gmail.com",
+    "user": "59abbf7c70f8dd",
     "pass": "352747ee89f786",
     "secure": "true"
 } 

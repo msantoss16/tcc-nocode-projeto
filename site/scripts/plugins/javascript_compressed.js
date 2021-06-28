@@ -825,10 +825,50 @@
 	Blockly.JavaScript.variablesDynamic = {};
 	Blockly.JavaScript.variables_get_dynamic = Blockly.JavaScript.variables_get;
 	Blockly.JavaScript.variables_set_dynamic = Blockly.JavaScript.variables_set;
-  Blockly.JavaScript.getDomWithId = function(a) {
-    let b = Blockly.JavaScript.valueToCode(a, "ID", Blockly.JavaScript.ORDER_NONE) || "''";
-    return [`document.getElementById(${b})`, Blockly.JavaScript.ORDER_MEMBER];
-  };
+	Blockly.JavaScript.getDomWithId = function(a) {
+		let b = Blockly.JavaScript.valueToCode(a, "ID", Blockly.JavaScript.ORDER_NONE) || "''";
+		return [`document.getElementById(${b})`, Blockly.JavaScript.ORDER_MEMBER];
+	};
+	Blockly.JavaScript.getInnerHTML = function(a) {
+		let b =  Blockly.JavaScript.valueToCode(a, 'element', Blockly.JavaScript.ORDER_ATOMIC);
+		return [`${b}.innerHTML`, Blockly.JavaScript.ORDER_MEMBER];
+	};
+	Blockly.JavaScript.getInnerText = function(a) {
+		let b =  Blockly.JavaScript.valueToCode(a, 'element', Blockly.JavaScript.ORDER_ATOMIC);
+		return [`${b}.innerText`, Blockly.JavaScript.ORDER_MEMBER];
+	};
+	Blockly.JavaScript.setInnerHTML = function(a) {
+		let b =  Blockly.JavaScript.valueToCode(a, 'element', Blockly.JavaScript.ORDER_ATOMIC);
+		let c = Blockly.JavaScript.valueToCode(a, 'change', Blockly.JavaScript.ORDER_ATOMIC);
+		return `${b}.innerHTML = ${c};`
+	};
+	Blockly.JavaScript.setInnerText = function(a) {
+		let b =  Blockly.JavaScript.valueToCode(a, 'element', Blockly.JavaScript.ORDER_ATOMIC);
+		let c = Blockly.JavaScript.valueToCode(a, 'change', Blockly.JavaScript.ORDER_ATOMIC);
+		return `${b}.innerText = ${c};`
+	};
+	Blockly.JavaScript.addClass	= function(a) {
+		let b =  Blockly.JavaScript.valueToCode(a, 'element', Blockly.JavaScript.ORDER_ATOMIC);
+		let c = Blockly.JavaScript.valueToCode(a, 'change', Blockly.JavaScript.ORDER_ATOMIC);
+		return `${b}.classList.add(${c});`
+	};
+	Blockly.JavaScript.removeClass = function(a) {
+		let b =  Blockly.JavaScript.valueToCode(a, 'element', Blockly.JavaScript.ORDER_ATOMIC);
+		let c = Blockly.JavaScript.valueToCode(a, 'change', Blockly.JavaScript.ORDER_ATOMIC);
+		return `${b}.classList.remove(${c});`
+	};
+	Blockly.JavaScript.setAtt = function(a) {
+		let b =  Blockly.JavaScript.valueToCode(a, 'element', Blockly.JavaScript.ORDER_ATOMIC);
+		let c = Blockly.JavaScript.valueToCode(a, 'change', Blockly.JavaScript.ORDER_ATOMIC);
+		let d = Blockly.JavaScript.valueToCode(a, 'attribute', Blockly.JavaScript.ORDER_ATOMIC);
+		return `${b}.setAttribute(${c}, ${d});`
+	};
+	Blockly.JavaScript.setStyle = function(a) {
+		let b =  Blockly.JavaScript.valueToCode(a, 'element', Blockly.JavaScript.ORDER_ATOMIC);
+		let c = Blockly.JavaScript.valueToCode(a, 'change', Blockly.JavaScript.ORDER_ATOMIC);
+		let d = Blockly.JavaScript.valueToCode(a, 'style', Blockly.JavaScript.ORDER_ATOMIC);
+		return `${b}.style.${c} = ${d};`
+	};
 	return Blockly.JavaScript;  
 }));
 //# sourceMappingURL=javascript_compressed.js.map

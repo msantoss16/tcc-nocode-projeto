@@ -382,9 +382,11 @@ fc = {
     jsonToHtml: function(tempJson, page) {
         let html = '';
         let tempcss = "";
+        let tempjs = "";
         for (pageHTML of tempJson.appCode.pages) {
             if (pageHTML.href == page) {
                 tempcss = pageHTML.css;
+                tempjs = pageHTML.js;
                 for (component of pageHTML.pageComponents) {
                     elementIndex = fc.elements.findIndex(element => {
                         if (element[Object.keys(element)[0]].id == component[Object.keys(component)[0]].id)
@@ -400,7 +402,7 @@ fc = {
             }
         }
         let Temphtml = `<html><head><title>${tempJson.title}</title><style>${tempcss}</style></head><body>`;
-        html = html + '</body></html>'
+        html = html + `<script>${tempjs}</script></body></html>`
         return (Temphtml+html);
     },
 
@@ -649,6 +651,43 @@ $('#settings-modal-button').click(function(event) {
         })
     } else {
         salvar();
+        closeSettingsModal();
+    }
+});
+
+$('#setting-modal-button-asset').click(function(event) {
+    event.preventDefault();
+    tempJson.title = $('#project-name').val();
+    tempJson.subtitle = $('#project-description').val();
+    if (fc.imageChanged) {
+        let formData = new FormData();
+        let imagefile = document.querySelector('#editImage');
+        formData.append("image", imagefile.files[0]);
+        axios.post(`${serverURL}projects/upload`, formData, token)
+        .then(response => {
+            console.log(response.data.image_path);
+            tempJson.image = response.data.image_path;
+            salvar();
+            axios.post(`${serverURL}assets/${getUrlParameter('projeto')}`, tempJson, token)
+            .then(response => {
+                console.log(response);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+            closeSettingsModal();
+        }) .catch(error => {
+            console.log(error);
+        })
+    } else {
+        salvar();
+        axios.post(`${serverURL}assets/${getUrlParameter('projeto')}`, tempJson, token)
+        .then(response => {
+            console.log(response);
+        })
+        .catch(err => {
+            console.log(err);
+        })
         closeSettingsModal();
     }
 });

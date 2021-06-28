@@ -6,10 +6,10 @@
     <link rel="stylesheet" type="text/css" href="css/global.css">
     <link rel="stylesheet" type="text/css" href="css/documentation-style.css">
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous"/>
     <script type="text/javascript" src="scripts/nav.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script type="text/javascript" src="scripts/base.js"></script>
 </head>
 <body>
     <nav>
@@ -53,64 +53,254 @@
         <div id="window-left">
             <div id="index-container">
                 <ul>
-                    <li class="index-title"><a href="">Documentação</a></li>
-                    <li class="index-title"><a href="">titulo</a></li>
-                    <li class="index-subtitle"><a href="">subtitulo</a></li>
-                    <li class="index-subtitle"><a href="">subtitulo</a></li>
-                    <li class="index-subtitle"><a href="">subtitulo</a></li>
-                    <li class="index-subtitle"><a href="">subtitulo</a></li>
-                    <li class="index-subtitle"><a href="">subtitulo</a></li>
-                    <li class="index-title"><a href="">titulo</a></li>
-                    <li class="index-subtitle"><a href="">subtitulo</a></li>
-                    <li class="index-subtitle"><a href="">subtitulo</a></li>
-                    <li class="index-subtitle"><a href="">subtitulo</a></li>
-                    <li class="index-subtitle"><a href="">subtitulo</a></li>
-                    <li class="index-subtitle"><a href="">subtitulo</a></li>
-                    <li class="index-title"><a href="">titulo</a></li>
-                    <li class="index-subtitle"><a href="">subtitulo</a></li>
-                    <li class="index-subtitle"><a href="">subtitulo</a></li>
-                    <li class="index-subtitle"><a href="">subtitulo</a></li>
-                    <li class="index-subtitle"><a href="">subtitulo</a></li>
-                    <li class="index-subtitle"><a href="">subtitulo</a></li>
-                    <li class="index-title"><a href="">titulo</a></li>
-                    <li class="index-subtitle"><a href="">subtitulo</a></li>
-                    <li class="index-subtitle"><a href="">subtitulo</a></li>
-                    <li class="index-subtitle"><a href="">subtitulo</a></li>
-                    <li class="index-subtitle"><a href="">subtitulo</a></li>
-                    <li class="index-subtitle"><a href="">subtitulo</a></li>
+                    <li class="index-title"><a href="#documentacao">Documentação</a></li>
+                    <li class="index-title"><a href="#elementos">Elementos</a></li>
+                    <li class="index-subtitle"><a href="#title">Title</a></li>
+                    <li class="index-subtitle"><a href="#subtitle">subtitulo</a></li>
+                    <li class="index-subtitle"><a href="#p">Paragraph</a></li>
+                    <li class="index-subtitle"><a href="#link">Link</a></li>
+                    <li class="index-subtitle"><a href="#btn">button</a></li>
+                    <li class="index-subtitle"><a href="#img">Image</a></li>
+                    <li class="index-subtitle"><a href="#input">Input</a></li>
+                    <li class="index-subtitle"><a href="#label">label</a></li>
+                    <li class="index-subtitle"><a href="#container">Container</a></li>
+                    <li class="index-subtitle"><a href="#form">Formulary</a></li>
+                    <li class="index-subtitle"><a href="#span">SpanDocument</a></li>
+                    <li class="index-subtitle"><a href="#table">Board</a></li>
+                    <li class="index-subtitle"><a href="#line">Line</a></li>
+                    <li class="index-subtitle"><a href="#svg">SvgContainer</a></li>
+                    <li class="index-subtitle"><a href="#timer">Timer</a></li>
+                    <li class="index-subtitle"><a href="#progress">ProgressTask</a></li>
+                    <li class="index-subtitle"><a href="#center">Centralize</a></li>
+                    <li class="index-subtitle"><a href="#select">DDList</a></li>
+                    <li class="index-subtitle"><a href="#option">OptionsList</a></li>
+                    <li class="index-subtitle"><a href="#iframe">InlineFrame</a></li>
+                    <li class="index-subtitle"><a href="#section">DocSection</a></li>
+                    <li class="index-subtitle"><a href="#footer">SectionFooter</a></li>
+                    <li class="index-subtitle"><a href="#tbody">BoardGroup</a></li>
+                    <li class="index-subtitle"><a href="#td">BoardCell</a></li>
+                    <li class="index-subtitle"><a href="#tfoot">BoardFooter</a></li>
+                    <li class="index-subtitle"><a href="#th">Bh</a></li>
+                    <li class="index-subtitle"><a href="#thead">Bhead</a></li>
+                    <li class="index-subtitle"><a href="#colgroup">ColGrp</a></li>
+                    <li class="index-subtitle"><a href="#col">ColPrp</a></li>
+                    <li class="index-subtitle"><a href="#dl">Dlt</a></li>
+                    <li class="index-subtitle"><a href="#dt">Dtl</a></li>
+                    <li class="index-subtitle"><a href="#ol">Olist</a></li>
+                    <li class="index-subtitle"><a href="#tr">Bline</a></li>
+                    <li class="index-subtitle"><a href="#ul">UnorderedList</a></li>
+
+                    <li class="index-subtitle"><a href="#estilos">Estilos</a></li>
+                    <li class="index-subtitle"><a href="#alinharConteudo">AlinharConteudo</a></li>
+                    <li class="index-subtitle"><a href="#alinharItens">alinharItens </a></li>
+                    <li class="index-subtitle"><a href="#alinhar-se">Alinhar-se </a></li>
+                    <li class="index-subtitle"><a href="#tudo">Tudo </a></li>
+                    <li class="index-subtitle"><a href="#animacao">Animação </a></li>
+                    <li class="index-subtitle"><a href="#atraso-animacao">Atraso-animação </a></li>
+                    <li class="index-subtitle"><a href="#direcao-animacao">Direção-animação </a></li>
+                    <li class="index-subtitle"><a href="#duracao-animacao">Duração-animação </a></li>
+                    <li class="index-subtitle"><a href="#preenchimento-animacao">Preenchimento-animação </a></li>
+                    <li class="index-subtitle"><a href="#contador-interacoes-animacao">Contador-interações-animação </a></li>
+                    <li class="index-subtitle"><a href="#nome-animacao">Nome-animação </a></li>
+                    <li class="index-subtitle"><a href="#estado-animacao">Estado-animação </a></li>
+                    <li class="index-subtitle"><a href="#curva-velocidade-animacao">Curva-velocidade-animacão </a></li>
+                    <li class="index-subtitle"><a href="#visibilidade-face-posterior">Visibilidade-face-posterior </a></li>
+                    <li class="index-subtitle"><a href="#plano-de-fundo">Plano-de-fundo </a></li>
+                    <li class="index-subtitle"><a href="#ligacaoFundo">LigaçãoFundo </a></li>
+                    <li class="index-subtitle"><a href="#mesclagem-fundo">Mesclagem-fundo </a></li>
+                    <li class="index-subtitle"><a href="#limite-fundo">Limite-fundo </a></li>
+                    <li class="index-subtitle"><a href="#cor-fundo">Cor-fundo </a></li>
+                    <li class="index-subtitle"><a href="#imagem-fundo">Imagem-fundo </a></li>
+                    <li class="index-subtitle"><a href="#origem-imagem-fundo">Origem-imagem-fundo </a></li>
+                    <li class="index-subtitle"><a href="#posicao-imagem-fundo">Posição-imagem-fundo </a></li>
+                    <li class="index-subtitle"><a href="#repeticao-imagem-fundo">Repetição-imagem-fundo </a></li>
+                    <li class="index-subtitle"><a href="#tamanho-imagem-fundo">Tamanho-imagem-fundo </a></li>
+                    <li class="index-subtitle"><a href="#borda">Borda </a></li>
+                    <li class="index-subtitle"><a href="#borda-inferior">Borda-inferior </a></li>
+                    <li class="index-subtitle"><a href="#cor-borda-inferior">Cor-borda-inferior </a></li>
+                    <li class="index-subtitle"><a href="#raio-borda-inferior-esquerda">Raio-borda-inferior-esquerda </a></li>
+                    <li class="index-subtitle"><a href="#raio-borda-inferior-direira">Raio-borda-inferior-direita </a></li>
+                    <li class="index-subtitle"><a href="#estilo-borda-inferior">Estilo-borda-inferior </a></li>
+                    <li class="index-subtitle"><a href="#largura-borda-inferior">Largura-borda-inferior </a></li>
+                    <li class="index-subtitle"><a href="#separacao-borda">Separação-borda </a></li>
+                    <li class="index-subtitle"><a href="#imagem-borda-inicio">Imagem-borda-inicio </a></li>
+                    <li class="index-subtitle"><a href="#repeticao-imagem-borda">Repetição-imagem-borda </a></li>
+                    <li class="index-subtitle"><a href="#corte-imagem-borda">Corte-imagem-borda </a></li>
+                    <li class="index-subtitle"><a href="#raiz-imagem-borda">Raiz-imagem-borda </a></li>
+                    <li class="index-subtitle"><a href="#largura-imagem-borda">Largura-imagem-borda </a></li>
+                 
+
                 </ul>
             </div>
         </div>
         <div id="window-right">
-            <h2 class="doc-title">Título</h2>
-            <h3 class="doc-subtitle">Subtítulo</h3>
-            <p class="doc-text">Gadslklkd flkajf oiqeejf oi ajdsoif qeoij fwdoesij foi dsjoiew jf oiewj foiwdsvlkrewnm gown oivh osadn woehvo idwhsj o vh ewroih iopweh ivhsdwoi gfhwreoi hg9iouwsdfhgowdhnoig hweriuh owuidfh owerh f owieuh fwoiuh foiwh iouwh</p>
-            <img class="doc-image" src=".png">
-            <h2 class="doc-title">Título</h2>
-            <h3 class="doc-subtitle">Subtítulo</h3>
-            <p class="doc-text">Gadslklkd flkajf oiqeejf oi ajdsoif qeoij fwdoesij foi dsjoiew jf oiewj foiwdsvlkrewnm gown oivh osadn woehvo idwhsj o vh ewroih iopweh ivhsdwoi gfhwreoi hg9iouwsdfhgowdhnoig hweriuh owuidfh owerh f owieuh fwoiuh foiwh iouwh</p>
+            <h2 class="doc-title" id="documentacao">Documentação</h2>
+            <p class="doc-text">está documentação é uma manual de uso para seja introduzido ao usuário como funciona os elementos, estilos e do seu projeto.
+            </p>
+            <h2 class="doc-title" id="elementos">Elementos</h2>
+            <p class="doc-text">Os elementos são utilizados para compor o seu programa. Todos são baseados nas tags HTML.</p>
+            <h3 class="doc-subtitle" id="title">Title</h3>
+            <p class="doc-text">HTML: H1</br>O elemento Title indíca um título no seu programa.</p>
+            <h3 class="doc-subtitle" id="subtitle">Subtitle</h3>
+            <p class="doc-text">HTML: H3</br>O elemento Subtitle indíca um subtítulo no seu programa.</p>
+            <h3 class="doc-subtitle" id="p">Paragraph</h3>
+            <p class="doc-text">HTML: p</br>O elemento	Paragraph indíca um paragrafo no seu programa.</p>
+            <h3 class="doc-subtitle" id="link">Link</h3>
+            <p class="doc-text">HTML: a</br>O elemento Link indíca um link no seu programa.</p>
+            <h3 class="doc-subtitle" id="btn">button</h3>
+            <p class="doc-text">HTML: button</br>O elemento Button indíca um botão no seu programa.</p>
+            <h3 class="doc-subtitle" id="img">Image</h3>
+            <p class="doc-text">HTML: img</br>O elemento image indíca uma imagem no seu programa.</p>
+            <h3 class="doc-subtitle" id="input">Input</h3>
+            <p class="doc-text">HTML: input</br>O elemento input indíca uma formulario no seu programa.</p>
+            <h3 class="doc-subtitle" id="label">label</h3>
+            <p class="doc-text">HTML: label</br>O elemento label indíca um item em uma interface.</p>
+            <h3 class="doc-subtitle" id="container">Container</h3>
+            <p class="doc-text">HTML: div</br>O elemento container indíca um container no seu programa.</p>
+            <h3 class="doc-subtitle" id="form">Formulary</h3>
+            <p class="doc-text">HTML: form</br>O elemento Formulary indíca um formualrio no seu programa.</p>
+            <h3 class="doc-subtitle" id="span">SpanDocument </h3>
+            <p class="doc-text">HTML: span</br>O elemento span é um elemento HTML inline no seu programa.</p>
+            <h3 class="doc-subtitle" id="table">Board</h3>
+            <p class="doc-text">HTML: table</br>O elemento board indíca uma tabela no seu programa.</p>
+            <h3 class="doc-subtitle" id="line">Line</h3>
+            <p class="doc-text">HTML: li</br>O elemento line indíca uma liha de uma tabela no seu programa.</p>
+            <h3 class="doc-subtitle" id="svg">SvgContainer</h3>
+            <p class="doc-text">HTML: svg</br>O elemento svg é um contêiner que define um novo sistema de coordenadas e janela de visualização no seu programa.</p>
+            <h3 class="doc-subtitle" id="timer">Timer</h3>
+            <p class="doc-text">HTML: time</br>O elemento time é um objeto usado para rodar uma função a cada intervalo X de tempo no seu programa.</p>
+            <h3 class="doc-subtitle" id="progress">ProgressTask</h3>
+            <p class="doc-text">HTML: progress</br>O elemento progress exibe um indicador que mostra o progresso de conclusão de uma tarefa, normalmente exibido como uma barra de progresso no seu programa.</p>
+            <h3 class="doc-subtitle" id="center">Centralize</h3>
+            <p class="doc-text">HTML: center</br>O elemento center é usado para alinhar o texto ao centro no seu programa.</p>
+            <h3 class="doc-subtitle" id="select">DDList</h3>
+            <p class="doc-text">HTML: select</br>O elemento ddList é usado para criar uma lista suspensa no seu programa.</p>
+            <h3 class="doc-subtitle" id="option">OptionsList</h3>
+            <p class="doc-text">HTML: option</br>O elemento O OptionsList define uma opção em um DDList no seu programa.</p>
+            <h3 class="doc-subtitle" id="iframe">InlineFrame</h3>
+            <p class="doc-text">HTML: iframe</br>O elemento InlineFrame é usado para embutir outro documento dentro do documento atual no seu programa.</p>
+            <h3 class="doc-subtitle" id="nav">NavLink</h3>
+            <p class="doc-text">HTML: nav</br>O elemento NavLink define um conjunto de links de navegação no seu programa.</p>
+            <h3 class="doc-subtitle" id="section">DocSection</h3>
+            <p class="doc-text">HTML: section</br>O elemento DocSection define uma seção em um documento no seu programa.</p>
+            <h3 class="doc-subtitle" id="footer">SectionFooter</h3>
+            <p class="doc-text">HTML: footer</br>O elemento SectionFooter define um rodapé para um documento ou seção no seu programa.</p>
+            <h3 class="doc-subtitle" id="tbody">BoardGroup</h3>
+            <p class="doc-text">HTML: tbody</br>O elemento BoardGroup é usada para agrupar o conteúdo do corpo em uma tabela no seu programa.</p>
+            <h3 class="doc-subtitle" id="td">BoardCell</h3>
+            <p class="doc-text">HTML: td</br>O elemento BoardCell Define uma célula de dados em uma tabela no seu programa.</p>
+            <h3 class="doc-subtitle" id="tfoot">BoardFooter</h3>
+            <p class="doc-text">HTML: tfoot</br>O elemento BoardFooter é usado para agrupar o conteúdo do rodapé em uma tabela no seu programa.</p>
+            <h3 class="doc-subtitle" id="th">Bh</h3>
+            <p class="doc-text">HTML: th</br>O elemento Bh define uma célula de cabeçalho em uma tabela no seu programa.</p>
+            <h3 class="doc-subtitle" id="thead">Bhead</h3>
+            <p class="doc-text">HTML: thead</br>O elemento Bhead é usado para agrupar o conteúdo do cabeçalho em uma tabela no seu programa.</p>
+            <h3 class="doc-subtitle" id="colgroup">ColGrp</h3>
+            <p class="doc-text">HTML: colgroup</br>O elemento ColGrp especifica um grupo de uma ou mais colunas em uma tabela para formatação no seu programa.</p>
+            <h3 class="doc-subtitle" id="col">ColPrp</h3>
+            <p class="doc-text">HTML: col</br>O elemento ColPrp especifica as propriedades da coluna para cada coluna dentro de um elemento ColGrp no seu programa.</p>
+            <h3 class="doc-subtitle" id="dl">Dlt</h3>
+            <p class="doc-text">HTML: dl</br>O elemento Dlt define uma lista de descrição no seu programa.</p>
+            <h3 class="doc-subtitle" id="dt">Dtl</h3>
+            <p class="doc-text">HTML: dt</br>O elemento Dtl define um termo / nome em uma lista de descrição no seu programa.</p>
+            <h3 class="doc-subtitle" id="ol">Olist</h3>
+            <p class="doc-text">HTML: ol</br>O elemento Olist define uma lista ordenada no seu programa.</p>
+            <h3 class="doc-subtitle" id="tr">Bline</h3>
+            <p class="doc-text">HTML: tr</br>O elemento Bline define uma linha em uma tabela no seu programa.</p>
+            <h3 class="doc-subtitle" id="ul">UnorderedList</h3>
+            <p class="doc-text">HTML: ul</br>O elemento UnorderedList define uma lista não ordenada (com marcadores) no seu programa.</p>
+
+
+            <h3 class="doc-title" id="estilos">Estilos</h3>
+            <p class="doc-text">Os Estilos são regras de estilo aplicadas aos elementos, são todos baseados em atributos CSS</p>
+            <h2 class="doc-subtitle">alinharConteudo</h2>
+            <p class="doc-text" id="alinharConteudo">CSS: align-text</br>Syntax: stretch|center|flex-start|flex-end|space-between|space-around|initial|inherit</br>Especifica o alinhamento entre as linhas dentro de um contêiner flexível quando os itens não ocupam todo o espaço disponível</p>
+            <h2 class="doc-subtitle">alinharItens</h2>
+            <p class="doc-text" id="alinharItens">CSS: align-self</br>auto|stretch|center|flex-start|flex-end|baseline|initial|inherit</br>Especifica o alinhamento para itens dentro de um contêiner flexível</p>
+            <h2 class="doc-subtitle">alinhar-se </h2>
+            <p class="doc-text" id="alinhar-se">CSS: align-self</br>Syntax: auto|stretch|center|flex-start|flex-end|baseline|initial|inherit </br>Especifica o alinhamento para itens selecionados dentro de um contêiner flexível </p>
+            <h2 class="doc-subtitle">tudo </h2>
+            <p class="doc-text" id="tudo">CSS: all </br>Syntax: initial|inherit|unset</br>Redefine todas as propriedades (exceto unicode-bidi e direção)</p>
+            <h2 class="doc-subtitle">Animação </h2>
+            <p class="doc-text" id="animacao">CSS: animation</br>Syntax: name|duration|timing-function|delay|iteration-count|direction|fill-mode|play-state</br>Uma propriedade abreviada para todas as propriedades de animação</p>
+            <h2 class="doc-subtitle">Atraso-Animação</h2>
+            <p class="doc-text" id="atraso-animacao">CSS: animation-delay</br>Syntax:time|initial|inherit</br> Especifica um atraso para o início de uma animação</p>
+            <h2 class="doc-subtitle">Direção-Animação </h2>
+            <p class="doc-text" id="direcao-animacao">CSS: animation-direction</br>Syntax: normal|reverse|alternate|alternate-reverse|initial|inherit </br>Especifica se a animação deve ou não ser reproduzida em reverso em ciclos alternados</p>  
+            <h2 class="doc-subtitle">Duração-Animação </h2>
+            <p class="doc-text" id="duracao-animacao">CSS: animation-duration</br>Syntax: time|initial|inherit</br>Especifica quantos segundos ou milissegundos uma animação leva para ser concluída </p>  
+            <h2 class="doc-subtitle">Preenchimento-Animação </h2>
+            <p class="doc-text" id="preenchimento-animacao">CSS: animation-fill-mode</br>Syntax: none|forwards|backwards|both|initial|inherit </br> Especifica um estilo para o elemento quando a animação não está sendo reproduzida (antes de começar, depois de terminar ou ambos)</p>  
+            <h2 class="doc-subtitle">Contador-Interações-Animação </h2>
+            <p class="doc-text" id="contador-interacoes-animacao">CSS: animation-iteration-count</br>Syntax: number|infinite|initial|inherit </br>Especifica quantas vezes uma animação deve ser reproduzida</p>  
+            <h2 class="doc-subtitle">Nome-Animação</h2>
+            <p class="doc-text" id="nome-animacao">CSS: animation-name</br>Syntax: keyframename|none|initial|inherit </br> Nome da animação</p>  
+            <h2 class="doc-subtitle">Estado-Animação</h2>
+            <p class="doc-text" id="estado-animacao">CSS: animation-play-state </br>Syntax: paused|running|initial|inherit </br>Especifica se a animação está em execução ou pausada </p>  
+            <h2 class="doc-subtitle">Curva-Velocidade-Animação </h2>
+            <p class="doc-text" id="curva-velocidade-animacao">CSS: animation-timing-function </br>Syntax: linear|ease|ease-in|ease-out|ease-in-out|step-start|step-end|steps(int,start|end)|cubic-bezier(n,n,n,n)|initial|inherit </br>Especifica a curva de velocidade da animação</p>  
+            <h2 class="doc-subtitle">Visibilidade-Face-Posterior</h2>
+            <p class="doc-text" id="visibilidade-face-posterior">CSS: backface-visibility </br>Syntax: visible|hidden|initial|inherit </br>Define se a face posterior de um elemento deve ou não ser visível quando de frente para o usuário </p>  
+            <h2 class="doc-subtitle">Plano-de-Fundo</h2>
+            <p class="doc-text" id="plano-de-fundo">CSS: background </br>Syntax: color|image|position|size|repeat|origin|clip|attachment|initial|inherit </br>Uma propriedade abreviada para todas as propriedades de plano de fundo </p>  
+            <h2 class="doc-subtitle">LigaçãoFundo </h2>
+            <p class="doc-text" id="ligacaoFundo">CSS: background-attachment </br>Syntax: scroll|fixed|local|initial|inherit </br> Especifica se as imagens de fundo são fixas ou rolam com o resto da página</p>  
+            <h2 class="doc-subtitle">Mesclagem-Fundo</h2>
+            <p class="doc-text" id="mesclagem-fundo">CSS: background-blend-mode </br>Syntax: normal|multiply|screen|overlay|darken|lighten|color-dodge|saturation|color|luminosity </br>Especifica o modo de mesclagem de cada camada de fundo (cor / imagem)</p>  
+            <h2 class="doc-subtitle">Limite-Fundo </h2>
+            <p class="doc-text" id="limite-fundo">CSS: background-clip </br>Syntax: border-box|padding-box|content-box|initial|inherit </br>Define até onde o fundo (cor ou imagem) deve se estender dentro de um elemento </p>
+        
+            <h2 class="doc-subtitle">Cor-Fundo </h2>
+            <p class="doc-text" id="cor-fundo">CSS:  background-color</br>Syntax: color|transparent|initial|inherit </br> Especifica a cor de fundo de um elemento</p>  
+            <h2 class="doc-subtitle">Imagem-Fundo </h2>
+            <p class="doc-text" id="imagem-fundo">CSS: background-image </br>Syntax: url|none|initial|inherit </br>Especifica uma ou mais imagens de fundo para um elemento </p>  
+            <h2 class="doc-subtitle">Origem-Imagem-Fundo </h2>
+            <p class="doc-text" id="origem-imagem-fundo">CSS: background-origin </br>Syntax: padding-box|border-box|content-box|initial|inherit</br>Especifica a posição de origem de uma imagem de fundo </p>  
+            <h2 class="doc-subtitle">Posição-Imagem-Fundo </h2>
+            <p class="doc-text" id="posicao-imagem-fundo">CSS: background-origin </br>Syntax: value </br> Especifica a posição de origem de uma imagem de fundo</p>  
+            <h2 class="doc-subtitle">Repetição-Imagem-Fundo </h2>
+            <p class="doc-text" id="repeticao-imagem-fundo">CSS: background-repeat </br>Syntax: repeat|repeat-x|repeat-y|no-repeat|initial|inherit </br>Define a repetição da imagem do plano de fundo </p>  
+            <h2 class="doc-subtitle">Tamanho-Imagem-Fundo</h2>
+            <p class="doc-text" id="tamanho-imagem-fundo">CSS: background-size </br>Syntax: lenght|auto|cover|contain|initial|inherit </br> Especifica o tamanho das imagens de fundo</p>  
+            <h2 class="doc-subtitle">Borda </h2>
+            <p class="doc-text" id="borda">CSS: border </br>Syntax: border-width|border-style|border-color|initial|inherit </br>Uma propriedade abreviada para estilizar a borda de um elemento </p>  
+            <h2 class="doc-subtitle"> Borda-Inferior</h2>
+            <p class="doc-text" id="borda-inferior">CSS: background-bottom </br>Syntax: border-width border-style border-color|initial|inheritt </br>Uma propriedade abreviada para estilizar a borda inferior de um elemento </p>  
+            <h2 class="doc-subtitle">Cor-Borda-Inferior</h2>
+            <p class="doc-text" id="cor-borda-inferior">CSS: background-bottom-color </br>Syntax: color|transparent|initial|inherit </br>Uma propriedade abreviada para estilizar a borda inferior de um elemento </p>  
+            <h2 class="doc-subtitle">Raio-Borda-Inferior-Esquerda </h2>
+            <p class="doc-text" id="raio-borda-inferior-esquerda">CSS: border-bottom-left-radius </br>Syntax: length|%|initial|inherit </br>Define o raio do canto inferior esquerdo </p>  
+            <h2 class="doc-subtitle">Raio-Borda-Inferior-Direita</h2>
+            <p class="doc-text" id="raio-borda-inferior-direira">CSS: border-bottom-right-radius </br>Syntax: length|%|initial|inherit </br>Define o raio do canto inferior direito </p>  
+            <h2 class="doc-subtitle">Estilo-Borda-Inferior </h2>
+            <p class="doc-text" id="estilo-borda-inferior">CSS: border-bottom-style </br>Syntax: none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset|initial|inherit </br> Define o estilo da borda inferior</p>  
+            <h2 class="doc-subtitle">Largura-Borda-Inferior </h2>
+            <p class="doc-text" id="largura-borda-inferior">CSS: border-bottom-width </br>Syntax: lenght|medium|thin|thick|initial|inherit </br>Define a largura da borda inferior</p>  
+            <h2 class="doc-subtitle">Separação-Borda </h2>
+            <p class="doc-text" id="separacao-borda">CSS: border-collapse </br>Syntax: separate|collapse|initial|inherit </br>Define se as bordas da tabela devem ser recolhidas em uma única borda ou separadas </p>  
+            <h2 class="doc-subtitle">Cor-Borda </h2>
+            <p class="doc-text" id="cor-borda">CSS: border-color </br>Syntax: color|transparent|initial|inherit </br>Define a cor das quatro bordas </p>  
+            <h2 class="doc-subtitle">Separação-Borda </h2>
+            <p class="doc-text" id="separacao-borda">CSS: border-image </br>Syntax: source|slice|width|outset|repeat|initial|inherit </br>Uma propriedade abreviada para todas propriedades de borda de imagem </p>  
+            <h2 class="doc-subtitle">Imagem-Borda-Inicio </h2>
+            <p class="doc-text" id="imagem-borda-inicio">CSS: border-image-outset </br>Syntax: length|number|initial|inherit </br>O largura da borda que se estende além da caixa </p>  
+            <h2 class="doc-subtitle">Repetição-Imagem-Borda </h2>
+            <p class="doc-text" id="repeticao-imagem-borda">CSS: border-image-repeat </br>Syntax: stretch|repeat|round|initial|inherit </br>Especifica se a imagem da borda deve ser repetida, arredondada ou esticada</p>  
+            <h2 class="doc-subtitle">Corte-Imagem-Borda</h2>
+            <p class="doc-text" id="corte-imagem-borda">CSS: border-image-slice </br>Syntax: number|%|fill|initial|inherit </br> Forma de corte da imagem da borda</p>  
+            <h2 class="doc-subtitle">Raiz-Imagem-Borda </h2>
+            <p class="doc-text" id="raiz-imagem-borda">CSS: border-image-source </br>Syntax: url|none|initial|inherit </br>O caminho para a imagem a ser usado como borda</p>  
+            <h2 class="doc-subtitle">Largura-Imagem-Borda </h2>
+            <p class="doc-text" id="largura-imagem-borda">CSS: border-image-width </br>Syntax: number|lenght|%|auto|initial|inherit</br>Especifica a largura da imagem da borda </p>   
+
+
         </div>
     </div>
-    <footer>
-		<div id="footer-content">
-			<div id="logo-footer-wrapper">
-				<a href="index.html"><img src="images/logo.svg"></a>
-			</div>
-			<div id="footer-information">
-				<h3 class="footer-title"><a href="about-us.html">Sobre nós</a></h3>
-				<p>o Affe-It é uma empresa iniciante e está entrando no mercado de trabalho nessa área de tecnologia e informática, nós somos uma empresa de muita competência de disciplina e sempre disposta a inovações e evoluções.</p>
-				<br>
-				<h3 class="footer-title">Contato</h3>
-				<p><a href="mailto: contato@affeit.com.br">contato@affeit.com.br</a></p>
-			</div>
-		</div>
-		<div id="footer-copyright">
-			<p>©2021 por Affe-It</p>
-		</div>
-	</footer>
-    <script>
-        if (document.querySelector('body').offsetHeight > window.innerHeight)
-            document.querySelector('footer').classList.add('footer-relative');
-    </script>
+
 </body>
+<script src="./scripts/base.js"></script>
+
 </html>
+
+            <!--  <h2 class="doc-subtitle"> </h2>
+            <p class="doc-text">CSS:  </br>Syntax:  </br> </p> -->   

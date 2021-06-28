@@ -4,12 +4,13 @@
         <link rel="stylesheet" href="css/plugins/dracula.css">
         <link rel="stylesheet" href="css/global.css">
         <link rel="stylesheet" href="css/blockyjs.css">
-        <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+         <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-                
+        
         <script type="text/javascript" src="scripts/nav.js"></script>
         <script type="text/javascript" src="scripts/base.js"></script>
+
         <title>Blockly Js</title>
     </head>
     <body>
@@ -124,7 +125,6 @@
               <block type="controls_flow_statements"></block>
             </category>
             <category id="catMath" colour="230" name="Math">
-              <block type="dom_getfromId"></block>
               <block type="math_number"></block>
               <block type="math_arithmetic">
                 <value name="A">
@@ -388,12 +388,18 @@
             <category id="catVariables" colour="330" custom="VARIABLE" name="Variables"></category>
             <category id="catFunctions" colour="290" custom="PROCEDURE" name="Functions"></category>
             <category id="catDomDocuments" colour="20" name="DOM Documents">
-              <block type="getDomWithId">
-
-              </block>
+              <block type="getDomWithId"></block>
+              <block type="getInnerHTML"></block>
+              <block type="setInnerHTML"></block>
+              <block type="getInnerText"></block>
+              <block type="addClass"></block>
+              <block type="removeClass"></block>
+              <block type="setAtt"></block>
+              <block type="setStyle"></block>
             </category>
           </xml>
           <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+         
           <script src="https://unpkg.com/@highlightjs/cdn-assets@11.0.1/highlight.min.js"></script>
           <script src="https://unpkg.com/@highlightjs/cdn-assets@11.0.1/languages/go.min.js"></script>
           <script src="https://unpkg.com/blockly/blockly.min.js"></script>

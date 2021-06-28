@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
 router.get('/:assetId/:projectId', async (req, res) => {
     try {
         const assets = await Asset.findById(req.params.assetId);
-        const caminho = 'userProject/' + req.userId + '/' + req.params.projectId + '.json';
+        const caminho = 'userProject/' + assets.user + '/' + req.params.projectId + '.json';
 
         fs.readFile(caminho, async function (err, data) {
             if (err) {
@@ -39,6 +39,7 @@ router.get('/:assetId/:projectId', async (req, res) => {
                 return res.send({assets, data});
             }
         });
+
 
     } catch (error) {
         console.log(error)
@@ -70,12 +71,12 @@ router.post('/:projectId', async (req, res) => {
 
     }
 });
-
+    
 
 router.put('/:assetId', async (req, res) => {
     try {
         const { title, subtitle, version } = req.body;
-        
+
         const asset = await Asset.findByIdAndUpdate(req.params.assetId, {
             title,
             subtitle,
@@ -101,7 +102,6 @@ router.delete('/:assetId', async (req, res) => {
         return res.status(400).send({ error: 'Error Deleting asset' });
     }
 });
-
 
 router.put('/shared/:assetId', async (req, res) => {
     try {

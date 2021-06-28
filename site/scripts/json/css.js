@@ -28,7 +28,6 @@ cssComponents = {
     },
 
     "animacao": {
-
         "name": "Animação",
         "css": "animation",
         "description": "Uma propriedade abreviada para todas as propriedades de animação",
@@ -477,7 +476,7 @@ cssComponents = {
     "repetiçãoImagemBorda": {
         "name": "Repetição-Imagem-Borda",
         "css": "border-image-repeat",
-        "description": "border-image-repeat",
+        "description": "Especifica se a imagem da borda deve ser repetida, arredondada ou esticada",
         "syntax": "stretch|repeat|round|initial|inherit",
     },
 

@@ -6,3 +6,4 @@ APIScript/usersContent/
 APIScript/usersContent/*
 api/node_modules/*
 api/src/config/*
+api/src/uploads/images/*

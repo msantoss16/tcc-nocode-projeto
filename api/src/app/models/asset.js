@@ -14,6 +14,10 @@ const AssetSchema = new mongoose.Schema({
         ref: 'User',
         require: true,
     },
+    image: {
+        type: String,
+        default: ""
+    },
     project: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Project',
@@ -40,4 +44,4 @@ const AssetSchema = new mongoose.Schema({
 });
 const Asset = mongoose.model('Asset', AssetSchema);
 
-module.exports = Asset;
+module.exports = Asset;         

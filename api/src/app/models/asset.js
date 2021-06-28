@@ -14,6 +14,10 @@ const AssetSchema = new mongoose.Schema({
         ref: 'User',
         require: true,
     },
+    image: {
+        type: String,
+        default: ""
+    },
     project: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Project',

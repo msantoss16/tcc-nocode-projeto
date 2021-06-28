@@ -30,6 +30,7 @@ axios.get(`${serverURL}projects/`, token)
         document.getElementById('titulo').innerHTML = a[0].title;
         document.getElementById('descricao').innerHTML = a[0].subtitle;
         document.getElementById('dataC').innerHTML = dataFormatada;
+        document.querySelector('#project-preview-wrapper > img').setAttribute('src', `${serverURL}projects/image/${a[0].image}`)
     }
 }) .catch((error) => {
     console.log(error)

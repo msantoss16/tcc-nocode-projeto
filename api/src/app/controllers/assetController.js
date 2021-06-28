@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
 router.get('/:assetId/:projectId', async (req, res) => {
     try {
         const assets = await Asset.findById(req.params.assetId);
-        const caminho = 'userProject/' + req.userId + '/' + req.params.projectId + '.json';
+        const caminho = 'userProject/' + assets.user + '/' + req.params.projectId + '.json';
 
         fs.readFile(caminho, async function (err, data) {
             if (err) {
@@ -71,7 +71,7 @@ router.post('/:projectId', async (req, res) => {
 
     }
 });
-
+    
 
 router.put('/:assetId', async (req, res) => {
     try {

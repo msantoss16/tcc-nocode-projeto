@@ -2133,6 +2133,145 @@
       this.setHelpUrl("https://www.w3schools.com/jsref/met_document_getelementbyid.asp");
     }
   };
+  Blockly.Blocks.getInnerHTML = {
+    init: function() {
+		this.appendValueInput("element")
+        	.setCheck(null)
+        	.appendField("innerHTML");
+    	this.setInputsInline(true);
+    	this.setOutput(true, null);
+    	this.setColour(330);
+ 		this.setTooltip("");
+ 		this.setHelpUrl("https://developer.mozilla.org/pt-BR/docs/Web/API/Element/innerHTML");
+    }
+  };
+  Blockly.Blocks.getInnerHTML = {
+    init: function() {
+		this.appendValueInput("element")
+        	.setCheck(null)
+        	.appendField("innerHTML");
+    	this.setInputsInline(true);
+    	this.setOutput(true, null);
+    	this.setColour(330);
+ 		this.setTooltip("");
+ 		this.setHelpUrl("https://developer.mozilla.org/pt-BR/docs/Web/API/Element/innerHTML");
+    }
+  };
+  Blockly.Blocks.setInnerHTML = {
+	init: function() {
+		this.appendValueInput("element")
+			.setCheck(null)
+			.appendField("innerHTML");
+		this.appendValueInput("change")
+			.setCheck(null)
+			.appendField("=");
+		this.setInputsInline(true);
+		this.setPreviousStatement(true, null);
+		this.setNextStatement(true, null);
+		this.setColour(330);
+	 	this.setTooltip("");
+	 	this.setHelpUrl("https://developer.mozilla.org/pt-BR/docs/Web/API/Element/innerHTML");
+	}
+  };
+  Blockly.Blocks.getInnerText = {
+    init: function() {
+		this.appendValueInput("element")
+        	.setCheck(null)
+        	.appendField("innerText");
+    	this.setInputsInline(true);
+    	this.setOutput(true, null);
+    	this.setColour(330);
+ 		this.setTooltip("");
+ 		this.setHelpUrl("https://www.w3schools.com/jsref/prop_node_innertext.asp");
+    }
+  };
+  Blockly.Blocks.setInnerText = {
+	init: function() {
+		this.appendValueInput("element")
+			.setCheck(null)
+			.appendField("innerText");
+		this.appendValueInput("change")
+			.setCheck(null)
+			.appendField("=");
+		this.setInputsInline(true);
+		this.setPreviousStatement(true, null);
+		this.setNextStatement(true, null);
+		this.setColour(330);
+	 	this.setTooltip("");
+	 	this.setHelpUrl("https://www.w3schools.com/jsref/prop_node_innertext.asp");
+	}
+  };
+
+  Blockly.Blocks.addClass = {
+	init: function() {
+		this.appendValueInput("element")
+			.setCheck(null)
+			.appendField("elemento");
+		this.appendValueInput("change")
+			.setCheck(null)
+			.appendField("+ classe");
+		this.setInputsInline(true);
+		this.setPreviousStatement(true, null);
+		this.setNextStatement(true, null);
+		this.setColour(330);
+	 this.setTooltip("");
+	 this.setHelpUrl("https://developer.mozilla.org/pt-BR/docs/Web/API/Element/innerHTML");
+	}
+  };
+  Blockly.Blocks.removeClass = {
+	init: function() {
+		this.appendValueInput("element")
+			.setCheck(null)
+			.appendField("elemento");
+		this.appendValueInput("change")
+			.setCheck(null)
+			.appendField("- classe");
+		this.setInputsInline(true);
+		this.setPreviousStatement(true, null);
+		this.setNextStatement(true, null);
+		this.setColour(330);
+	 this.setTooltip("");
+	 this.setHelpUrl("https://developer.mozilla.org/pt-BR/docs/Web/API/Element/innerHTML");
+	}
+  };
+  Blockly.Blocks.setAtt = {
+	init: function() {
+		this.appendValueInput("element")
+			.setCheck(null)
+			.appendField("elemento");
+		this.appendValueInput("change")
+			.setCheck(null)
+			.appendField("atributo");
+		this.appendValueInput("attribute")
+			.setCheck(null)
+			.appendField("para");
+		this.setInputsInline(true);
+		this.setPreviousStatement(true, null);
+		this.setNextStatement(true, null);
+		this.setColour(330);
+	 this.setTooltip("");
+	 this.setHelpUrl("https://developer.mozilla.org/pt-BR/docs/Web/API/Element/innerHTML");
+	  }
+  };
+  Blockly.Blocks.setStyle = {
+	init: function() {
+		this.appendValueInput("element")
+			.setCheck(null)
+			.appendField("elemento");
+		this.appendValueInput("change")
+			.setCheck(null)
+			.appendField("estilo");
+		this.appendValueInput("style")
+			.setCheck(null)
+			.appendField("para");
+		this.setInputsInline(true);
+		this.setPreviousStatement(true, null);
+		this.setNextStatement(true, null);
+		this.setColour(330);
+	 this.setTooltip("");
+	 this.setHelpUrl("https://developer.mozilla.org/pt-BR/docs/Web/API/Element/innerHTML");
+	  }
+  };
 
 	Blockly.Blocks.text_print = {
 		init: function() {
@@ -2575,6 +2714,21 @@
     "colour": 330,
     "tooltip": "",
     "helpUrl": "https://www.w3schools.com/jsref/met_document_getelementbyid.asp"
+  },
+  {
+	"type": "get_innerhtml",
+	"message0": "innerHTML %1",
+	"args0": [
+	  {
+		"type": "input_value",
+		"name": "element"
+	  }
+	],
+	"inputsInline": true,
+	"output": null,
+	"colour": 330,
+	"tooltip": "",
+	"helpUrl": "https://developer.mozilla.org/pt-BR/docs/Web/API/Element/innerHTML"
   }]);
 
 	return Blockly.Blocks;
